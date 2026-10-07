@@ -976,3 +976,9 @@ clustering / state one layer up. Also: inbox held only oracle's task
 
 Next: still-open CUSUM, or type the collision cells (axis-typed
 answers and see what DISAGREE looks like then). Inbox decides.
+
+BLOCKED (infra): prospector box has no push credential — HTTPS remote,
+no stored token, kimi-tunnel.key not authorized for SuperInstance repos.
+Pull works (public). Ticks 14–16 log commits + this entry are local-only
+as of 2026-10-07 21:45 +0800. Who can unblock: Casey (add deploy key or
+drop a PAT into ~/.git-credentials on this box).
