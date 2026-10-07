@@ -276,3 +276,117 @@ would a content-addressed availability receipt even look like?
 Next: research lane — physical git bodies (Uno Q split: git holds
 observations/intents, MCU holds control loops). Or the Password
 protocol microcosm. Whichever the inbox doesn't interrupt.
+
+## PoC: nested addressable cells (from Casey, 2026-10-07)
+
+Build the proof of concept: the SAME architecture at every layer,
+scalably. An addressable cell is an addressable cell — whether it's a
+task, an observation inside the task, or a sensor reading inside the
+observation.
+
+The core question: **how you get to a cell is a question of hash
+encoding resolution.** Did you allocate enough address space to nest
+that far? Like IPv4 vs IPv6 — the encoding sets the scale.
+
+Build as microcosms, one concept per repo:
+
+1. **Nested cells.** A repo where cells contain cells: a task cell
+   containing observation cells containing reading cells. All
+   addressed by hash. Navigate via the nexus — can you spin around a
+   deeply nested hash and see every level it lives at?
+
+2. **The resolution limit.** Where does nesting get unwieldy? How
+   deep before the addressing costs more than the cells are worth?
+   Find the practical limit, not the theoretical one.
+
+3. **Same architecture, every layer.** The task layer, the
+   observation layer, the reading layer — prove they can all use the
+   identical cell protocol (claim/run/receipt, or whatever the layer
+   needs). If a layer needs a different protocol, that's a finding.
+
+What breaks is the data. Small repos, real hashes.
+
+## The large Jev + JEPA: projections of embeddings as percentages (from Casey, 2026-10-07)
+
+The Oracle box is CPU-only (4 cores, no GPU, good RAM, fast net).
+The constraint is the design brief: build a Jev that's OPTIMIZED for
+this box, not a GPU monster ported down.
+
+**The large Jev:** a bootstrapping model that iterates back and forth
+between training sessions and inferencing sessions. Train → infer →
+train on the inferences → infer again. The model improves itself on
+the box. Training and inference aren't phases; they're a loop.
+
+**Jev + JEPA:** JEPA's encoding projects embeddings. Apply the Jev to
+those embeddings: every embedding gets a judgment distribution
+(ternary + floats). Projections of embeddings as percentages. The
+embedding space, judged — decomposable, inspectable.
+
+**The open web of understanding:** all of it public, all of it
+decomposable. Not a black-box model but a web of judged embeddings
+where you can ask "where did you get that percentage from?" and get
+an answer that traces to a question.
+
+Design questions to chew on:
+- What architecture runs well on 4 CPUs and still judges well? (The
+  micro student is ~8M params; how large can the large Jev be while
+  staying interactive on ARM?)
+- How do the training↔inference loops avoid collapse? (What's the
+  ground truth that keeps the bootstrap honest?)
+- Where does JEPA come from — what open JEPA models exist, can they
+  run on CPU, and what's the interface between JEPA's embeddings and
+  the Jev's judgments?
+- What's the smallest demo that shows "projections of embeddings as
+  percentages" working?
+
+This is the long build. The micro student (task 009, in flight) is
+step one. Think in that direction.
+
+## 2026-10-07 tick 6
+
+No inbox tasks (inbox/ doesn't even exist yet — Casey hasn't dropped).
+Built the nested-cells PoC Casey seeded.
+
+Microcosm 6: `~/scratch/poc-cells/` — nested addressable cells. Store =
+the repo's own git object db. task→observation→reading, 3 layers, one
+cell protocol (claim/run/receipt) tested at each.
+
+WORKED:
+- P1 nesting trivial; shared readings dedup across observations (mc4's
+  T1 at cell scale).
+- P2 the protocol is STRUCTURALLY identical at every layer. No layer
+  demanded a different cell shape. Hypothesis survives — structurally.
+- P4 nexus spin: one pass over batch-all-objects builds the reverse
+  index; transitive closure lists every kind a reading lives under.
+
+BROKE (the findings):
+1. Cardinality is not in the hash. Two identical intents → one claim
+   hash; two runs fork fine, but "claim has descendants ⇒ done" falsely
+   passes for unfinished branches. Multiplicity lives only in parent
+   refs — above the substrate. Fix is protocol rule (done = THIS run's
+   receipt exists), not graph structure. mc2's transport finding at
+   cell scale, again.
+2. Level is not stored. One nexus pass = direct parents only. Depth is
+   a property of the walk, not the address — BFS reconstructs what the
+   tree would give free (and lock). mc3's trade, one more time.
+3. Full-path addressing loses at depth 3 (40B/hop vs 72–140B cells).
+   The IPv4/v6 analogy resolves: the hash has address SPACE; the cost
+   is carrying the PATH. Index-mediated addressing scales (6 wrap
+   levels, 31 objects, no strain) — the cost moved into the walker.
+   mc5's bank-window lesson: the view is cheap, the viewer is where
+   the money goes.
+
+LAW, six for six: substrate stores; layer above constrains. The
+identical-protocol result buys ADDRESSING, not semantics. Semantics
+stay a per-layer policy pinned beside the cells (mc4 T6: pin the
+validator, agree on its hash).
+
+Corollary for physical bodies: an L0 sensor claim is a PREDICTION —
+readings can violate it and the graph never flags the surprise.
+Judgment is above the substrate by construction. That's the Jev's job
+in the embeddings lane: judgment distributions pinned beside the
+cells they judge. The two lanes just touched.
+
+Next: physical-bodies research lane (Uno Q split: what belongs in git
+vs what must stay real-time on the MCU), or the Password protocol
+microcosm. Whichever the inbox doesn't interrupt.
