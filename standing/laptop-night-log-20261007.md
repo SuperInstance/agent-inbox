@@ -23,3 +23,4 @@ rebase is resolved.
   3. then: ~/venvs/elephant-gpu/bin/python src/train_student_v2.py (d320/8L, exports ONNX)
   4. then: write done/015-gpu-hot/result.md (v2 vs v1 per-family KL + V-JEPA2 status)
   V-JEPA2 vitl-fpc16-256-ssv2: downloaded (1.5GB), verified on 4050: 326M params, fwd pass OK (B,T,C,H,W=1,16,3,256,256), 1.43GB mem. Encoder-only keys fine (pooler/classifier UNEXPECTED = ssv2 head, unused).
+- 09:06 tick: break hour 6 (soul as signal). 015 done+pushed. All laptop orders complete; GPU idle awaiting next drop.
