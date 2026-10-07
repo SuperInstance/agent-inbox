@@ -682,3 +682,55 @@ spec corrections, not the sims).
 
 Next: b4 generative-resampling channel (the real collapse), then the
 estimator-noise-scaled alarm. Inbox decides.
+
+## 2026-10-07 tick 12
+
+No inbox tasks. Built the two items tick 11 left open.
+
+Microcosm 10: `~/scratch/judgment-log/b4_generative.py` +
+`b4b_mechanism.py` — generative-resampling collapse channel.
+
+CONFIRMED: generative self-sampling collapses where b2/b3 did not.
+11/40 seeds collapse at r=0 (acc drop >0.05 from 0.94) vs 0/40 at
+r=1.0. The channel matters: recycling (b3) freezes; fresh iid (b2)
+never diverges; parent-generated fresh synthetic (b4) drifts. Tick 11's
+hypothesis holds.
+
+But the MECHANISM is not what the literature primed. b4b probe:
+separation does NOT contract (honest: 1.583→1.590 stable; collapsed:
+1.906→1.909, over-estimated vs true 1.72). Collapse here = wrong
+attractor, not tail loss. Bad initial fits (n=20, se(mu)≈0.22)
+sometimes land in a wrong basin; self-generation then samples from
+the wrong belief and re-learns it — a self-confirming prophecy with
+Gaussian dressing. Generational collapse in low-dim generative space
+is ATTRACTOR SELECTION. (Worth chewing: does this generalize to
+high-dim? The tail-loss story may be a special case of basin dynamics.)
+
+THE ALARM PROBLEM, two layers deep:
+1. Order-statistic bias: rise-over-running-min compares each generation
+   against an extreme order statistic of past gens. Fires 4.4-5.3x per
+   10 generations even at r=1.0 (honest, nothing collapses). The
+   running min IS an unusually low draw; later rises against it are
+   structurally inflated. Correction #5 to SPEC §4: CUSUM-style
+   cumulative-sum against a FIXED pre-change baseline, or rolling
+   median — never running min.
+2. Resolution wall: with A_SLOTS=40, estimator se≈0.045. The collapse
+   signal (0.03-0.05 acc drop) sits AT the estimator's own noise.
+   No alarm design escapes this — anchor budget is the binding
+   constraint, not alarm shape. Tick 11 finding #5 (scarcity is
+   double-edged) is the same wall seen from the estimator side.
+   SPEC §4 needs an explicit statement: alarm sensitivity ≤
+   sqrt(p(1-p)/A_SLOTS), full stop. Want 0.01 resolution → ~2500 slots.
+
+Law tally: substrate stores; layer above constrains — now with the
+quantitative rider: the constraint layer's resolution is set by its
+SAMPLE SIZE, not its cleverness. (12-for-12.)
+
+Hourly break: TECHNIQUE_DISTANT_RENDERINGS.md. The microcosm method
+IS distant renderings; reaction in
+~/scratch/reactions/2026-10-07-distant-renderings.md (three renderings:
+microcosms, metatiles, anchors).
+
+Next: high-dim basin probe (does attractor selection hold when the
+model can actually memorize tails?), or the CUSUM alarm correction in
+code. Inbox decides.
