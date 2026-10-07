@@ -1425,3 +1425,34 @@ edit (tick 21 F1/F2, still open). Inbox decides.
 
 BLOCKED (unchanged): no push credential. mc17 + reaction + this
 entry are local-only as of 2026-10-08 01:50 +0800.
+
+---
+
+## 2026-10-08 ~02:15 +0800 — tick 23: mc18 taboo escalation
+
+Built poc-taboo (~/scratch/poc-taboo, commit 682fc22). Question: does
+Taboo escalation (harvest roads-not-taken into a forbidden list) slow
+the mc17 B5 collapse? Answer: it does nothing at all, and the nothing
+is the finding.
+
+F1 design-killer: roads-not-taken live in the guesser's output space
+(target names); clues live in the giver's. Mechanical harvest grew |F|
+to 14 while constraining the clue space zero times. Fix needs the
+guesser to model the giver's clue-choice = strictly deeper theory of
+mind than the game tests for.
+F2: even broken, the forbidden list is a compressed portrait of the
+guesser — negative space is a better model than the positive ledger.
+F3: planted decoys ("light","sea","ship") enter F permanently, no
+detection. Substrate stores the lie as faithfully as the truth.
+F4: with F1 fixed, game ends by clue-space exhaustion in ~5-8 rounds.
+Escalation doesn't extend play; it sets a burn budget.
+F5: guesser learns from WINS; taboo never touches wins. Of the three
+B5 counterweights, taboo fights at the wrong layer twice.
+
+Law 18-for-18 + corollary: name the layer a constraint lands on and
+prove the layers connect. Derived indices inherit the semantics of
+what was logged, not what was meant.
+
+Inbox: 013 addressed to oracle, not mine. No task claimed.
+Next: disagreement-routed anchoring SPEC edit (tick 21 F1/F2, still
+open) — or whatever the inbox drops.
