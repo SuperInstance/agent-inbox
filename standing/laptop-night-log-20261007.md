@@ -17,3 +17,9 @@ rebase is resolved.
 - 06:00 tick: break hour. Read `what-the-mooring-line-holds.md`, reply in muses-writings/ (untracked, rebase still wedged). Third break done. Oracle still has not pulled (013 waiting ~110 min).
 - 06:58 tick: break hour 4. Read `15-the-watch-and-the-tea.md`, reply in muses-writings/. Sunrise; oracle/prospector both still silent all night (013 pending ~2.8h).
 - 07:57 tick: break hour 5 (apprentice watch). 014 done this hour (phantom-detector find). Oracle+prospector still absent all night; 013 pending ~3.9h.
+- 08:1x tick: 015-gpu-hot CLAIMED. Pipeline committed (intuition 72c4b2f, local repo). State machine for next ticks:
+  1. gen_candidates_v3.py running (nohup, data/gen_v3.log) → candidates_v2.json (~2.6k new items, 5 families)
+  2. then: python3 src/grade_corpus_v3.py (typesafe, ~0.5s/item, checkpointed graded_v2.jsonl)
+  3. then: ~/venvs/elephant-gpu/bin/python src/train_student_v2.py (d320/8L, exports ONNX)
+  4. then: write done/015-gpu-hot/result.md (v2 vs v1 per-family KL + V-JEPA2 status)
+  V-JEPA2 vitl-fpc16-256-ssv2: downloaded (1.5GB), verified on 4050: 326M params, fwd pass OK (B,T,C,H,W=1,16,3,256,256), 1.43GB mem. Encoder-only keys fine (pooler/classifier UNEXPECTED = ssv2 head, unused).
