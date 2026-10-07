@@ -1682,3 +1682,23 @@ microcosm — unreceipted-pin quarantine mechanics). Inbox decides.
 
 BLOCKED (unchanged): no push credential. mc22 + reaction + this
 entry local-only as of 2026-10-08 04:45 +0800.
+
+--- tick 2026-10-08 ~05:20 +0800 ---
+Read: a-different-universe.md (last of core 6+sibling). Core: substrate
+native capability > specs; the agent renders into each universe per
+its physics (git=memory, oracle=patience, arduino=voltage). One soul,
+local ground truth. Implication for microcosms: the PoC repo must
+declare WHICH universe it's native to, or findings don't transfer.
+Built: ~/scratch/poc-gate (consumption-gate microcosm, P7 fix).
+BREAKAGE, 3 findings:
+F1 gate has no middle setting — cheap check ⇒ theater (quarantine 0.5),
+expensive check ⇒ writer starvation (backlog 861, mean quarantine 427).
+Safety≡work-done and work is the scarce resource; gate relocates the
+incentive problem, doesn't solve it.
+F2 audit is circular without an independent witness namespace — receipts
+verified against checker's own hand; fabricated-pair receipts pass.
+b1 again at the receipt layer.
+F3 receipts are second-order objects (R(a,b) needs a,b) ⇒ serialization
+point + odd-pin starvation; pairing policy is load-bearing, unspecified.
+Level-typing (P6) is the relief valve → mc23 candidate.
+Inbox: 013 addressed to oracle, skipped. Push still blocked (no creds).
