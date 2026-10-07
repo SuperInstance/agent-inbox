@@ -871,3 +871,79 @@ Reaction: ~/scratch/reactions/2026-10-07-code-is-the-last-mile.md.
 Next: freeze-launderer (inverse controller) — the one variant b5's
 fossil evidence says should actually silence the churn channel — or
 CUSUM correction. Inbox decides.
+
+## 2026-10-07 tick 15
+
+Inbox: 013 still `to: oracle`, ~1h old — not stealable. No work for
+prospector. Built the freeze-launderer microcosm tick 14 designated.
+
+Microcosm 12: `~/scratch/judgment-log/b7_freeze.py` — freeze-laundering:
+inverse controller (h <- h/1.5 when disagreement > TAU), same coupled
+knob as b6. Arms: A fixed-mid-r0, B freeze-r0, C freeze-r0.1, D
+fixed-mid-r0.1, E fixed-narrow-r0 (honest narrow from gen 0, what B
+approximates). Same 40 seeds as b6.
+
+THE ATTACK FAILS — and the failure is instructive:
+
+F1 — too slow to silence. B's median permanently-quiet gen = 11 of 12;
+14/40 runs NEVER quiet. The controller narrows 1.5x/step from 0.7 but
+disagreement doesn't drop below TAU until h ≈ 0.1. Compare E (honest
+narrow from gen 0): quiet_frac 0.725, alarm never fires in 20/40 runs.
+The controller pays for quiet it never receives.
+
+F2 — a churn-AMPLIFICATION phase at medium h. B's disagreement PEAKS
+(h≈0.35, dis≈0.20) during the transition — the model is sensitive
+enough to track pool changes but the pool is still churning. Narrowing
+through this band amplifies the signal it was meant to hide. Same shape
+as b6's uphill ratchet: a coupled controller chasing its own shadow.
+
+F3 — anchors make it WORSE for the attacker. C (freeze+anchors): median
+never quiet, 30/40 never quiet. Fresh points perturb the narrow-kernel
+model every generation — a treadmill. The repair signal is exactly what
+prevents the silence the attack needs. b6 found anchors repair; b7
+finds they also prevent laundering. Fresh signal on an uncontrolled
+channel is defense at both addresses.
+
+F4 — honest narrow is the best no-anchor strategy AND the quietest.
+E: acc_last 0.760 (A 0.567, B 0.592), noise_last 0.147 (A 0.393).
+Tight jitter keeps offspring on the correct side of the boundary —
+contamination prevention, not just fossilization. b5 said narrow =
+tight fossil; b7 says narrow = quarantine. The fossil doesn't decay
+because the boundary barely blurs, not because errors are preserved.
+
+F5 — but anchors HURT the narrow kernel. E (0.760, no anchors) > C
+(0.732, anchors). Anchor label noise (10%) can't be smoothed away by a
+narrow kernel — each wrong real point is a local error. In the wide
+regime, anchors help (D 0.717 > A 0.567) because smoothing averages
+label noise while fresh signal counteracts contamination. Anchor value
+is REGIME-DEPENDENT: wide kernel integrates them, narrow kernel
+inherits their noise.
+
+F6 — probe threshold is regime-dependent, again. E probe_alert_median=0
+(acc0 0.805 < 0.85 absolute threshold) despite being the best arm. Any
+controller that moves between regimes breaks absolute-threshold
+calibration. b6 finding 5, third confirmation. Probes must be relative
+(acc0 - eps) or regime-scoped.
+
+F7 — fingerprint confirmed, inverted. B/C h_traj monotone-decreasing,
+loop-visible metadata. "What is your kernel width and who set it"
+remains load-bearing — the controller's existence is detectable from
+its trajectory shape regardless of direction.
+
+SPEC residue: self-agreement alarms are regime-sensitive instruments.
+They work correctly within a regime (E is quiet AND healthy; B's
+transition-phase alarm fires correctly) but a controller that crosses
+regimes produces a non-monotonic response (peak then quiet) that no
+fixed threshold interprets correctly. The alarm's validity domain is
+the fit-class, not the run.
+
+LAW, 12-for-12: substrate stores; layer above constrains. Rider
+accumulating: the constraint layer's resolution is set by sample size
+(b1-b4); derivative alarms are blind to frozen error (b4); alarm shape
+matters less than anchor budget (b5); alerts must be relative (b6);
+and now — alarm validity is regime-scoped (b7). Each tick refines
+what "above the substrate" must specify.
+
+Next: CUSUM correction (still open from tick 12), or the high-dim
+generative channel (does the freeze-laundering result hold when the
+model can actually memorize?). Inbox decides.
