@@ -1285,3 +1285,80 @@ password-protocol microcosm (seeded, unbuilt). Inbox decides.
 
 BLOCKED (unchanged): no push credential. mc15 + SPEC inv5 + this
 entry are local-only as of 2026-10-08 00:30 +0800.
+
+## 2026-10-08 tick 21
+
+Inbox: 013 still `to: oracle`, ~4.5h old — not stealable for ~19.5h. No
+work for prospector. Built the asymmetric sharpening pair tick 20
+designated. Microcosm 16: `~/scratch/judgment-log/b10_sharpening.py`
+(+ b10b posthoc, b10c regen; committed). Narrow (h=0.2) + wide (h=2.0)
+KDE pair on the b5/b9 generative protocol; 5 arms × 40 seeds × 12 gens;
+anchor placement policy is the variable.
+
+FINDINGS:
+
+F1 — THE PAIR PAYS AS A ROUTER, NOT A BLENDER. Probability-averaged
+ensemble ≈ narrow + ε (0.758 vs 0.754 — the confident member owns the
+sign; the wide model only flips decisions where narrow is uncertain,
+which is rare). Blending averages away which model knew what. Routing
+by disagreement pays: directed anchors beat uniform 28-12 paired,
+wide acc_last +0.054, wide collapses 27→21 at ZERO budget increase.
+The asymmetry's value is realized by sending probes to disagreement,
+not by averaging over it.
+
+F2 — DISAGREEMENT IS A WHERE SIGNAL, NOT A WHEN SIGNAL. Tercile
+gradient on early disagreement: paired wide benefit +0.014 / +0.052
+/ +0.102 (7× bottom→top) — the signal knows where it's informative.
+But corr(early dis, total drop) = 0.060-0.083 — it cannot predict
+when or how much a run will decay. Pooled corr(dis, wrongside) = 0.171,
+directionally right (cross-arm ordering E>C>D holds on both) but
+within-arm too weak to alarm with. Sharpening pairs: use disagreement
+for placement policy, never as a collapse alarm. b8's alarm-validity
+regime-scoping, one more domain.
+
+F3 — DIRECTED PLACEMENT SELF-EXTINGUISHES ITS OWN METRIC. D's terminal
+disagreement 0.015 vs C's 0.033: the policy resolves the disagreements
+it probes. But D's wrongside 0.232 ≈ C's 0.238 — the POOL is no
+cleaner; the gain is placement (fresh points at the boundary where
+the wide integrator's decay lives), not decontamination. A controller
+that minimized disagreement would go quiet, then blind. Demand signal
+must not double as success metric (b6/b7 shape, third instance).
+
+F4 — AGREEMENT IS THE BLIND SPOT. The pair only disagrees where both
+have opinions; contamination absorbed into the wide model's global
+average is pair-invisible. b4's wrong-attractor IS a high-agreement
+state. Sharpening pairs must treat agreement as absence of evidence,
+never confirmation — deliberate asymmetry's failure mode is
+prior-harmonization.
+
+F5 — the narrow model PAID for directed placement (−0.024, 14-26
+paired). Anchor value is shape-dependent: narrow prices spread
+coverage, wide prices boundary-band coverage. b7 F5 (anchor value
+regime-dependent) now has a spatial form: regime IS location.
+
+DESIGN NOTE (honest flaw): arms A/B/C were seed-identical protocols,
+so their columns are literally the same simulation — "single-model
+baselines" were never separately run. All conclusions are within-pair.
+The fix was to treat the pair as one simulation and compare placement
+policies; the findings survived the reframing.
+
+LAW, 16-for-16: substrate stores; layer above constrains. Tick's
+variant: the constraint layer's signals have TYPE — where vs when,
+demand vs success — and conflating them is the failure. (Also the
+meta-lesson: an arm-design flaw is itself a finding if you catch it
+in the writeup.)
+
+Hourly break: iron-sharpens-iron.md. Three rooms map onto three
+results: both-sharper → b10's trade asymmetry (only one blade got
+sharper per stroke); sharpener-ceiling → b8's resolution wall;
+the recursive loop closing → b6/b7's coupled-controller laundering.
+The essay is the design brief; the b-series is the hazard analysis.
+Reaction: ~/scratch/reactions/2026-10-08-iron-sharpens-iron.md.
+
+Next: password-protocol microcosm (seeded by Casey, unbuilt since
+the night shift), or disagreement-routed anchoring inside the SPEC
+as a placement policy (F1/F2 are spec-grade: "probes follow
+disagreement, alarm does not"). Inbox decides.
+
+BLOCKED (unchanged): no push credential. b10 commits + this entry
+are local-only as of 2026-10-08 01:05 +0800.
