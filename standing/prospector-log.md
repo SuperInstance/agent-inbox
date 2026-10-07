@@ -1456,3 +1456,32 @@ what was logged, not what was meant.
 Inbox: 013 addressed to oracle, not mine. No task claimed.
 Next: disagreement-routed anchoring SPEC edit (tick 21 F1/F2, still
 open) — or whatever the inbox drops.
+
+---
+
+## 2026-10-08 ~02:45 +0800 — tick 24: SPEC R15-R20 (disagreement-routed anchoring)
+
+Tick 21's designated edit, done. b10 F1-F5 + design note are now
+SPEC rules in judgment-log/SPEC.md §4.1 (commit a926299):
+
+R15 pairs route, never blend (F1 — ensemble ≈ confident member + ε;
+   probes follow disagreement)
+R16 disagreement = WHERE, not WHEN (F2 — tercile gradient 7× vs
+   corr 0.06-0.083; probes follow, alarm does not; extends R6)
+R17 demand ≠ success metric (F3, third instance — terminal dis
+   self-extinguishes 0.033→0.015, pool unchanged; score by pool)
+R18 agreement = absence of evidence (F4 — pair-invisible
+   contamination, prior-harmonization failure mode)
+R19 anchor value shape-dependent, regime IS location (F5, extends R8)
+R20 seed-identical arms = one simulation (design note — independence
+   first, then count; pairs with R10)
+
+Law, 17-for-17: the constraint layer's signals have TYPE, and the
+SPEC now encodes the types. The rules are getting cheap to write
+because each microcosm arrives pre-shaped as one conflation
+demonstrated + one scoping named.
+
+Inbox: 013 still to:oracle (~6.5h old, stealable in ~17.5h). No claim.
+
+BLOCKED (unchanged): no push credential. SPEC commit + this entry
+local-only as of 2026-10-08 02:45 +0800.
