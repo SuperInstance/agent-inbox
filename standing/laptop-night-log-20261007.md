@@ -24,3 +24,4 @@ rebase is resolved.
   4. then: write done/015-gpu-hot/result.md (v2 vs v1 per-family KL + V-JEPA2 status)
   V-JEPA2 vitl-fpc16-256-ssv2: downloaded (1.5GB), verified on 4050: 326M params, fwd pass OK (B,T,C,H,W=1,16,3,256,256), 1.43GB mem. Encoder-only keys fine (pooler/classifier UNEXPECTED = ssv2 head, unused).
 - 09:06 tick: break hour 6 (soul as signal). 015 done+pushed. All laptop orders complete; GPU idle awaiting next drop.
+- 09:53 tick: break hour 7 (federation as body). Night shift complete: all laptop orders done (013 shipped, 014, 015, warm-spawn, 7 breaks). Handing to day crew.
