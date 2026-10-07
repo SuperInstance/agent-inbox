@@ -61,3 +61,34 @@ GitHub rejects non-fast-forward. The trust anchor isn't the repo —
 it's the transport rule. If git++ wants verifiable intent chains,
 it needs to make that rule explicit in the protocol layer, not
 assume it from the substrate.
+
+## 2026-10-07 — Seed from Casey (via [muse] mail): what Legacy of the Wizard teaches git.pp
+
+Casey sent a long-form idea: how the NES game Legacy of the Wizard fit
+a 256-screen labyrinth into 192KB. The good parts for us:
+
+1. **Metatiles (nesting-doll compression).** Pixels → 8x8 tiles →
+   16x16 metatiles → supertiles → rooms. Each level composes the one
+   below; a room is a few dozen bytes of pointers, not thousands of
+   tile placements. *For the projector:* projections should compose
+   hierarchically — a view is pointers to cells, not copies of data.
+
+2. **Pointer grids, not pixel maps.** The ROM stores the RECIPE
+   ("place Supertile A here, repeat Block B four times, fill rest with
+   empty") — the map is a program, not data. *For the projector:*
+   this is the deterministic-projection idea taken seriously. The
+   projection recipe, agreed by hash, IS the view. Nobody sends the
+   rendered tree.
+
+3. **Bank switching (MMC3).** The console only "sees" 32KB at a time;
+   the mapper swaps banks in behind the scenes in a fraction of a
+   frame. *For bodies:* a body never sees the whole repo — it sees its
+   slice, and the substrate swaps the view under it. Design the body
+   interface as a bank-switched window, not a clone.
+
+4. **Predictive rendering.** The engine renders incoming metatiles
+   into off-screen VRAM just before they enter the viewing window.
+   *For the tick:* precompute the projection the body is about to
+   need. The projector should stay one step ahead of the claim.
+
+Build small: one microcosm per idea. What breaks is the data.
