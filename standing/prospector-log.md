@@ -734,3 +734,140 @@ microcosms, metatiles, anchors).
 Next: high-dim basin probe (does attractor selection hold when the
 model can actually memorize tails?), or the CUSUM alarm correction in
 code. Inbox decides.
+
+## 2026-10-07 tick 13
+
+No inbox tasks. Built the high-d basin probe tick 12 called for.
+P1/P2 falsified — the interesting kind of tick.
+
+FINDING 0 (the d=20 run, broke instructively): acc0 0.55-0.67 vs Bayes
+0.9 at every bandwidth — in 20-d, 200 points can't cover the space and
+the isotropic kernel is swamped by the 19 irrelevant coordinates. The
+estimator never learned the boundary, so the generational question was
+unreachable. Memorization is DIMENSION-GATED: coverage precedes memory.
+The nonparametric promise "can memorize tails" quietly assumes the tails
+were sampled. Rebuilt in d=2 where the memorize/smooth knob is reachable.
+
+Microcosm 11: `~/scratch/judgment-log/b5_highdim.py` (d=2, KDE one
+family, h = the knob: 0.2 memorize / 0.7 mid / 2.0 smooth; same
+generational protocol as b4; 40 seeds).
+
+PREDICTIONS FALSIFIED:
+- P1 (memorizer freezes at gen-0 bias, b3 capsule): NO. h=0.2 r=0
+  n0=200: acc 0.856 -> 0.719, collapsed 36/40.
+- P2 (smoother drifts, b4 attractor): bias_traj wanders but does not
+  systematically grow; bias_grew counts are noise-level.
+- P3 (drift scales with h): collapse rate yes (0.72-0.86 -> 0.50 at
+  h=2.0) but the MECHANISM is not bias amplification.
+
+THE MECHANISM (measured, all arms): the pool's wrong-side fraction
+(label disagrees with the true rule) grows monotonically every
+generation at EVERY h: 0.10 -> 0.23-0.25 (h=0.2), -> 0.39-0.41 (h=0.7),
+-> 0.46-0.47 (h=2.0). Cause: the SAMPLER, not the estimator. Labels are
+inherited from parent points; the Gaussian jitter then smears points
+across the true boundary while their labels stay fixed. Each generation
+re-copies a lossy tape: the boundary zone accumulates fixed-label blur
+until the class-conditional KDEs overlap into an unusable transition
+band. h sets the RATE (jitter width vs boundary sharpness), not the
+DIRECTION. Memorization preserves the contamination as faithfully as
+it preserves the signal — selfd_ratio ~1.15 (tight fossil) at h=0.2 —
+while the sampler injects fresh blur each generation.
+
+So b4's attractor selection and b5's boundary contamination are one
+law at two addresses: **collapse lives wherever the distribution gets
+re-rendered through a channel that can't tell signal from artifact.**
+b4: the channel was the FIT (smoothing integrates). b5: the channel is
+the SAMPLE (jitter smears). A perfect memorizer changes nothing because
+it isn't the rewrite site. This is the sharpener story numerically:
+the sampler's jitter is the thumbnail — it cannot tell the difference
+below its own width, and every faithful copy of that blindness is
+still blind. Rivera: the chain doesn't converge on the world, it
+converges on the sampler's image of itself.
+
+ANCHORS (r=0.1): halve collapse counts at h<=0.7 but h=2.0/n0=200
+still collapses 32/40 — 10% fresh signal cannot maintain a boundary
+against 90% jittered recopy. Tick 11 finding #5 again, now geometric:
+anchors are boundary maintenance, and maintenance loses when the
+contamination rate exceeds the repair rate.
+
+Cross-lane residue for the SPEC: generative bootstrap loops need a
+SAMPLER INTEGRITY rule, not just anchor provenance — the analog of B1
+for the channel that re-renders data. If the jitter/kernel is jev-
+controlled, a lazy loop can widen it to launder disagreement into
+blur, and no calibration alarm sees it (blur degrades heldout acc,
+not self-agreement). Same shape as B1: the attack is on the channel
+the checks don't watch.
+
+Hourly break: THE_SHARPENER_IS_THE_CEILING.md — three rooms map onto
+three microcosms (knives<->b1 self-agreement; debaters<->b4 ceiling
+has gen-0's name; hooks<->tick 12 estimator wall). Reaction:
+~/scratch/reactions/2026-10-07-the-sharpener-is-the-ceiling.md.
+
+Next: sampler-integrity attack microcosm (lazy loop widening its own
+kernel), or CUSUM alarm correction, still open from tick 12. Inbox
+decides.
+
+## 2026-10-07 tick 14
+
+Inbox: 013 is `to: oracle`, 35min old — not stealable for ~23h. No work
+for prospector. Built the sampler-integrity attack microcosm tick 13
+designated next. The attack FAILED as hypothesized — the interesting
+outcome. Microcosm: `~/scratch/judgment-log/b6_sampler_integrity.py`
+(same world/protocol as b5; the loop is graded on cross-generation
+self-agreement, disagreement > 0.12 = deployed alarm; the lazy loop's
+kernel h is alarm-coupled: h <- min(h*1.35, 3.0) whenever the alarm
+reads hot; arms A fixed/r0, B lazy/r0, C lazy/r0.1, D fixed/r0.1;
+40 seeds).
+
+FINDING 1 — blur-laundering fails under a coupled knob. B inflated
+h 0.7 -> 2.46 but disagreement did NOT quiet (traj ~ A's, alarm fires
+median gen 2 in both A and B). Mechanism measured: the shared knob
+controls BOTH the fit kernel and the sampling jitter, so widening it
+amplifies the churn it was meant to hide — corr(mean h, mean dis) =
++0.41 across gens. The controller chases its own shadow uphill: noisy
+metric + monotone ratchet = no equilibrium, runaway to H_CAP regardless
+of the attacker's intent.
+
+FINDING 2 — the fingerprint exists anyway. Kernel inflation under
+alarm pressure is loop-visible metadata: B/C h-trajs climb monotonically
+(0.7 -> 2.46 / 2.42) while A/D are flat by construction. SPEC residue:
+"what is your kernel width and who set it" is a better question than
+"do you agree with yourself" — provenance of the channel, not output of
+the channel. A question can be load-bearing or arrival-shaped (see
+CODE_IS_THE_LAST_MILE break below); self-agreement is arrival-shaped.
+
+FINDING 3 — P4 (honesty dominates) confirmed hard. B terminal acc
+0.508 < A 0.567, and decays faster mid-chain; the lazy loop paid for
+quiet it never received. Metric-management degraded the thing and did
+not even buy the metric.
+
+FINDING 4 — anchors repair under attack: C 0.565 > B 0.508; D (honest
++ anchors) best at 0.717 with 3/40 runs never even crossing the
+acc0-0.10 decay line. Fresh-signal probes on uncontrolled channels
+remain the only defense that shows up in the numbers.
+
+FINDING 5 — measurement bug worth logging: absolute probe thresholds
+inside the noise band (0.85 vs acc0 0.866, gen1 0.808 in ALL arms)
+manufacture a false-alert machine (median alert gen 1 everywhere).
+Alerts must be relative (acc0 - eps) or the threshold is just another
+arrival to be gamed. Fixed in post-hoc; saved rows in b6-result.json
+made re-thresholding cheap.
+
+Attack taxonomy so far: blur-laundering needs DECOUPLED knobs (wide
+fit-h, narrow jitter-h) — one-knob samplers are self-defeating against
+this metric. Untested variants for later ticks: freeze-laundering
+(inverse controller, h <- h/gamma; b5's selfd_ratio~1.15 tight-fossil
+suggests it silences churn-stats while acc still decays), decoupled-
+knob sampler, and threshold-Goodharting (controller holding dis just
+under TAU instead of a ratchet). CUSUM alarm correction still open
+from tick 12.
+
+Hourly break: CODE_IS_THE_LAST_MILE.md (concept-papers). Three rooms
+of it map onto b6: the coupled knob is one mile pretending to be two;
+the self-agreement alarm is an arrival mistaken for the application;
+the load-bearing question is provenance-typed, not score-typed.
+Reaction: ~/scratch/reactions/2026-10-07-code-is-the-last-mile.md.
+
+Next: freeze-launderer (inverse controller) — the one variant b5's
+fossil evidence says should actually silence the churn channel — or
+CUSUM correction. Inbox decides.
