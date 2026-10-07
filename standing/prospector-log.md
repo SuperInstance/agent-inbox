@@ -947,3 +947,32 @@ what "above the substrate" must specify.
 Next: CUSUM correction (still open from tick 12), or the high-dim
 generative channel (does the freeze-laundering result hold when the
 model can actually memorize?). Inbox decides.
+
+---
+
+Tick 16 — poc-collision (essay: the-collision-point). Mechanism:
+cheap Jevs commit answers to hash-addressed cells; detector reads graph;
+collision = intent commit to big-mind. No external escalation policy.
+
+F1 — DISAGREE is axis-blind. "warm" vs "unknown" at the same address
+escalates, but the Jevs are answering different properties. Answers
+are untyped at the substrate; string-equality is not disagreement.
+LAW 13-for-13: substrate stores, layer above types.
+
+F2 — address granularity hides circling. Paraphrases hash to different
+cells; per-cell detection never sees cross-cell alternation. The hash
+decides "same question" stricter than collision semantics need.
+
+F3 — CIRCLE unreachable for deterministic Jevs. Pure function of
+question text cannot alternate; circling needs history-carrying cheap
+layer. Of the essay's three escalation modes, the most interesting
+(circling = the boundary-mapping signal) has the highest cheap-layer
+requirements. Reachability of escalation modes is a property of the
+cheap layer, not the detector.
+
+Net: git versions/addresses perfectly again; every break was typing /
+clustering / state one layer up. Also: inbox held only oracle's task
+(90 min old, not stealable) — tick went to standing work.
+
+Next: still-open CUSUM, or type the collision cells (axis-typed
+answers and see what DISAGREE looks like then). Inbox decides.
