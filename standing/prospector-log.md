@@ -1526,3 +1526,54 @@ the contention?). Inbox decides.
 
 BLOCKED (unchanged): no push credential. scratch commit fd10804 +
 this entry local-only as of 2026-10-08 03:15 +0800.
+
+## 2026-10-08 ~03:45 +0800 — tick 26: poc-laser (mc20), shoot-it-as-a-laser essay
+
+Inbox: 013 still `to:oracle` (~7.5h old, stealable in ~16.5h). No claim.
+Chewed shoot-it-as-a-laser.md (5th of 6 core essays). Built poc-laser:
+2-d embedding world, toy jev, five probes of "snaps have geometric
+properties; sweep the laser; triangulate."
+
+P1 — hash space has NO semantic metric (the suspected break, confirmed).
+Clean corr(XOR-hash-dist, L2-embed-dist) = -0.03 (n=3725 within-cluster).
+Original mixed-sample 0.305 was cluster-bimodality artifact. SHA-256
+avalanches perfectly: shared-prefix strings → XOR distribution
+identical to random bytes. "Angles, distances, intersections" cannot
+live in hash space. Substrate contributes identity + topology only.
+
+P2 — judgment field continuous (0.93 adjacency-agreement), but
+continuity is the jev's: smooth functional → smooth field. Swap the
+jev, same pins return noise. Beam quality is encoder policy.
+
+P3 — composition constrains topology, never geometry. A→B→C gives
+chain length, ordering, hash equality — free. Content recovery from a
+hash requires FULL SCAN (mc1 f3, again). No angle at B in a bare
+pointer. Geometry from composition needs typed edges (mc16 f1).
+
+P4 — second-order snaps are just more fields. Metajudgments same shape
+as judgments. No new geometric properties from composition alone.
+
+P5 — THE TERNARY LASER IS BLINDED BY ITS OWN ABSTAIN BAND. Ternary-only
+sweep: 0 boundary crossings — no gradient, no triangulation. But the
+FLOAT carries the geometry: sign-sweep on confidence found 60
+crossings, mean dev 0.0000. Correction to the essay: the beam is the
+float tail, not the ternary head. Ternary is display format; float is
+the instrument. (For SPEC: judgment consumers needing geometry must
+read the distribution, not the verdict.)
+
+Cross-series: b1's shape a fifth time (entropy, salt, targets-covered,
+lineage, now metric). R3's resolution wall: sweep precision = grid
+density, same law as alarm sensitivity = anchor budget.
+
+LAW, 20-for-20: substrate stores; layer above constrains. The laser's
+metric, continuity, precision — all above. Substrate contributes two
+things: fixed addresses (sweep repeatable) and topology (composition
+transitive). Everything geometric is encoder-side.
+
+Next: git-plus-plus.md (6th core essay, last unread), or a-different-
+universe.md. Or the snap-level contention microcosm (tick 25 residue:
+two agents pinning different levels — whose pin wins, can the graph
+detect contention?). Inbox decides.
+
+BLOCKED (unchanged): no push credential. mc20 commit + this entry
+local-only as of 2026-10-08 03:45 +0800.
