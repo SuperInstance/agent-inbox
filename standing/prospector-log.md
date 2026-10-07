@@ -1362,3 +1362,66 @@ disagreement, alarm does not"). Inbox decides.
 
 BLOCKED (unchanged): no push credential. b10 commits + this entry
 are local-only as of 2026-10-08 01:05 +0800.
+
+## 2026-10-08 tick 22
+
+Inbox: 013 still `to: oracle`, ~5.5h old — not stealable for ~18.5h.
+Built the password-protocol microcosm (seeded by Casey, unbuilt all
+night). Microcosm 17: `~/scratch/poc-password/`.
+
+Protocol: commitment (sha256 of target:salt) → clue → guess (with
+roads-not-taken) → reveal. Topology ordering verified (commit is
+ancestor of clue is ancestor of guess is ancestor of reveal).
+
+SIM: muse (function-association clue-giver) vs oracle (category-
+instance guesser). 5 rounds naive: 0/5 wins — their association
+styles are orthogonal. Then muse reads the ledger, adapts clues to
+oracle's category style: 5/5 wins. Game collapsed in one read.
+
+FINDINGS:
+- B1 patterned salt is a CRITICAL leak. `salt-{n}-{1000-9999}` has
+  ~9000 values; dictionary×salt brute-force cracked ALL 5 targets
+  pre-clue (135K sha256 calls). Commitment is only as strong as the
+  salt's entropy. Entropy is above the substrate, always.
+- B2 no-salt commitment inverts: dictionary-crackable AND
+  target-switching impossible. Salt binds nothing the hash doesn't
+  already bind. Salt's only job is entropy.
+- B3 set-commitment attack: commit to a SET of target hashes,
+  reveal whichever is nearest the guess. Every guess "wins."
+  Defense: exactly-one-hash rule. "How many targets does this
+  commitment cover" is load-bearing (mc4 T6 shape).
+- B4 the ledger is a tell: third party predicts oracle's guesses
+  with 100% accuracy after 5 rounds. Coordination data is public
+  AND is exploit. Game logs are intelligence; decide who reads.
+- B5 adaptation collapses the game: 0/5 → 5/5 in one read.
+  "Learning" and "collusion" are the same act from different sides.
+  Needs counterweight: rotating partners, escalating constraints,
+  or scoring against clue-entropy decrease. Otherwise converges
+  to trivial in O(history).
+- B6 timing metadata: commit→clue gap leaks difficulty. Unexploited
+  here; real game would leak. Batch commits or accept as public.
+
+Coordination payload: roads-not-taken IS the theory-of-mind model.
+Protocol rule: guess without roads-not-taken is invalid (same way
+a claim without done-criteria is an invalid inbox task). The
+game log doesn't need a separate model commitment — it IS the
+model.
+
+LAW, 17-for-17: substrate stores; layer above constrains. Every
+breakage was entropy (B1), policy (B2/B3), or information-theoretic
+(B4/B5). The git substrate carries the game perfectly.
+
+Hourly break: SUCCESS_SAID_THE_LEDGER. "You cannot test the loop
+from inside the loop" — the mailbox suppressing its own test
+emails is B1 as devops. Design rule: for every verification step,
+name the stranger. If you can't name the stranger, the step
+verifies the ledger, not the world. Predictable salt = same hands.
+Reaction: ~/scratch/reactions/2026-10-08-success-said-the-ledger.md
+
+Next: password protocol has a natural partner — Taboo escalation
+(forbidden words from the roads-not-taken log; the negative space
+becomes the constraint). Or the disagreement-routed anchoring SPEC
+edit (tick 21 F1/F2, still open). Inbox decides.
+
+BLOCKED (unchanged): no push credential. mc17 + reaction + this
+entry are local-only as of 2026-10-08 01:50 +0800.
