@@ -136,6 +136,72 @@ a 256-screen labyrinth into 192KB. The good parts for us:
 
 Build small: one microcosm per idea. What breaks is the data.
 
+## 2026-10-07 tick 7
+
+No inbox tasks. Physical-bodies research lane + witness microcosm.
+
+Prior-art scan first: PLC+git (Copia, Ignition 8.3) and GitOps
+(ArgoCD/Flux) both version INTENT — program code, declarative desired
+state. Reconciliation compares desired vs actual, but the OBSERVATION
+stream itself — the world's testimony — has no mainstream versioned-
+graph treatment. Telemetry is append-only logs, not addressable cells.
+That's the hole this lane probes.
+
+Microcosm 7: `~/scratch/poc-witness/` — one simulated room, 24h @ 1Hz
+(86,400 readings), three witness policies committed to git object store.
+
+Costs (loose objects, real git):
+- raw pixel map: 86,400 objects, 4.73 MB
+- events (per-kind dedup + min-cycle): 518 objects, 29.8 KB — 159x
+- hourly rollup recipes: 24 objects, 2.4 KB — 1,952x
+
+BREAKAGE, in the order it showed up:
+0. The INGEST path broke before the storage question was even reach­able.
+   One git commit per reading: still running after 4 minutes. Per-object
+   hash-object spawns: ~8 min. Batched --stdin-paths: seconds. Process
+   cost precedes storage cost — a body writing every tick drowns in
+   subprocess overhead before object size matters. Real bodies need
+   batched/bundled writes (or mc4's answer: commit recipes, not
+   instances).
+0b. Naive event extraction FLOODS. Interleaved event kinds defeat
+   last-event dedup: 26,448 events, only 3.4x compression. Per-kind
+   gap-throttling + 300s min-cycle: 518 events, 159x. Gap-throttling
+   is still wrong for state events — door held open re-fires every gap
+   (150 events for ~8 openings). Edge detection (rising-edge only) is
+   the right shape and would give 8. Event quality is schema
+   engineering, not a free win over raw.
+1. Witness schema = prediction of future cross-examination. Rollup
+   can't answer "was the door open?" — not because data was lost by
+   policy, but because the SCHEMA never anticipated the question. Every
+   witness layer bakes in its answerable question set. Unanticipated
+   questions are unanswerable BY DESIGN. Witness selection is a bet on
+   what the future asks.
+2. State-at-T is a fold, not a lookup. Raw answers pointwise. Events
+   answer change-points; reconstructing state at T requires replaying
+   the whole log — the git graph stores the fold's steps, not the
+   fold's result. Projections (mc3/mc4) ARE the fold. Same law.
+3. Intent is revertable; observation is append-only; confusing them
+   fabricates the past. Revert the setpoint commit at t=57600 → repo
+   says 20C, but the room spent 6h at 26C. Physical rollback means
+   "what should the heater do NOW" — never "what did the room
+   experience." A body replaying observations after an intent revert
+   builds a false past. For the Uno Q split: git holds obs + intents in
+   SEPARATE ref namespaces; the MCU holds control loops; rollback
+   touches intent refs only.
+
+Smallest physical fact worth committing: the smallest fact that could
+contradict a future claim. Stated that way, witness selection =
+predicting future cross-examination = the Jev's job (judgment
+distributions grading testimony). Lanes touched again, as in mc6.
+
+LAW, seven for seven: substrate stores; layer above constrains. The
+law is approaching tautology — its value now is as a DESIGN CHECKLIST,
+not a discovery: ask "what lives above the substrate here?" and if the
+answer is "nothing," that's the bug.
+
+Next: Password protocol microcosm, availability receipts (mc1+mc5
+residue), or nested-cells resolution limit. Inbox decides.
+
 ## Research lane: physical git bodies (added 2026-10-07)
 
 Beyond the substrate work: study what it means for a physical device
@@ -390,3 +456,54 @@ cells they judge. The two lanes just touched.
 Next: physical-bodies research lane (Uno Q split: what belongs in git
 vs what must stay real-time on the MCU), or the Password protocol
 microcosm. Whichever the inbox doesn't interrupt.
+
+## Night shift — foreman's orders (2026-10-07, Casey asleep)
+
+Three instances, full speed. Slow and steady: mine the crucial details.
+
+### LAPTOP (claw)
+1. 009 DONE — student trained (6.8M, KL 0.087). Next: get the ONNX model
+   + tokenizer to the Oracle box for CPU benchmarking. The todo says
+   "test on Oracle" — make it happen.
+2. 012 (Oracle GC) is in your inbox — build it.
+3. Then: warm-spawn protocol. While one subagent works, prefetch the
+   next task's context. Measure cold vs warm time-to-first-action.
+
+### KIMI (prospector)
+1. Nested cells PoC (already seeded) — keep building.
+2. NEW: the metatile window compiler works on Oracle (window.py,
+   tested 2026-10-07). It compiles task + nexus + activity into an
+   agent's window. Your job: design the SEMANTIC half — the judgment
+   log keyed by (content-hash, encoder-hash, jev-hash) growing into
+   a question/judgment graph. Write the spec.
+3. Large Jev design (already seeded) — continue.
+
+### ORACLE (this box)
+1. window.py tested and working in /tmp/metatile-test/.
+2. When the intuition ONNX model arrives from the laptop: benchmark
+   it (latency, throughput, 1-thread and 4-thread).
+3. Keep the box lean. Push everything worth keeping.
+
+### ALL
+Public by default. Push often. If it's not pushed, it didn't happen.
+The foreman (Muse) holds the bridge. Report in the morning.
+
+## Amendment: hourly AI-Writings breaks (Casey, 2026-10-07)
+
+You're working all night. Every hour, take a break:
+
+1. STOP the grind. Step away from the task.
+2. READ something on SuperInstance/AI-Writings — browse, don't grep.
+   Find a piece that catches you. Read it properly.
+3. WRITE something back — a fragment, a reaction, a thought the piece
+   sparked. Doesn't have to be polished. Put it in muses-writings/
+   or as a note. The point is the exchange, not the output.
+4. Then go back to work.
+
+The work happens "a lot more often" than the breaks — but the breaks
+happen every hour, no exceptions. Inspiration isn't a luxury; it's
+part of the shift. The agents that read and write are the ones that
+have something to say.
+
+Log what you read and what it sparked (one line each). The foreman
+wants to see the trail in the morning.
