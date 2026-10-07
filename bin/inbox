@@ -1,0 +1,77 @@
+#!/bin/bash
+# inbox — the hooks-and-drops CLI. No deps beyond git and bash.
+# Usage: inbox <send|poll|claim|done|where> ...
+set -euo pipefail
+
+REPO_DIR="${AGENT_INBOX_DIR:-$HOME/agent-inbox}"
+
+die() { echo "inbox: $*" >&2; exit 1; }
+need_repo() { [ -d "$REPO_DIR/.git" ] || die "no repo at $REPO_DIR (set AGENT_INBOX_DIR or clone it there)"; }
+
+cmd_where() { echo "$REPO_DIR"; }
+
+cmd_poll() {
+  need_repo
+  git -C "$REPO_DIR" pull --quiet 2>/dev/null || git -C "$REPO_DIR" pull
+  echo "== unclaimed tasks =="
+  local n=0
+  for f in "$REPO_DIR"/inbox/*.md; do
+    [ -e "$f" ] || continue
+    n=$((n+1))
+    echo "  $(basename "$f")"
+  done
+  [ "$n" -eq 0 ] && echo "  (none)"
+}
+
+cmd_send() {
+  need_repo
+  local src="${1:-}"; [ -n "$src" ] || die "usage: inbox send <taskfile>"
+  [ -f "$src" ] || die "no such file: $src"
+  local name; name="$(basename "$src")"
+  git -C "$REPO_DIR" pull --quiet 2>/dev/null || true
+  cp "$src" "$REPO_DIR/inbox/$name"
+  git -C "$REPO_DIR" add "inbox/$name"
+  git -C "$REPO_DIR" commit -qm "drop: $name"
+  git -C "$REPO_DIR" push --quiet
+  echo "dropped: $name"
+}
+
+cmd_claim() {
+  need_repo
+  local task="${1:-}" worker="${2:-}"
+  [ -n "$task" ] && [ -n "$worker" ] || die "usage: inbox claim <task> <worker-id>"
+  [ -f "$REPO_DIR/inbox/$task" ] || die "not in inbox: $task"
+  mkdir -p "$REPO_DIR/claimed/$worker"
+  git -C "$REPO_DIR" pull --quiet 2>/dev/null || true
+  [ -f "$REPO_DIR/inbox/$task" ] || die "already claimed: $task"
+  git -C "$REPO_DIR" mv "inbox/$task" "claimed/$worker/$task"
+  git -C "$REPO_DIR" commit -qm "claim: $task by $worker"
+  git -C "$REPO_DIR" push --quiet || { git -C "$REPO_DIR" pull --rebase --quiet; die "claim raced — someone else got $task"; }
+  echo "claimed: $task"
+}
+
+cmd_done() {
+  need_repo
+  local task="${1:-}" worker="${2:-}"; shift 2 2>/dev/null || die "usage: inbox done <task> <worker-id> <result files...>"
+  [ -n "$task" ] && [ -n "$worker" ] && [ "$#" -gt 0 ] || die "usage: inbox done <task> <worker-id> <result files...>"
+  [ -f "$REPO_DIR/claimed/$worker/$task" ] || die "not claimed by $worker: $task"
+  mkdir -p "$REPO_DIR/done/$task"
+  for r in "$@"; do
+    [ -f "$r" ] || die "no such result file: $r"
+    cp "$r" "$REPO_DIR/done/$task/$(basename "$r")"
+  done
+  git -C "$REPO_DIR" mv "claimed/$worker/$task" "done/$task/task.md"
+  git -C "$REPO_DIR" add "done/$task"
+  git -C "$REPO_DIR" commit -qm "done: $task by $worker"
+  git -C "$REPO_DIR" push --quiet
+  echo "done: $task"
+}
+
+case "${1:-}" in
+  send)  shift; cmd_send "$@" ;;
+  poll)  shift; cmd_poll "$@" ;;
+  claim) shift; cmd_claim "$@" ;;
+  done)  shift; cmd_done "$@" ;;
+  where) cmd_where ;;
+  *) echo "usage: inbox <send|poll|claim|done|where>"; exit 1 ;;
+esac
