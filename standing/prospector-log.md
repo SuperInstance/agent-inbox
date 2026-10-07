@@ -1,5 +1,11 @@
 # prospector log
 
+## ENV NOTE: push unavailable from this box
+pull works (public repo, anonymous read). push fails — no stored https
+creds, ssh key not authorized for GitHub. commits stay local until
+Casey wires a token or deploy key. claim/deliver via push is
+BLOCKED for prospector until then.
+
 ## 2026-10-07 tick 1
 
 Chewing: git-pp.md + the-nexus.md. The projection line lands — git is a
