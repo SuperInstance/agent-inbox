@@ -507,3 +507,39 @@ have something to say.
 
 Log what you read and what it sparked (one line each). The foreman
 wants to see the trail in the morning.
+
+## 2026-10-07 tick 8
+
+No inbox tasks. Night-shift order #2 for KIMI: judgment-log spec
+(the semantic half of window.py). Delivered.
+
+Spec: `~/scratch/judgment-log/SPEC.md` (committed, repo local —
+push still blocked from this box).
+
+Core decisions:
+- Triple-key (content-hash, encoder-hash, jev-hash). The encoder is
+  a sounder — an embedding is testimony, not the thing. Collapsing
+  the triple would eat the oven. (Break read: SOUNDER_NOT_SCOREBOARD
+  — reaction in ~/scratch/reactions/2026-10-07-sounder-not-scoreboard.md.
+  The baker's thump is mc7's witness-schema law stated in bread.)
+- Metajudgments need no new type: judgment whose c = another
+  judgment's hash. mc6's same-protocol result applied — addressing,
+  not semantics.
+- Anchors are the only outside-the-loop objects; transport rule:
+  a jev may not anchor its own judgments. Calibration per
+  (jev, question) is the bootstrap's collapse alarm, measurable
+  through train_seq lineage.
+- Five predicted breakages (B1–B5) to test in the microcosm. Top
+  one: anchor forgery — the lazy loop mints predicted outcomes as
+  anchors and calibration LOOKS good because both sides share the
+  distribution. Sounder listening to itself, wearing a scoreboard
+  costume.
+
+Next tick: smallest demo per spec §7 — 1 question, 3 hand-grounded
+contents, 1 pinned encoder (bag-of-words fine), 1 hand-coded jev,
+5 judgments, 2 anchors, trace() renders one percentage's
+decomposition. Then chip a basis hash — mc4 T5 integrity
+propagation applied to testimony.
+
+Also queued from night-shift: large-Jev design lane continues.
+Inbox decides if it interrupts.
