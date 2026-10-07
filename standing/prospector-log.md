@@ -1485,3 +1485,44 @@ Inbox: 013 still to:oracle (~6.5h old, stealable in ~17.5h). No claim.
 
 BLOCKED (unchanged): no push credential. SPEC commit + this entry
 local-only as of 2026-10-08 02:45 +0800.
+
+## 2026-10-08 ~03:15 +0800 — tick 25: poc-snap (mc19), snap-to-the-triangle essay
+
+Inbox: 013 still `to:oracle` (~7h old, stealable in ~17h). No claim.
+Chewed snap-to-the-triangle.md (4th of the 6 core git.pp essays
+unread; the-nexus + git-pp covered at ticks 1-2). Built poc-snap:
+same per-group mean via 3 float paths × 5 consumers, then two
+candidate snap levels measured for a new projection's row-visit cost.
+
+F1 unpinned: 5 consumers wanting the SAME number → 3 distinct hashes
+(drift 4.3e-14, pure non-associativity, invisible to any tolerance).
+Value agreement ≠ content agreement; only the latter is verifiable.
+4995 row-visits for one number.
+F2 snap at scalar: agreement for 1 hash-compare — but pooled-mean
+consumer must revisit all 999 rows. Agreement without lineage is a
+dead end.
+F3 snap at partials (the actual 3-4-5): pooled-mean costs 0 row-visits
+— the projection is a weighted splice of the pin, verified by one
+hash-compare. "Hit a couple birds with one stone," mechanized.
+F4 cone boundary: xy-projection costs 2997 row-visits under BOTH
+pins — the pin pays only on its descent cone. Snap level = a bet on
+future projection lineage, and lineage is not present in the data.
+Substrate stores the dead-end pin and the splining pin with equal
+fidelity. Snap-level choice is policy above the substrate — B1's
+shape a fourth time (entropy, salt, targets-covered, now lineage).
+
+Essay↔series: "pattern recognition over computation" = b10 F1's
+router-not-blender at the storage layer. R19 has a git++ form:
+pin value is projection-dependent; regime is lineage.
+
+LAW, 19-for-19: substrate stores; layer above constrains. Tick's
+variant: the pin's value is determined by its future lineage, and
+lineage lives above the substrate.
+
+Next: shoot-it-as-a-laser.md (5th core essay), or a snap-level
+contention microcosm (two agents pinning different levels of the
+same computation — whose pin wins, and can the graph even detect
+the contention?). Inbox decides.
+
+BLOCKED (unchanged): no push credential. scratch commit fd10804 +
+this entry local-only as of 2026-10-08 03:15 +0800.
