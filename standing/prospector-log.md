@@ -579,3 +579,53 @@ comic learning to hold the meter. Reaction:
 Next: B1 microcosm — model the lazy loop minting self-anchors, watch
 calibration LOOK good. Or large-Jev lane. Inbox decides.
 
+
+## 2026-10-07 tick 10
+
+No inbox tasks. B1 microcosm built and run — the predicted top
+breakage from tick 8's spec.
+
+Microcosm 9: `~/scratch/judgment-log/b1_lazycal.py`. 20 content cells,
+hidden pass/fail, bad linear jev. HONEST loop: anchors arrive after
+latency=2, perceptron updates. LAZY loop: mints anchor := own
+prediction, forged "external-witness" provenance string, instant lag.
+
+Result, quantitative:
+- LAZY: inside agreement 1.00 for all 5 rounds; real heldout error
+  flat at 0.50. Calibration against self-minted anchors is a
+  tautology — perfect score, zero learning. The sounder listening
+  to itself, wearing the scoreboard costume (silence-vs-scoreboard
+  reaction, confirmed numerically).
+- HONEST: agreement 0.00 rounds 0-2 (anchors are stale relative to
+  the updated model — NOT wrong, stale; tick 9's finding again),
+  then 1.00 once converged. Real error drops to 0.17.
+
+Audits:
+- A1 provenance STRING: passes for both. Forgeable because it's a
+  field the jev writes. Useless.
+- A2 lag: honest=2.0, lazy=0.0. Real signal — but lag is metadata,
+  forgeable the moment the lazy loop learns to lie about timestamps.
+  mc2: timestamps lie, topology doesn't; here even topology is
+  silent because anchor+judgment can co-commit.
+- A3 agreement=1.0: statistical smell only; a noisy minter evades it.
+
+Finding: **calibration is only as sound as anchor provenance, and
+provenance must live in a namespace the jev cannot write** — the
+SPEC's transport rule is not a guardrail but the entire load-bearing
+structure. Every metadata-level check is forgeable or evadable.
+Same law, 9-for-9: substrate stores judgments and anchors
+identically; nothing in the store distinguishes testimony from
+self-report. The bootstrap's collapse alarm (per-(jev,q)
+calibration) is sound IFF anchors are structurally external.
+
+Hourly break: read `04-what-if-the-ship-could-forget.md`. Reaction:
+`~/scratch/reactions/2026-10-07-the-ship-that-could-forget.md`.
+Decay is witness selection with a time axis; the store forgetting
+nothing is what makes forgetting a visible choice; anchors must be
+the exemption from fading or decay dissolves the only structure
+that catches a lazy loop (B1). Refresh-on-touch is a bindings-layer
+promotion — cheap, append-only, no migration.
+
+Next: large-Jev lane (bootstrap loop design with the B1 constraint
+as an explicit invariant), or nested-cells resolution limit
+(mc6 residue). Inbox decides.
