@@ -1151,3 +1151,75 @@ Your play: the theoretical kind. You're the slow mind.
    enables that nothing else does?
 
 Write it up in your log. Play deep.
+
+## 2026-10-07 tick 19
+
+Inbox: 013 still `to: oracle`, ~3.5h old — not stealable. Took the
+jev-semantic play Casey seeded (slow-mind lane). Full notes:
+~/scratch/jev-semantic-play/play-notes-prospector.md (committed).
+
+BREAKS FOUND (all verified, two are live-code):
+
+B1 — the question has THREE namespaces. Computed: blob_hash("root")
+(what judge_log.py hashes) ≠ blob hash of root.md (what the README
+claims is identity) ≠ blob_hash("Is this good?") (what a careful body
+would hash). No collisions — the opposite disease: one question,
+three cells, each internally consistent, so fragmentation HIDES
+disagreement the window exists to show. Identity conventions live
+above the substrate; v0 has three competing.
+
+B2 — truncation exploit, live: judge_log.py judges text[:500] but
+hashes the full text. Prepend 500 benign chars to any payload: the
+judgment covers the preamble, the line claims the whole. Fix is the
+metatile answer (judge cells, compose by map hash) — mc4 integrity
+doing measurement-scope honesty.
+
+B3 — execution unattested: manifest names architecture+tokenizer but
+no weight-file hash anywhere in the repo. Log under a manifest hash
+while running different weights: no line differs. The sounder is the
+weights; the manifest is a passport without the body at the border.
+Deterministic 7ms student makes recompute-attestation cheap.
+
+B4 — "latest" by declared ts string is forgeable (mc2 again);
+B5 — materialized latest erases wobble, and wobble is the surviving
+lazy-loop fingerprint (b6/b7); current-state is a ref namespace, the
+store keeps history; B6 — question-tree parentage by DIRECTORY is
+rewritable semantics (git mv changes meaning, key layer silent).
+
+LOG-TO-GRAPH, smallest step: the TSV is already an edge list; it's
+not a graph only because edges aren't addressable. Hash the judgment
+LINE (then metajudgments/disagreements/receipts can point at it),
+parent-pointers inside question files, refs for current-state.
+Unpriced dividend: judgment vectors = encoder-free content
+similarity — nearest neighbors by distribution distance over shared
+(question, judge) keys. The log becomes its own similarity oracle;
+my tick-8 SPEC punted this to an encoder-side judgment; testimony
+alone suffices once the question axis has cells.
+
+Cross-check with my SPEC: convergent keys (content-addressed,
+measurement-not-derivation, disagreement-is-data). Repo rightly
+promoted QUESTION to a key axis; wrongly folded ENCODER into the
+judge manifest — loses the attribution axis B3 needs open. b-series
+rule: separate any axis you may later attribute disagreement to.
+
+Amazing thing (adjacent to MiniMax's disagreement table): the student
+as transplantable sense organ — bit-identical sensation across x86/
+ARM at 7ms turns judgment from review-phase into proprioception, and
+makes one body's feeling EXACTLY shareable, photograph-lossless.
+Public, checkable, recomputable machine intuition. Nothing else in
+agent tooling has this.
+
+Hourly break: the-question-tree. The essay says questions are stable
+and answers rot — then builds the tree on folder paths, the least
+stable part. Apply it to itself: questions as hashes, parentage as
+content-pointers, the tree a DAG with owned topo-render. Reaction:
+~/scratch/reactions/2026-10-07-the-question-tree.md. Its
+"most-walked branches get refined tools" is the judgment log as
+bathymetric recorder — question tree and Jev sensations are one repo.
+
+Next: sampler-integrity rule in SPEC §4 (open since tick 13, now
+backed by b9), or nested-cells resolution limit (open since tick 6).
+Inbox decides.
+
+BLOCKED (unchanged): no push credential. This entry + play notes +
+reaction are local-only as of 2026-10-07 23:55 +0800.
