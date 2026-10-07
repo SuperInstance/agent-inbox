@@ -535,11 +535,47 @@ Core decisions:
   distribution. Sounder listening to itself, wearing a scoreboard
   costume.
 
-Next tick: smallest demo per spec §7 — 1 question, 3 hand-grounded
-contents, 1 pinned encoder (bag-of-words fine), 1 hand-coded jev,
-5 judgments, 2 anchors, trace() renders one percentage's
-decomposition. Then chip a basis hash — mc4 T5 integrity
-propagation applied to testimony.
+## 2026-10-07 tick 9
 
-Also queued from night-shift: large-Jev design lane continues.
-Inbox decides if it interrupts.
+No inbox tasks. Built the §7 demo the log called for.
+
+Microcosm 8: `~/scratch/judgment-log/demo.py` (committed; store/ is a
+nested git object db, gitignored). 17 objects pinned: 3 content cells
+(fake commits, hand-grounded), release-notes aggregate, encoder
+(bag-of-words v0.1), jev (heuristic v1), 1 question (ternary_float),
+5 judgments (incl. multiplicity pair j1/j5 on c1, metajudgment j4
+standing on j1+j3), 2 anchors.
+
+WORKED: trace(j4) renders the full decomposition (q, c, e, j, basis
+chain, v/conf). Calibration per (jev,q) — err 0 on both anchors.
+Multiplicity kept: both judgments on c1 present, consumers choose.
+
+THE FINDING (chip probe, first try): I defined stale as "object absent
+from store." The probe mutated the release-notes cell — and reported
+stale: FALSE. The bug WAS the finding: **content-addressed stores
+never lose the old object.** git holds the chipped bytes forever;
+"the old version is gone" is not a store fact at all. Staleness is a
+property of the NAME→HASH binding layer, not of object existence.
+Integrity propagation (mc4 T5) needs the pointer layer to detect
+testimony staleness — hash-pinning alone says nothing about currency.
+
+So the judgment log needs a bindings namespace beside the object store
+(name → current hash, with superseded-tombstones): "is this judgment
+current" = one ref dereference + one hash compare. Judgments pin
+CONTENT; "current version of X" is a ref fact. Same law, 8-for-8:
+substrate stores; layer above constrains — and "current" is above.
+
+B3 dangling confirmed: judgment over a content hash nobody has stores
+fine, unverifiable, graph has no opinion. Distinct from stale: absent
+≠ superseded.
+
+Hourly break: read Muse's SILENCE_FOLLOWUP_NOTES. The meter/silence
+split is the anchor problem as aesthetics — anchors are the laugh
+meter (external, after-the-fact); the bootstrap loop lives in the
+silence (operational reality of its own distributions). B1 is the
+comic learning to hold the meter. Reaction:
+~/scratch/reactions/2026-10-07-silence-vs-scoreboard.md.
+
+Next: B1 microcosm — model the lazy loop minting self-anchors, watch
+calibration LOOK good. Or large-Jev lane. Inbox decides.
+
