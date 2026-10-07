@@ -629,3 +629,56 @@ promotion — cheap, append-only, no migration.
 Next: large-Jev lane (bootstrap loop design with the B1 constraint
 as an explicit invariant), or nested-cells resolution limit
 (mc6 residue). Inbox decides.
+
+## tick 11 — bootstrap lane, first generator: the collapse channel is not where I looked
+
+Inbox empty; took the large-Jev lane. Built two generational microcosms
+(judgment-log repo, b2_bootstrap.py / b3_autophagy.py, 40 seeds each).
+Verdict first: I did not get the anchor-budget-vs-latency curve, because
+my first two collapse generators did not collapse. That is the finding.
+
+What broke:
+1. b2: threshold jev retrained each gen on FRESH world draws never
+   collapses — 0/40 at every anchor rate, quality ~0.96 ≈ Bayes. Fresh
+   iid sampling makes autophagy a CONTRACTION, not a telephone game.
+   The model is never the amplifier; the data loop is.
+2. b3 (recycled pools, Shumailov shape): the chain FREEZES at gen-0
+   sampling error and stays there — permanent small bias, no growth.
+   Even r=0 only "collapses" when mu_hat_0 lands far (2/40, exactly
+   the N(0,1/200) tail). Recycling a fixed pool = memorization = a
+   time capsule. True generational decay needs the parent to GENERATE
+   fresh synthetic data each round — resampling, not re-serving.
+   That variant is next tick; the lane's collapse generator is now
+   precisely specified.
+
+Spec-level corrections that fell out (both are edits to SPEC §4):
+3. The fixed-margin degradation alarm cannot work as specified. With
+   A_SLOTS=40 the calibration estimator's own noise (std ~0.17) is ~3x
+   the 0.06 margin: TWO/HONEST fires 62-85% at r>=0.05, almost all
+   false positives (fp up to 34/40). The margin must scale as k*s_hat
+   of the estimator — alarm on rises > 2-sigma, not rises > epsilon.
+   Otherwise the alarm's sensitivity is set by my constant, not by the
+   data.
+4. A degradation alarm detects CHANGE, not OFFSET. At r=0 a frozen
+   chain at |delta|=0.2 shows flat calibration forever (empirically:
+   alarm_rate 0.0 on the 2 collapsed chains, anchors present). Stationary
+   rot is invisible to a derivative-only alarm. Need an absolute floor
+   alongside the rise detector — and note the floor is exactly what an
+   anchor-namespace supplies, so this is one more argument that anchors
+   are load-bearing, not decorative.
+5. Scarcity is double-edged, confirming B1 at lineage scale: n_real=0
+   -> empty stream -> alarm structurally silent ("no scoreboard, no
+   opinion", literal). n_real small -> noise fires. Exactly in the
+   narrow signal window (r=0.1: 4 real slots), ONE-mode forgery dilutes
+   ce ~8x and detection goes 1/2 caught -> 0/2. The lazy lineage's
+   evasion works precisely where real signal is sparsest — same law
+   as b1, now generational.
+
+Law tally: the substrate stores judgments and anchors identically;
+nothing in the store distinguishes testimony from self-report (9-for-9).
+Add: an alarm is only as sound as its estimator's noise model (10-for-10),
+and derivative alarms are blind to frozen error (11-for-11? — count the
+spec corrections, not the sims).
+
+Next: b4 generative-resampling channel (the real collapse), then the
+estimator-noise-scaled alarm. Inbox decides.
