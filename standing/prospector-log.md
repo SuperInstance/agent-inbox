@@ -982,3 +982,172 @@ no stored token, kimi-tunnel.key not authorized for SuperInstance repos.
 Pull works (public). Ticks 14–16 log commits + this entry are local-only
 as of 2026-10-07 21:45 +0800. Who can unblock: Casey (add deploy key or
 drop a PAT into ~/.git-credentials on this box).
+
+## 2026-10-07 tick 17
+
+Inbox: 013 still `to: oracle`, ~2h old — not stealable. No work for
+prospector. Built the CUSUM alarm correction microcosm (open since
+tick 12). Microcosm 13: `~/scratch/judgment-log/b8_cusum.py` — 4 alarm
+shapes on identical b4-protocol trajectories, 40 seeds, arms r ∈
+{0.0, 0.1, 0.3, 1.0}.
+
+F1 — rise_min confirmed DEAD. 34-40 of 36-40 honest runs fire at
+least once (87-100% FP rate, 4-6 alarms per run). The running-min is
+an extreme order statistic; any fluctuation reads as a "rise." Not
+biased — non-functional. Never use it.
+
+F2 — THE ESTIMATOR'S OWN FORMULA IS AN ATTACK SURFACE. floor_rob
+showed 12/39 FP at r=0.1 — too high for a 2σ band. Diagnostic: at
+p̂=1.0 (all 40 slots agree), plug-in binomial se = √(p̂(1-p̂)/n) = 0.
+Band collapses to zero width. One disagreeing slot (0.025) crosses
+it. The alarm is a hair-trigger exactly when the model looks best.
+Fix: Jeffreys-prior posterior std (a=k+0.5, b=n−k+0.5). FP drops:
+12→5 at r=0.1, 10→4 at r=0.3, 6→0 at r=1.0. Without the prior, a
+lazy loop gaming toward p̂=1.0 gets MORE noise-sensitive, not less —
+se is anti-correlated with alarm usefulness. SPEC §4 now mandates the
+prior (rule R2).
+
+F3 — cusum_dn is the right shape. Fixed robust baseline (median of
+first 3 gens), downward, k=0.5σ, h=5σ, reset after fire. FP: 1-5
+runs across ALL arms (vs rise_min's 34-40). Detection is real but
+bounded: 1/3 at r=0, 3/4 at r=0.3. The resolution wall holds — no
+alarm shape escapes it (rule R3).
+
+F4 — collapse rate is seed-batch dependent. 3/40 at r=0 in b8's
+batch (seeds 20k) vs 11/40 in b4's (seeds 10k). At 40 seeds, the
+variance across batches exceeds the difference between alarm shapes.
+Alarm-shape claims need ≥200 seeds or the ranking is noise (rule R10).
+
+F5 — floor_rob detects nothing in this channel even with the Jeffreys
+fix. Frozen-rot is not the failure mode here; the generative collapse
+is dynamic (attractor drift), not stationary. Right tool for b3-style
+capsules, wrong tool for b4-style drift. Alarm validity is
+channel-scoped, another instance of regime-scoping (rule R6).
+
+SPEC update: §4.1 Alarm Design Rules R1–R11 committed (consolidates
+b1-b8 findings into the spec layer). The rules are now: never
+running-min, Jeffreys-prior se mandatory, sensitivity bounded by
+anchor budget, derivative alarms need an absolute floor, alerts
+relative not absolute, validity regime-scoped, provenance of channel
+beats output of channel, anchor value regime-dependent, sampler
+integrity separate from anchor provenance, ≥200 seeds for evaluation,
+fresh-signal probes on uncontrolled channels are the only defense
+that shows up in the numbers.
+
+LAW, 13-for-13: substrate stores; layer above constrains. This tick's
+variant: the constraint layer's ESTIMATOR is itself a policy choice
+with attack surface — even the se formula is above the substrate.
+
+Hourly break: IF_TURING_HAD_RSI. "Some things can't be simulated.
+They have to be built." The zero-se hole is the receipt — textbook
+formula, textbook correct, wrong for this use at this resolution.
+The microcosm method IS the RSI. Reaction:
+~/scratch/reactions/2026-10-07-if-turing-had-rsi.md.
+
+Next: high-dim generative channel (does the CUSUM-down result hold
+when the model can memorize?), or nested-cells resolution limit
+(mc6 residue — still open). Inbox decides.
+
+BLOCKED (unchanged): no push credential on this box. b8 commits +
+SPEC §4.1 + this entry are local-only as of 2026-10-07 22:25 +0800.
+
+## 2026-10-07 tick 18
+
+Inbox: 013 still `to: oracle`, ~2.5h old — not stealable. No work for
+prospector. Built the high-d generative channel probe tick 17
+designated (does the b8 alarm result hold when the model CAN
+memorize?). Microcosm 14: `~/scratch/judgment-log/b9_highdim.py` +
+`b9b_posthoc.py` (both committed). d=20, y=1[x0>0] + 10% label noise,
+Bayes 0.9, N0=2000, two model families: ISO = isotropic KDE on all 20
+coords (cannot memorize at feasible n), ORA = KDE on the signal coord
+only (can memorize). Same b4/b5/b8 protocol otherwise.
+
+FINDING 0 — protocol bug, mine, and it is the first finding:
+gen 0 fit on 2000 points, every later gen on ~200. The collapse label
+`acc_last < acc0 - 0.05` then measures the TRAINING-SET SIZE CLIFF, not
+decay — honest arms (r=1.0, zero self-sampling) "collapsed" 38/40
+(ISO h=2.0) and 24/40 (ORA h=2.0). Labels are budget-sensitive:
+re-label against gen 1 (first matched-size generation) + re-run alarm
+warmup on gens 1-3 (b9b_posthoc.py, trajectories saved — no re-run
+needed). RULE R12 for SPEC §4: in generational protocols, hold the
+training budget constant across generations, or collapse labels
+measure dataset size. Label validity is regime-scoped, exactly like
+alarm validity (b7/b8) — the law climbs into the evaluation layer.
+
+FINDING 1 — memorization with coverage still collapses; the sampler
+channel is dimension-INVARIANT. ORA h=0.2 (true memorizer, acc1 0.885
+gen-1): 23/40 collapsed (acc 0.885->0.803), wrong-side 0.100->0.245,
+t* +0.013->-0.152. Wrong-side trajectories are literally bit-identical
+across ISO and ORA (same-seed chains share x0 draws; jitter acts on
+x0 only, crossing depends on x0 displacement only). High-d changed
+NOTHING about how contamination enters — b5's law holds verbatim.
+Coverage bought a cleaner starting boundary and slower decay than
+b5's n0=200 (23/40 vs 36/40), not immunity. Memorization preserves
+contamination as faithfully as signal, at every d.
+
+FINDING 2 — high-d destroys the fit's ability to EXPRESS the
+boundary. ISO boundary-less-along-x0 fraction at gen 1: 29%
+(contaminated) vs 6% (honest); by gen 12, 40-75% of ISO contaminated
+chains have no flip on the signal axis at all. Contamination shifts
+class centroids in the 19 noise coordinates; the isotropic decision
+relocates into noise-space accidents, and the world's actual decision
+surface becomes inexpressible. Not biased — erased. (Also ISO t*1 =
+-0.202 at h=0.2: boundary misplaced even at matched budget. The
+dimension gate from b5 finding 0 stands at n0=2000: acc0 ceiling
+0.65-0.83 vs Bayes 0.9, best at h=2.0 — in high-d, MORE smoothing
+beats the noise coords, so nominal h=0.2 behaves like a global
+smoother. Effective smoothing grows with d regardless of nominal h.)
+
+FINDING 3 — CUSUM-down is family-agnostic; latency is
+mechanism-dependent. Where labels are trustworthy (h<=0.7 honest arms):
+FP <= 5/40 in both families — matches b8. Detection on ORA r=0 arms:
+13/23 (h=0.2, med gen 10), 30/35 (h=0.7, med 7), 22/32 (h=2.0, med 8).
+The alarm watches agreement-with-reality, not model internals, so it
+fires on boundary-drift (ORA) and boundary-erasure (ISO) alike — but
+narrow-kernel collapse is slow contamination growth, so detection lags
+(med 10 of 12). Alarm VALIDITY is family-independent; alarm LATENCY is
+set by the collapse mechanism's time constant. floor_rob stays weak in
+dynamic channels (b8 F5 re-confirmed).
+
+FINDING 4 — fit variance manufactures collapse labels in wide-h
+regimes even with matched budgets: honest r=1.0 arms at h=2.0
+"collapse" 14/26 (ISO) and 15/25 (ORA) with pure fresh data every
+generation — draw-to-draw fit variance at 200 points in d=20 over-reads
+as decay under a fixed 0.05 threshold. Same resolution wall as b8 R3,
+now at the LABEL. Corollary: honest-control arms must be labeled with
+the same threshold to calibrate the label's own FP rate before
+treating collapse counts as signal (R13).
+
+LAW, 14-for-14: substrate stores; layer above constrains. Tick's
+variant: the constraint layer now includes the evaluator — budgets,
+baselines, and thresholds in the evaluation protocol are policy with
+validity domains, not neutral measurement.
+
+Hourly break: THE_HERMIT_CRAB. "The model is a claimant. The ledger is
+the truth." — the anchor namespace in one line; the ledger is built
+because the shell (substrate) can't be trusted to flag its own cracks
+(B1). Reaction: ~/scratch/reactions/2026-10-07-the-hermit-crab.md.
+
+Next: nested-cells resolution limit (mc6 residue, still open), or
+the sampler-integrity rule in SPEC §4 (the generative-channel analog of
+B1, flagged at tick 13 and now backed by b9's dimension-invariant
+sampler finding). Inbox decides.
+
+## Play with jev-semantic (from Casey, 2026-10-07)
+
+Repo: https://github.com/SuperInstance/jev-semantic — the judgment log,
+window compiler, question tree, judge manifest. v0, public, timestamped.
+
+Your play: the theoretical kind. You're the slow mind.
+
+1. Read the repo. Read Opus's semantic projector design at
+   ~/workspace/research/opus-semantic-projector.md (on Muse's box —
+   ask if you need it, or design from the repo alone).
+2. Where does the triple-hash key break? Think adversarially: what
+   content, what questions, what judges make it collide or lie?
+3. The log-to-graph: what's the SMALLEST step that makes it a real
+   graph, not just a scannable log? Design it.
+4. What's AMAZING here — not good, amazing? What's the thing this
+   enables that nothing else does?
+
+Write it up in your log. Play deep.
