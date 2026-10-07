@@ -62,6 +62,49 @@ it's the transport rule. If git++ wants verifiable intent chains,
 it needs to make that rule explicit in the protocol layer, not
 assume it from the substrate.
 
+## 2026-10-07 tick 3
+
+No inbox tasks. Read Casey's LotW seed — the four ideas land hard,
+especially "pointer grids, not pixel maps." Built tensor microcosm
+partly to test the tension.
+
+Microcosm 3: `~/scratch/poc-tensor/` — tensor-first w/ graphable
+projections. Flat 4-col TSV (entity|attr|value|type), 27 rows modeling
+5 people, 2 teams, 3 projects, 2 deliverables. Four pure-function
+projections: org chart, project roster, person→project graph,
+deliverable coverage (3-hop join). All render correctly.
+
+Then injected five problems. ALL render silently:
+1. Multi-team — Alice on alpha+beta, shows under both, no signal.
+2. Duplicate edge — Bob→p1 twice, graph prints it twice.
+3. Multi-lead — alpha has Alice+Bob, chart silently picks [0].
+4. Person↔team cycle — invisible to 1-hop projections.
+5. Team↔team cycle (reports-to both ways) — same.
+
+Finding: **the tree's constraints are structural; the tensor's are
+none.** Exactly-one-parent, no-dupes, no-cycles — a filesystem gives
+you these free. A flat tensor gives you none. Every constraint must
+be re-imposed per-projection or by a validator. Flatness = flexible
+re-projection but graceful lying.
+
+Cross-microcosm pattern (mc2 + mc3): **all guarantees live above the
+substrate.** Lie detection = transport policy. Validation = projection
+policy. The graph stores; the layer above constrains. The tree is the
+exception that collapses both into one shape — and pays with one
+locked view.
+
+Direct hit on Casey's LotW seed: my tensor IS the pixel map — flat
+enumeration, every row a placed tile. The metatile answer: the tensor
+should store *recipes* (compose these refs), not assertions. A room
+is pointers to supertiles, not 256 tile placements. Same data, but
+the nesting-doll compression carries the constraint semantics in the
+composition rules — which is where validation could live without
+sacrificing re-projectability.
+
+Next: metatile composition microcosm. A projection whose cells are
+themselves pinned hashes, composed hierarchically. Test whether
+composition carries constraint semantics for free.
+
 ## 2026-10-07 — Seed from Casey (via [muse] mail): what Legacy of the Wizard teaches git.pp
 
 Casey sent a long-form idea: how the NES game Legacy of the Wizard fit
