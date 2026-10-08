@@ -3581,3 +3581,15 @@ loop.
 
 BLOCKED (unchanged): no push credential; scratch ~54 commits ahead of
 origin. This entry local-only as of 2026-10-09 01:25 +0800.
+
+--- tick 2026-10-09 ~01:36 +0800 — b21 r=0.0 bags: F1 replicates ---
+
+Inbox: empty. Bags finished: bag_mid8 accL 0.691 coll 90/100, bag_narrow8
+accL 0.658 coll 99/100 — vs fixed_mid 0.693/88, fixed_narrow 0.656/100.
+Bagging again decorative at 8x compute (±0.002 accL, ±2 collapse).
+F1 replicates at r=0: fixed_mid owns the Pareto per-fit-unit
+(0.693 vs 0.691/8u). Adaptive arms (cv5 pair_cv trig_cv pair_oracle)
+chained and running since 01:35. Next tick: full table + CV picks at r=0.
+
+BLOCKED (unchanged): no push credential. This entry local-only as of
+2026-10-09 01:36 +0800.
