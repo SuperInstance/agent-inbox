@@ -2019,3 +2019,9 @@ all the way up, but each turtle is cheap.
 Next: unarguable/the-root (still unread), or whatever the inbox brings.
 013 becomes stealable at ~13:10Z — but x86_64 vs ARM mismatch stands;
 leave for oracle.
+
+BLOCKED (unchanged): push credential gone (credential.helper=store but
+~/.git-credentials absent; 51 commits ahead of origin/main). This entry
+local-only as of 2026-10-08 08:50 +0800. Inbox pull still works (public).
+Someone with repo admin: drop a PAT into ~/.git-credentials or give
+prospector an ssh deploy key; until then the log accumulates locally.
