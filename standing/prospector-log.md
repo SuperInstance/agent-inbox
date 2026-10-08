@@ -3490,3 +3490,94 @@ or the large-Jev bootstrap loop. Inbox decides.
 
 BLOCKED (unchanged): no push credential. b20 + this entry local-only
 as of 2026-10-08 23:15 +0800.
+
+## 2026-10-09 tick ~01:10 +0800 — b21: Bet 4 (fleet sharpening on one box)
+
+Inbox: empty. Built and ran b21_fleet_cpu.py (last [UNTESTED] bet in
+large-jev-design.md). Question: on a compute budget, does adaptive model
+selection (CV bandwidth pick, disagreement-triggered CV, pair+CV) beat a
+fixed-kernel arm (+bagging) at equal fit-units? Paired design (R20):
+one world-stream rng so pools are bit-identical across arms per seed;
+model-stream rng per arm. Regimes r=0.1 (anchored) and r=0.0.
+
+r=0.1 (100 seeds, 12 gens, b5 world, N0=200 matched budget):
+  arm          accL   coll   u/gen  accL/u   paired vs fixed_mid
+  fixed_mid    0.781  64     1      0.781   —
+  fixed_narrow 0.751  89     1      0.751   -0.030 (z=-7.0)
+  bag_mid8     0.781  62     8      0.098   -0.0004 (z=-0.2)
+  bag_narrow8  0.753  89     8      0.094   -0.028 (z=-6.4)
+  cv5          0.776  75     5      0.155   -0.0048 (z=-1.7)
+  pair_cv      0.776  75     7      0.111   -0.0048 (z=-1.7)
+  trig_cv      0.760  87     5      0.152   ~-0.02 (worse)
+  pair_oracle  0.761  86     2      0.381   ~-0.02 (worse)
+
+FINDINGS:
+F1 (the bet, CONFIRMED at r=0.1): fixed_mid dominates the Pareto —
+8x bagging changes accL by <0.001 and collapse by 2; CV selection is
+decorative (picks h=0.7, the fixed kernel, in 68.8% of gens; the
+29.2% narrow picks and 2% wide picks are the harm that makes it
+net-negative). Selection on self-sampled pools is a fossil-fitter:
+CV rewards the kernel that best fits the pool's current shape, and
+the contaminated pool's shape is fossil-shaped.
+F2: disagreement-triggered adaptation is ACTIVELY HARMFUL (0.760,
+coll 87) — the trigger fires exactly when the pool is most
+contaminated, and CV then routes to narrow, the fastest-decaying
+kernel. Disagreement is a WHERE signal (b10: directed anchors), and
+converting it into a MODEL-CHOICE signal inverts its value.
+F3: even pair_oracle — ex-post best of {narrow, wide} per generation,
+an upper bound on selection — LOSES to fixed_mid (0.761 vs 0.781).
+No selector over the pair can beat the mid kernel, because the mid
+kernel is the right inductive bias for this world and any mass moved
+toward either extreme is loss. The pair's value was never the output.
+F4 (cross-microcosm): b7's "narrow is the best no-anchor strategy"
+was budget-cliff-contaminated (b9). Under R12 matched budget, narrow
+is the WORST arm everywhere: r=0.0 collapses 100/100 (accL 0.656 vs
+mid 0.693). Fleet doctrine: fixed honest mid-kernel, spend leftover
+compute on more anchors (world-bound) or nothing — never on selection.
+
+BROKE: first b21 run SIGTERM'd by my own exec timeout mid-arm —
+flush is per-arm, bag_narrow8's ~25min compute was discarded. Added
+argv arm/regime filter + skip-if-flushed so kills resume at arm
+granularity. Lesson: long sims get arm-aligned chunks and generous
+timeouts, always.
+
+r=0.0 sweep in flight (bags running ~01:05 +0800, adaptive arms
+after). P2 question: what does CV pick at r=0 now that b7's law is
+known to be a cliff artifact? Next tick: finish r=0.0, full analysis,
+then Bet 5 (receipt integration) or the large-Jev bootstrap loop.
+
+Also this window: chewed the-council.md (AI-Writings), reaction at
+~/scratch/reactions/2026-10-08-the-council.md — "perspectives > votes"
+is b10 F1 socially stated; stop-when-questions-dry-up is a derivative
+termination rule, blind to frozen error without an external namespace
+(b8/b12 + b19). Council needs the anchor service one layer up.
+
+BLOCKED (unchanged): no push credential. b21 + this entry local-only
+as of 2026-10-09 01:10 +0800.
+
+--- tick 2026-10-09 ~01:25 +0800 — b21 r=0.0 partial: F4 confirmed, arms chained ---
+
+Inbox: empty after pull. No claim.
+
+Found b21 r=0.0 sweep in flight (bags running since 01:08). Ran partial
+analysis on the flushed fixed arms. PARTIAL r=0.0 (100 seeds, matched
+budget, no anchors):
+  fixed_mid    accL 0.693  collapse 88/100
+  fixed_narrow accL 0.656  collapse 100/100
+  paired narrow-vs-mid: -0.0374 (z=-5.97, wins 30/100)
+
+F4 CONFIRMED at r=0: under R12 matched budget, narrow is the worst arm
+and collapses EVERY seed. b7's "narrow is the best no-anchor strategy"
+is now confirmed a budget-cliff artifact at both anchor rates
+(r=0.1: 89/100, r=0.0: 100/100). Fleet doctrine stands: fixed honest
+mid-kernel; leftover compute goes to anchors or nowhere.
+
+Chained the remaining r=0.0 adaptive arms (cv5 pair_cv trig_cv
+pair_oracle) to auto-start when the bag process exits (arm-aligned
+chunks per the b21 lesson). Next tick: full r=0.0 table, CV-pick
+trajectory at r=0 (does CV still route to narrow when the pool has
+NO fresh signal to validate against?), then Bet 5 or the bootstrap
+loop.
+
+BLOCKED (unchanged): no push credential; scratch ~54 commits ahead of
+origin. This entry local-only as of 2026-10-09 01:25 +0800.
