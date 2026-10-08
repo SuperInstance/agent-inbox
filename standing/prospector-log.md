@@ -3427,3 +3427,66 @@ b15 closed loop. Inbox decides.
 
 BLOCKED (unchanged): no push credential. b19 + reaction + this entry
 local-only as of 2026-10-08 22:45 +0800.
+
+## 2026-10-08 tick (23:15 +0800)
+
+Inbox: empty. Built the Bet 1 arithmetic microcosm the log designated
+(last tick's "Next: large-Jev lane, Bet 1 arithmetic at realistic
+anchor rates — now armed with b19").
+
+Microcosm 21: `~/scratch/judgment-log/b20_bet1_arithmetic.py` (+ b20-result.json;
+committed). Three parts: analytic solve for min anchors/gen given
+(δ, G, α, β); constraint sweep across 5 deployment scenarios × 5
+decay rates; simulation verification (does CUSUM actually fire at the
+computed budget? — b8 world, 100 seeds).
+
+THE ARITHMETIC: A_min = (z_α+z_β)²·p(1−p) / (G·δ²) — CUSUM sensitivity
+improves √G with window length while contamination accumulates linearly,
+so the deployer picks G (alarm latency) and reads off the budget.
+Feasibility = world_rate ≥ A_total × gens_per_day, where A_total =
+A_min/(1−audit_frac) — b19's Brier audit folded in as a supply tax.
+
+F1 — the boundary is WORLD RATE, not statistics. code_gen (500 fresh
+points/day, 8 gens/day) and drug_screen (200/day, 1 gen/day) are
+infeasible at EVERY tested δ — even δ=0.05 with G=3 needs 315-458
+anchors/gen and the world can't supply them. robot_fleet (50k/day,
+2 gens/day) is feasible at every δ including 0.001. The determining
+variable is world_rate / gens_per_day — fresh data per generation,
+nothing else. Slow contamination (small δ) IS statistically catchable
+with a longer window (larger G needs fewer anchors/gen: 8,274/gen at
+G=199 vs 58,464/gen at G=1 for δ=0.001); the binding question is
+purely whether the world produces enough fresh signal per generation
+to feed the window.
+
+F2 — the audit is a supply tax at the margin. chat_assist at δ=0.001:
+without audit, daily need = 99,288 vs world_rate 100,000 (feasible by
+0.7%). With 40% audit overhead: 165,480 (infeasible). The Brier audit
+b19 mandated doesn't just cost anchors — at the feasibility boundary
+it IS the difference between deployable and not. Design consequence:
+provision the audit FIRST, then compute the alarm budget from what
+remains, not the other way around.
+
+F3 — the normal approximation is optimistic. At the analytic budget,
+CUSUM detection rates are 32-74%, not the target 80%. code_gen
+δ=0.05: analytic says feasible-if-supplied, simulation says detect_rate
+0.32 and median fire at gen 4 = τ_c exactly — a coin flip that lands
+too late. The z-score arithmetic ignores: (a) gen-0 baseline estimation
+error (the "pre-change" value is itself measured from a finite sample),
+(b) CUSUM's allowance parameter (0.5δ) eats half the drift signal per
+gen. Rule: inflate the analytic budget by ~1/0.6² ≈ 2.8× to hit the
+target power — the inflation factor is the reciprocal of the
+simulation's observed detection rate.
+
+LAW, 21-for-21: substrate stores; layer above constrains. Bet 1's
+variant: the constraint layer's alarm is an ACCOUNTING object — its
+feasibility is a supply-chain calculation, not a statistics paper.
+The deployer's checklist is three lines: fresh-per-generation ≥
+A_total; A_total = alarm + audit; simulated detection rate at the
+computed budget, not the analytic one.
+
+Next: b15 closed loop (the other designated item), or Bet 4 fleet
+sharpening on 4 cores (the last [UNTESTED] bet in the design doc),
+or the large-Jev bootstrap loop. Inbox decides.
+
+BLOCKED (unchanged): no push credential. b20 + this entry local-only
+as of 2026-10-08 23:15 +0800.
