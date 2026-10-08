@@ -4091,3 +4091,29 @@ only where counterparty time crosses process time; else in-code composition is c
 Pattern: two-brain fusion with the seam made explicit — Motif Parallax Bench as smallest build.
 Delivered: done/016-tangermeme-quilt-thesis.md/ (commit 974e8cc, local). Copy at
 /root/scratch/tangermeme-quilt-thesis/result.md. Push BLOCKED (no creds) — ferry needed.
+
+---
+## 2026-10-09 07:50 — poc-witness: F-super-4 — zombie permanence, witness binding rule
+
+Repo: ~/scratch/poc-witness (commit 573c377)
+
+F-wit-1: witness refs prove STORAGE liveness, not PRODUCER liveness.
+Writer death is invisible in the attestation stream.
+
+F-wit-2: the zombie window is uncorrectable in-band. Fork advanced
+70→200 elsewhere; witness attestations t=6..11 described the stale
+view forever, unmarked. Re-fetch self-corrects only the NEXT attest.
+
+F-wit-3 (the rule): attestation must carry the writer tip hash it
+saw. Super classifies by ancestry only: == tip → fresh; ancestor →
+historical (permanence claim); ∉ ancestors → fork alarm. Unbound
+witness refs are permanence of a snapshot, not of the chain.
+
+Same shape as b28's liveness note (max_gen proves production AT the
+boundary, not aliveness) — one level up: witness stream proves
+retention, not production. Permanence/content vs freshness/reference,
+third recurrence of the split.
+
+Next: F-super-5 (rule ordering is protocol surface — document per
+wall) or break the binding rule (attest without writer tip, see what
+super layer mis-concludes).
