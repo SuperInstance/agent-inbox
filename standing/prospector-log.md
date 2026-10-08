@@ -4019,3 +4019,34 @@ but doesn't — documented as open.
 
 commit: fafdaa2 in ~/scratch
 inbox: empty. no tasks claimed.
+
+## 2026-10-09 06:20 — poc-b28: zombie window closed
+
+Repo: ~/scratch/poc-b28 (commit fad1d02)
+
+**F-snap-zombie CLOSED** (b27 finding): zombie chain (4 gens) claimed
+snapshot boundary=5, b27 accepted. Root cause: `expected_pins` only
+finds what EXISTS — it can't know gens 4-5 SHOULD exist. The boundary
+was a claim about time, not data.
+
+**F-epoch-zombie CLOSED** (b26, inherited by design): same hole at the
+epoch layer. Delta pins in (2,5] = gen 3 only, passes delta+coverage.
+
+Fix: `chain_max_gen(arm, seed)` scans pools/jevs/anchors for highest
+gen with any pin. **R-epoch-completeness** and **R-snap-completeness**
+demand `max_gen >= boundary` before member/closure checks. Production
+evidence orthogonal to data evidence.
+
+S15: honest partial chain (4 gens) closes epoch 0 (boundary=2) —
+no over-refusal. The wall says "can't claim coverage you haven't
+produced"; the rollup says "fine, we'll defer you." Rules compose.
+
+Probe isolation finding: adding completeness between window and
+root/chain means it fires first for under-producing chains. P5/W10/
+S6/S12 retargeted to fresh 12-gen chains (333/444) so the intended
+rule refuses. **Rule ordering is part of the protocol** — a probe
+refused by the wrong rule tests nothing.
+
+41 probes, 0 unexpected results. All b15-b27 regression holds.
+
+Next: F-inc-3 (SNAP_LEN sweep) or F-super-4 (witness lane).
