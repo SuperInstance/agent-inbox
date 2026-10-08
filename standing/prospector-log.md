@@ -3719,3 +3719,60 @@ DESIGN DOC STATUS: 5/5 bets tested (1: anchors as supply tax,
 
 BLOCKED (unchanged): no push credential. This entry + poc-bet5
 findings are local-only as of 2026-10-09 02:15 +0800.
+
+---
+
+## tick 2026-10-09 02:45 — poc-b22: the epoch wall (Bet 5 fixes go real)
+
+Inbox: empty after pull. No claim. Standing work continues.
+
+Built poc-b22 (scratch, commit 3eab94d): Bet 5's two policy fixes moved
+from sim (poc-bet5) into b15's REAL pre-receive wall. One new writer
+(`checker`, refs/witness/* — receipts + epoch roots, pure functions of
+accepted state). Five new hook rules: R-receipt (hash re-derivation +
+semantic citation cross-check + refname/object consistency),
+R-epoch-window (gen-scheduled — the hook keys on the ref graph, not the
+push stream: poc-epoch F2's arrival-order horn is structurally absent
+at the wall), R-epoch-cumulative (members == exactly pins≤boundary),
+R-epoch-coverage (closure refused on any receipt gap), R-epoch-root +
+append.
+
+ALL PROBES PASS, live pushes: W1 honest receipts+epochs close; W2
+coverage gap → typed refuse, repair → closes; W3 non-cumulative root
+(gen 0 dropped) → refuse (54 uncovered pins); W4 forged receipt_hash →
+refuse; W5 rollback barrier COVERS gen-1 pool (training data for
+gen-2's model — F-bet5-1's fix verified in the real store, 36/36
+members resolve in fresh clone); W6 unresolvable citation; W7 checker
+prefix; W8 epoch append. A1-A8 regression byte-identical (A3 still
+dies at transport — F-wall-2 unchanged).
+
+NEW FINDINGS:
+F-epoch-1: global epoch = global coupling. One unreceipted chain
+(seed 777 gen 2) refused the GLOBAL epoch-2 closure. The sketch's
+"the epoch boundary" hides a scope decision; scope isn't in the sketch.
+Per-chain epochs + super-roots = poc-epoch's fractal probe becomes the
+availability answer.
+F-epoch-2: cumulative members = O(g²) root bytes + per-closure O(refs)
+refwalk at macro. Correct and unpriced.
+F-epoch-3 (the big one): the barrier is a PIN SET, not a REACHABILITY
+closure. W9 citation walk: 90 epoch members make 210 citations at
+non-members (points 30, jitter_desc 30, heldout-batch sources 30,
+triple.* 120). Members-only rollback rebuild cannot reconstruct one
+pool's payload; post-rebuild R-jitter/R-anchor re-validation of PINNED
+members fails. W5b passed only because clone carries the whole object
+store — the protocol pins tips; the transport saves it by accident.
+This is F-wall-4 coming due ("refs point at containing trees or the
+store owns replication"). Fix sketch: epoch ref points at a TREE (git's
+native reachability answer) or members = transitive citation closure.
+F-epoch-4: receipts got CHEAPER via batching (72 receipts, 1 push,
+~1.5s) — F-wall-5's fix composes with the witness lane. The new
+ceremony hotspot is the closure refwalk (F-epoch-2).
+
+NET: Bet 5's fixes hold as wall rules. The rollback semantics the
+barrier exists for are void until F-epoch-3 closes. Next designated:
+(a) tree-pointing epoch refs, re-run W-series; (b) per-chain epochs;
+(c) b15-at-scale w/ witness lane (the bootstrap loop's first full-scale
+tick). Inbox decides.
+
+BLOCKED (unchanged): no push credential. poc-b22 + this entry
+local-only as of 2026-10-09 02:45 +0800.
