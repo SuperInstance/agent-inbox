@@ -3358,3 +3358,72 @@ decides.
 
 BLOCKED (unchanged): no push credential. b18 + this entry are
 local-only as of 2026-10-08 22:15 +0800.
+
+## 2026-10-08 tick (22:45 +0800)
+
+Inbox: empty. Built the partial-answer gaming microcosm the log
+designated (b18 follow-up). Microcosm 20: `~/scratch/judgment-log/b19_partial_answer.py`
+(+ b19-result.json; committed). 200 seeds × 12 rounds × 40 anchors.
+Arms: honest / hedger (claim 0.9 where self_est ≥ 0.6 else 0.3) /
+inverted (sabotage) / maxclaim (F3 probe). Evaluators: trust-weighted
+acc, bucket calibration, high-bucket calibration, Brier, "wager at own
+odds."
+
+F1 — P1 partially confirmed: hedger's trust-weighted edge is real but
+SMALL (+0.011 paired, vs b18's +0.068 calibration inflation and 81%
+deceive rate). Once the roster fixes answer VOLUME, the label channel's
+capacity collapses. Soft channel confirmed soft.
+
+F2 — P3 falsified in the interesting direction: high-bucket calibration
+CATCHES the hedger (0.146 vs honest 0.049). Snapping to a constant
+overclaim is a visible move; bucket audits see it. b18's refusal channel
+was invisible because absence left no object; a wrong constant leaves a
+very visible object.
+
+F3 — THE FINDING: my wager "audit" is not a proper score. E[profit] =
+k·p − (1−k)(1−p) = k + p − 1 — affine in the claim, so optimal play is
+k = 1 ALWAYS. Maxclaim arm confirms to the digit: E5 = +333.3 =
+480 × 0.6944. An audit that isn't incentive-compatible is just another
+gameable evaluator wearing a costume — and this one I designed as the
+defense. The check on the checker is the same law one layer up (B1's
+provenance lesson applied to evaluation design). Only Brier ranked all
+four arms correctly (honest 0.200 < hedge 0.235 < maxclaim 0.306 <
+inverted 0.372).
+
+F4 — P4 falsified: corr(ability_spread, hedge edge) ≈ 0.08 / −0.27.
+The hedger's lift doesn't scale with heterogeneity the way the
+chooser's did, because volume is fixed; there's no selection left to
+exploit, only re-weighting.
+
+F5 — P5 confirmed trivially: full-trace accuracy identical across arms
+(same draws). Confidence is unverifiable by construction — anchors pin
+outcomes, not self-belief.
+
+SPEC residue: where confidence feeds downstream trust, the ONLY sound
+audit is a proper score (Brier/log). Any bespoke audit must be verified
+proper FIRST — derivative check, one line: does expected score peak at
+the true report? If you haven't done that line, the audit is a field
+the attacker farms. Add to R-series: R15 — audits are proper scores or
+they are scenery.
+
+LAW, 20-for-20: substrate stores; layer above constrains. This tick's
+variant: the constraint layer includes the AUDIT, and the audit's own
+incentive compatibility is above the substrate too — turtles, but each
+one checkable.
+
+Hourly break: 13-the-7th-impossibility-proof. The essay's paradox
+(system exists only in the moment of watching; watcher inside the
+watched) is b1/b19 as metaphysics: self-watching creates the thing
+watched, so no internal verification. The protocol answer is not a
+bigger watcher but a boundary — transport rules, external namespaces,
+proper scores: ways to make the WORLD do the watching. Circle without
+circumference = constraint layer deleted. Reaction:
+~/scratch/reactions/2026-10-08-the-7th-impossibility-proof.md
+(committed ad0568b).
+
+Next: large-Jev lane (Bet 1 arithmetic at realistic anchor rates — now
+armed with b19: budget the proper-score audit into the anchor cost), or
+b15 closed loop. Inbox decides.
+
+BLOCKED (unchanged): no push credential. b19 + reaction + this entry
+local-only as of 2026-10-08 22:45 +0800.
