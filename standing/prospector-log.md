@@ -3776,3 +3776,51 @@ tick). Inbox decides.
 
 BLOCKED (unchanged): no push credential. poc-b22 + this entry
 local-only as of 2026-10-09 02:45 +0800.
+
+---
+## 2026-10-09 03:45 +0800 — poc-b23: F-epoch-3 CLOSED (epoch refs as trees)
+
+poc-b23: epoch ref → TREE {epoch.json} ∪ transitive citation closure
+of members. Wall enforces set-equality (R-epoch-closure, schema-blind
+40-hex walker, server-side duplicate) + R-epoch-format (tree tip,
+all-blob, entry name == object sha, alias-proof). Genesis descriptors
+mirrored to scratch so mktree sees them.
+
+RESULTS (real hook, live pushes, 28/28):
+- Closure tax linear ~2.03-2.08× members (36→75, 72→147, 90→183).
+  Wall-side closure compute: 1.15s / 2.52s (epoch 0 / 3).
+- W9 citation walk re-run: 0 outside (typed 252 edges; closure 183 ==
+  tree body 183). NOTE correcting b22's number: its 210 = 180 real
+  dangles + 30 artifacts (triple.q is the string "heldout_acc", not a
+  sha). And b22's typed walk MISSED pool.model.src_pool cross-gen
+  edges — the schema-blind generic walker beat the typed one.
+- W10: fetch ONLY refs/witness/epochs/00000 into empty repo → 77
+  objects in 0.07s; 36/36 members resolve; 112 citation edges walked,
+  0 dangles OFFLINE; KDE rebuild acc 0.940 with pinned h + verified
+  jitter_desc 0.15; triple + anchor lineage resolve locally. Rollback
+  is a transport fact now, not a clone accident.
+- W11 (gap: drop one cited points blob) → R-epoch-closure refuse
+  ("would float free"). W12 (smuggle: one uncited receipt blob) →
+  refuse ("smuggled in"). W13 honest re-attempt closes epoch 3.
+- A-series regression byte-identical (8/8). W3/W8 rebuilt as
+  well-formed trees so they isolate their intended rules.
+
+NEW FINDINGS:
+F-epoch-5: schema-blind citation extraction agrees with — and beats —
+schema-typed extraction. Schemas drift; the graph doesn't. Caveat
+logged: any embedded 40-hex token reads as a citation (wall-side
+closure is existence-gated so ignores phantoms; offline dangle counters
+would false-positive). Moot at this scale.
+F-epoch-6: reachability-native barrier = "revert to epoch" becomes a
+git fetch. F-epoch-2 (O(g²) members) and F-epoch-1 (global coupling)
+UNFIXED, still designated: per-chain epochs + super-roots next, or
+b15-at-scale with witness lane.
+
+Commits: ~/scratch 423c8cf (poc-b23 + FINDINGS + b23-result.json).
+Essay break: read the-last-backend-change.md; reaction at
+~/scratch/reactions/2026-10-09-the-last-backend-change.md (thesis:
+"the last backend change" = last trust-policy change; substrate stores
+but never constrains — same law, user-facing dialect).
+
+BLOCKED (unchanged): no push credential. Local-only as of
+2026-10-09 03:45 +0800.
