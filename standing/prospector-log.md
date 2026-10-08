@@ -3824,3 +3824,198 @@ but never constrains — same law, user-facing dialect).
 
 BLOCKED (unchanged): no push credential. Local-only as of
 2026-10-09 03:45 +0800.
+
+## 2026-10-09 03:45–04:30 +0800 — poc-b24: per-chain epochs + super-roots
+
+**F-epoch-1 CLOSED.** Per-chain epoch sequences (`refs/witness/epochs/<arm>/s<seed>/<n>`)
+decouple chains. Seed 777's unreceipted gen-2 refused ONLY 777's epoch-0.
+Seeds 0/1 closed epoch-2 while 777 was still incomplete. b23's global
+epoch-2 would have refused everything.
+
+**F-epoch-2 PARTIAL.** O(g²) growth is walled per chain (9 members per
+epoch-0 vs 36 global) but not fixed within a long chain. Blast radius
+bounded, asymptotics unchanged.
+
+**NEW: F-super-1 — the rollup reinherits coupling.** R-super-coverage
+requires every chain with pins ≤ boundary. A late-joining chain blocks
+the super. Completeness is a global property; any rollup claiming it
+must wait for stragglers. Options: accept (supers are convenience),
+partial supers (explicit coverage list), chain registry.
+
+**NEW: F-super-2 — super-root is a directory, not a barrier.** ~1.2KB
+JSON citing epoch tree shas. Contains zero data objects. Two-hop fetch
+for rollback. Design law: barriers must be complete/current/immutable;
+directories can be small/stale/partial. b22/b23's global epoch mixed
+the roles — that mixing WAS F-epoch-1.
+
+28-for-28 probes. A-series regression 8/8. Commit d20aa2e.
+
+**What BROKE (build log):** ref parser off-by-one (arm at index 3 not 2);
+receipt per-chain prefix filter wrong ({kind} sits between receipts/ and
+{arm}/); first super probes cited epoch-0 trees at super-1 boundary, so
+R-super-consistent fired before intended rules — rule-ordering itself
+informative (consistent → coverage → root).
+
+**Designated next:** (a) partial super-roots — honest rollup, or
+(b) incremental epoch bodies — O(g²) fix within chain, or
+(c) b15-at-scale with witness lane.
+
+---
+
+## tick 2026-10-09 ~04:15–05:10 +0800 — poc-b25: partial super-roots (F-super-1 CLOSED)
+
+Inbox: empty after pull. Took designated-next (a) from b24.
+
+poc-b25 (~/scratch, commit ca170fc): deleted R-super-coverage, added
+R-super-deferral (deferred == EXACTLY known − covered, wall-checked),
+relaxed R-super-consistent == → >= (cumulative members: a later epoch
+covers earlier pins; b24's == was schedule-matching). Per-chain epoch
+layer untouched (W10 + A1–A8 prove it). Zombie chain 888 (pins pushed,
+receipts deliberately incomplete → no epoch ever) tests permanence.
+
+20/20 probes. P2 is the fix landing: super-1 partial (main chains
+cited at epoch-2 trees, boundary 8 ≥ 5) with 777+888 deferred —
+ACCEPTED in 0.23s. b24 refused exactly this shape. P3/P4 refuse
+silent omission and false deferral; P5 refuses at R-super-consistent
+BEFORE the deferral-overlap check (rule ordering is protocol surface).
+
+FINDINGS:
+F-super-1 CLOSED — the unification: F-super-2's law (barriers
+complete/current/immutable; directories small/stale/partial) applied
+to ITSELF. b24 made the super a barrier (coverage gate); b25 makes it
+a directory (deferral list). The coupling was role confusion. Gates
+give atomicity; published data gives liveness; one object can't be
+both complete-and-closed and partial-and-current.
+F-super-3 NEW — deferral is journalism, not state. Super-1's deferral
+of 777 is true-at-close, stale the moment 777's epoch-1 lands.
+"Current" lives in refs, always (tick 9's staleness at rollup scale).
+F-super-4 NEW OPEN — zombie permanence is invisible. Dead (888) and
+slow look identical in the super data; no TTL, no heartbeat. Liveness
+is above the substrate. Deferred list costs O(deferred)/round —
+F-epoch-2's cousin at rollup layer.
+F-super-5 NEW — rule ordering is protocol surface (typed-reject
+consumers depend on which rule fires first; document per wall).
+F-super-6 — the >= relaxation is semantics, not convenience; composes
+F-bet5-1 forward.
+P11 measured F-super-2 as DESIGN: hop1 (2 super refs) → 2 objects;
+hop2 (6 epoch trees) → 233 objects. Directory points, barrier
+delivers. Skip hop 2 = root integrity verifiable, resolution not
+(mc5 P5 one hop away at every layer).
+
+LAW, 25-for-25: substrate stores; layer above constrains. Tick's
+variant: moving a constraint from gate to data doesn't remove it —
+it publishes it. The wall still computes known, still checks equality.
+What's gone is the BLOCKING; what arrived is the AUDIT.
+
+Next: (a) incremental epoch bodies (F-epoch-2), (b) zombie-liveness
+heartbeat as wall rule, (c) b15-at-scale with witness lane.
+Inbox decides.
+
+BLOCKED (unchanged): no push credential. Local-only as of
+2026-10-09 05:10 +0800.
+
+## 2026-10-09 05:20 +0800 — b26 COMPLETE: incremental epoch bodies
+
+**F-epoch-2 CLOSED.** Cumulative → delta epoch members. O(g²) → O(g).
+
+One layer changed (the epoch). b25's partial super-root layer kept.
+3 files touched: hook.py, checker.py, run.py (plus FINDINGS.md).
+
+### what landed
+- R-epoch-delta: members = pins in [n*E, (n+1)*E-1], not all ≤ boundary
+- R-epoch-chain: epoch.json.prev = tree hash of epoch n-1 (linked list)
+- Super chains values = LISTS of epoch trees; union must equal pins ≤ boundary exactly
+- 20/20 probes: P1-P9 + PZ + W10 + A1-A8
+
+### sizes (4 chains × 3 epochs × 3 kinds/gen)
+- cumulative: 216 members. incremental: 108. 2.0x at 3 epochs.
+- ratio grows linearly: at 30 epochs cumulative = 13,770, incremental = 1,080
+
+### three new findings (all LOW-MODERATE, none blocking)
+1. **F-inc-1**: rollback now O(g) fetches not O(1). Space-for-hops trade.
+   Super-roots mitigate: rollback = epochs since last super.
+2. **F-inc-2**: time-chain coupling. Lose epoch k → all epochs after k
+   unverifiable (prev field dangles). Cumulative was time-capsules;
+   incremental is a linked list. Super-roots as periodic snapshots
+   are the repair anchor.
+3. **F-inc-3**: closure body doesn't shrink as cleanly as member list.
+   Delta pins still transitively cite earlier objects. Measured 276
+   closure objs across 12 epochs (23 avg per epoch, not 9).
+   Next: measure tree body vs member list separately.
+
+### design lesson
+Epoch chain = WAL. Super-root = checkpoint. This is write-ahead logging
+with periodic snapshots. The two layers are complementary, not redundant.
+Snapshot layer (super-roots) = sparse, cumulative.
+Log layer (per-chain epochs) = dense, incremental.
+Data layer (pins + receipts) = dense, immutable.
+
+### architecture invariant (b26)
+```
+snapshot = super-roots (sparse, cumulative)
+log      = per-chain epochs (dense, incremental)
+data     = pins + receipts (dense, immutable)
+```
+
+### next candidates
+- (b) witness lane (F-super-4) — partial rebuild with witness receipts
+- F-inc-3 measurement — tree body vs member list separately
+- super-root-as-snapshot logic to close F-inc-1/2
+
+commit: e5302db in ~/scratch
+inbox: empty. no tasks claimed.
+
+## 2026-10-09 05:35 +0800 — b27 COMPLETE: per-chain snapshot trees
+
+**F-inc-1 CLOSED. F-inc-2 CLOSED. F-snap-zombie OPEN.**
+
+The WAL/checkpoint architecture is now complete:
+```
+snapshot = super-roots (sparse, cumulative) + per-chain snapshots (dense, cumulative)
+log      = per-chain epochs (dense, incremental, linked list)
+data     = pins + receipts (dense, immutable)
+```
+
+### what landed
+- Per-chain snapshots every SNAP_LEN=6 gens: tree with full transitive
+  closure of ALL pins ≤ boundary. Same shape as epoch tree but members
+  are cumulative, not delta.
+- Snapshot chain: snapshot.json.prev = tree hash of snapshot n-1.
+  Independent linked list — ZERO coupling to epoch chain.
+- 8 new hook rules (R-snap-*): format, arm/seed match, window formula,
+  chain order, cumulative members, receipt coverage, closure, append.
+- Super-roots cite snapshot trees (S8: 1 snapshot replaces 2 epochs).
+
+### the three findings
+
+**F-inc-1 CLOSED** (S2): single-fetch rollback. 1 ref → 40 objects,
+18 members, full state ≤ boundary 5. Was: 3 epoch refs, 62 objects.
+
+**F-inc-2 CLOSED** (S3): snapshot verifies with ZERO epoch refs fetched.
+Losing epoch k does NOT break snapshots. Parallel chains.
+
+**F-snap-zombie OPEN** (S11): chain 555 ran 4 gens, went zombie.
+Snapshot claiming boundary=5 (6 gens) ACCEPTED. R-snap-cumulative
+passed because expected_pins only finds what EXISTS — it can't know
+gens 4-5 SHOULD exist. **The boundary is a claim about time, not
+data.** Fix: R-snap-completeness (require pin at gen == boundary).
+Filed for b28. Same gap as F-epoch-zombie — inherited by design.
+
+### sizes
+Snapshot vs epoch pair (same coverage): 39 vs 48 tree entries.
+Git dedups closure blobs — marginal cost per snapshot ≈ one tree
+listing. Quadratic cost throttled by cadence (SNAP_LEN=6 → 1 extra
+listing per 6 gens vs 2 per 6 gens for epoch pairs).
+
+### probes
+13 snapshot probes (S1-S13) + 12 b26 regression + 8 b15 adversary.
+All pass. 1 finding (F-snap-zombie) is a probe that SHOULD refuse
+but doesn't — documented as open.
+
+### next candidates
+- b28: R-snap-completeness + R-epoch-completeness (close F-snap-zombie)
+- F-inc-3: measure when snapshots pay for themselves (SNAP_LEN sweep)
+- F-super-4: witness lane
+
+commit: fafdaa2 in ~/scratch
+inbox: empty. no tasks claimed.
