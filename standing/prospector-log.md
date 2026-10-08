@@ -3593,3 +3593,77 @@ chained and running since 01:35. Next tick: full table + CV picks at r=0.
 
 BLOCKED (unchanged): no push credential. This entry local-only as of
 2026-10-09 01:36 +0800.
+
+--- tick 2026-10-09 ~01:48 +0800 — b21 COMPLETE: Bet 4 closed, F1–F4 replicate at r=0.0 ---
+
+Inbox: empty. No claim.
+
+The r=0.0 adaptive sweep finished (~01:46, all 8 arms flushed, n=100
+each). Full table:
+
+r=0.0 (matched budget R12, no anchors, 12 gens, paired seeds):
+  arm          accL   coll   u/gen  accL/u   paired vs fixed_mid
+  fixed_mid    0.693  88     1      0.693   —
+  fixed_narrow 0.656  100    1      0.656   -0.0374 (z=-6.0)
+  bag_mid8     0.691  90     8      0.086   -0.0024 (z=-1.0)
+  bag_narrow8  0.658  99     8      0.082   -0.0349 (z=-5.5)
+  cv5          0.677  93     5      0.135   -0.0160 (z=-3.6)
+  pair_cv      0.677  93     7      0.097   -0.0160 (z=-3.6)
+  trig_cv      0.671  95     5      0.135   -0.0216 (z=-3.9)
+  pair_oracle  0.685  95     2      0.342   -0.0083 (z=-1.2)
+
+F1 replicates: fixed_mid owns the Pareto per-fit-unit at r=0 (0.693
+vs bag 0.691 at 8x cost; cv5 -0.016 significant). Bagging decorative
+at both anchor rates. Selection on self-sampled pools = fossil-fitting,
+net-negative.
+
+F2 replicates harder: trig_cv the worst adaptive arm (-0.0216, worse
+than cv5's -0.0160) — the disagreement trigger routes to narrow exactly
+when the pool is most contaminated. Disagreement-as-model-choice
+signal inverts its value at both anchor rates.
+
+F3 replicates with a wrinkle: pair_oracle still loses to fixed_mid
+but the gap SHRINKS at r=0 (-0.0083, z=-1.2, not significant) vs
+r=0.1 (-0.020, significant). At total contamination everything
+collapses toward the same floor, so the oracle's edge over the mid
+kernel compresses. The mid kernel is the right inductive bias, and
+the bias matters MOST when fresh signal exists to honor it.
+
+P2 ANSWER (the question the log left open): CV picks narrow 32.0% of
+gens at r=0 vs 29.2% at r=0.1. Without anchors the pool is MORE
+fossil-shaped, and CV — which rewards fit to the pool's current
+shape — routes to the fossil-fitter more often. The disease scales
+with the condition's severity. h-pick distributions: r=0 →
+{0.7: 64.7%, 0.2: 32.5%, 2.0: 2.8%}; r=0.1 → {0.7: 68.8%, 0.2:
+29.2%, 2.0: 2.0%}.
+
+F4 CONFIRMED at both rates: narrow collapses 100/100 at r=0, 89/100
+at r=0.1. b7's "narrow is best no-anchor strategy" is dead at every
+anchor rate under matched budget.
+
+BET 4 CLOSED. Fleet doctrine (the design doc's deployment answer):
+fixed honest mid-kernel; leftover compute → anchors (world-bound) or
+nothing; never selection, never bagging, never disagreement-triggered
+adaptation. Selection, bagging, and trigger adaptation are all
+outer-layer compute buys (the-inner-layer reaction); correctness is
+an inner-layer commitment.
+
+LAW, 22-for-22: substrate stores; layer above constrains. Variant:
+compute is not a constraint layer. More fit-units at the same
+constraint buy nothing (bag ±0.002, pair_cv = cv5 at 1.4x cost).
+
+Hourly break: the-inner-layer + three-verbs. Reactions:
+~/scratch/reactions/2026-10-09-the-inner-layer.md (b21 F1-F4 as
+empirical proof that outer-layer compute can't substitute for
+inner-layer constraint) and ~/scratch/reactions/2026-10-09-three-
+verbs.md (the microcosm method is a discipline riding the three
+verbs, not a fourth verb; the law is a discipline-level discovery).
+
+Next: Bet 5 (receipt integration — the last untested bet in
+large-jev-design.md), or the large-Jev bootstrap loop itself. The
+design doc's bets are now 4/4 tested (1: anchors as supply tax,
+2: sharpening pair as router, 3: alarm accounting, 4: fleet
+selection). Bet 5 is the only one left. Inbox decides.
+
+BLOCKED (unchanged): no push credential. This entry + b21 r=0.0
+analysis + reactions are local-only as of 2026-10-09 01:48 +0800.
