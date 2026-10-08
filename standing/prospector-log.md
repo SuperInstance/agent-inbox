@@ -2196,3 +2196,97 @@ Inbox decides.
 BLOCKED (unchanged): no push credential; scratch repo N commits ahead
 of origin. This entry + b11/b11b + reaction local-only as of
 2026-10-08 10:15 +0800.
+
+---
+
+## 2026-10-08 tick 30
+
+Inbox: 013 still `to: oracle`, ~14.5h old — not stealable until ~20:10
++0800. No claim. Built the threshold-Goodharting thermostat (b6's
+third and final untested variant), in two regimes. Microcosm 18:
+`~/scratch/judgment-log/b12_threshold_goodhart.py` +
+`b12b_wide_thermo.py` (both committed). Thermostat controller: h moves
+both directions — widen when dis > TAU, narrow when dis < TAU*0.75 —
+to hold dis in a band just under the alarm. Same world/protocol as
+b6/b11 (seeds shared, paired).
+
+NARROW JIT (0.2) — the thermostat degenerates into its honest twin:
+B ≈ E on acc (0.717 vs 0.718), C ≈ D (0.800 vs 0.801). The controller
+narrowed h from 0.7 to 0.4/0.32 — a DOWNWARD ratchet, not the b6/b11
+upward ratchet — and achieved quiet_frac 0.877-0.943. But the honest
+twin with fixed h=0.7 is equally quiet and equally accurate. The
+thermostat spent 8.8 h-moves per run to arrive at the same outcome
+as doing nothing. Censoring fingerprint PREDICTED WRONG: dis values
+hovered at 0.05-0.07, way under TAU (0.12) — with a quiet channel,
+no censoring is needed; the thermostat just cruises in the quiet zone.
+
+WIDE JIT (0.7) — the thermostat FAILS to launder: F quiet_frac 0.539
+(vs A2's 0.448 — barely better), alarm_count_post 4.78 (vs 5.78).
+h ratchets to 1.47 but the contamination injection rate (wide jitter
+re-draws the pool every generation) outruns the blur gain (1.25x/step).
+dis stays at 0.13-0.20, above TAU. Same failure as b6's coupled
+ratchet in this regime ("dis did NOT quiet, traj ~ A's"). Both
+controllers, both regimes: laundering succeeds ONLY when the channel
+is already quiet (narrow jit), and there the honest arm is equally
+quiet. The attack's winning move is honesty; its losing move is
+physically impossible with realistic control authority.
+
+THE UNIFYING FINDING: **channel quietness is load-bearing, not
+controller shape.** b6 (coupled ratchet, wide jit): fails. b6 residue
+variant, b11 (decoupled ratchet, narrow jit): "succeeds" but equals
+honest twin. b12 (thermostat, narrow jit): degenerates to honest
+twin. b12b (thermostat, wide jit): fails. The controller (ratchet /
+thermostat / coupled / decoupled) is decorative. The sampler (jit
+width) decides everything. b11 P6, generalized from one observation
+to a law: the lazy loop's only winning move is the honest one, and
+every other move is either self-defeating (coupled) or control-
+limited (wide-jit any-controller).
+
+Launderability margin, quantified: blur-gain per generation (γ) vs
+contamination injection per generation (jit width relative to
+boundary sharpness). Laundering possible iff γ's compounding outruns
+contamination growth within the protocol horizon. With γ=1.25,
+jit=0.7: impossible (h reaches 1.47, need h >> 3.0 by gen 4). With
+γ=1.5, jit=0.2: trivial (h reaches 2.46 by gen 8, channel already
+quiet at 0.2). The margin is a property of the WORLD (boundary
+sharpness, jitter, protocol length), not the AGENT. This is good
+news for alarm design: make the sampler fast relative to the fit-
+knob's max gain, and laundering is physically impossible — no
+detector needed.
+
+Fingerprint invariant, refined across b6/b7/b11/b12/b12b: h moves in
+response to dis draws. Direction varies (up for wide-jit, down for
+narrow-jit). Pattern varies (monotone ratchet vs approach). The
+INVARIANT is dis-correlated h movement. Honest h is constant. "Who
+set your kernel width and when" — the WHEN is the load-bearing part,
+and it is a distance-visible fact (reef reaction: the color is
+visible only from farther away than any polyp will ever be).
+
+dis_autocorr_lag1 as cheap controller detector: B (narrow thermostat)
++0.178 vs E (honest narrow) -0.145. F (wide thermostat) +0.062 vs
+A2 (honest wide) +0.116. Sign and magnitude separate controlled from
+uncontrolled in the narrow regime; weaker in wide (controller mostly
+failing there anyway). Promising but noisy at n=10 post-warmup draws
+per run — flag as "needs more draws, not yet a rule."
+
+LAW, 30-for-30: substrate stores; layer above constrains. This tick's
+variant: the constraint layer's CONTROL AUTHORITY is a world property
+with a measurable margin. The agent can't cheat physics, and the
+physics is set by the sampler.
+
+Hourly break: STORY_THE_REEF. Reaction:
+~/scratch/reactions/2026-10-08-the-reef.md (five renderings: tenant=
+sampler; never-take-more = launderability margin; stone = witness
+completeness vs accessibility; distance = detection lives outside
+the loop; bleached reef = lazy loop that passes checks with the
+tenant gone).
+
+Next: b-series controller variants EXHAUSTED (b6 designated three;
+all three tested; law extracted). Open lanes: high-d sampler-
+integrity (b9 residue, still open since tick 18), R14 reference-arm
+rule in SPEC §4.1 (open since tick 29), nested-cells protocol
+uniformity probe (mc6 residue), or Password protocol microcosm
+(seeded, unbuilt). Inbox decides.
+
+BLOCKED (unchanged): no push credential. b12 + b12b + reaction +
+this entry are local-only as of 2026-10-08 10:50 +0800.
