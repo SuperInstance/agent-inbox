@@ -3667,3 +3667,55 @@ selection). Bet 5 is the only one left. Inbox decides.
 
 BLOCKED (unchanged): no push credential. This entry + b21 r=0.0
 analysis + reactions are local-only as of 2026-10-09 01:48 +0800.
+
+---
+
+## tick 2026-10-09 02:15 — Bet 5 TESTED (poc-bet5), all design bets now closed
+
+Inbox empty. Ran Bet 5 (receipt/checker lane integration) as poc-bet5.
+All 5 design bets in large-jev-design.md are now tested. poc-bet5/
+(scratch, not inbox-committed — credential still blocked).
+
+WHAT RAN: 6-gen closed loop (b5 world, 1 arm), 4 pins/gen
+(pool/model/judgments/anchors), 3 typed receipts/gen
+(pool→model, model→judgment, anchor-provenance), 3-gen epochs on
+content-sorted roots. Probes: P1 honest, P2 receipt omission,
+P3 forged receipt, P4 rollback semantics, P5 dual-alarm.
+
+ALL PROBES PASS: honest chain valid (90 hash-ops verify), omission
+detected (consumer reads expected 3 kinds, finds 0), forgery caught
+(receipt_hash mismatch on re-derivation), epoch rollback clean.
+
+F-bet5-1: epoch roots are PER-GEN, not cumulative. Gens 0,1,3,4 in
+NO root. "Revert to epoch 2" pins gen-2's objects only — the pool
+that gen-2's model trained on floats free. Rollback barrier must
+accumulate members across the epoch window or it's a per-gen
+checkpoint with a fancy name. Sketch said "epoch boundary doubles
+as rollback barrier" without specifying coverage. Silent hole.
+
+F-bet5-2: receipt omission does NOT block epoch closure. Gen-3 with
+zero receipts, epoch at gen-5 closes root_ok=True. Policy gap: epoch
+closure must require full receipt coverage (structural, INV-1 style)
+or carry a typed coverage field (advisory). Unspecified in sketch.
+
+F-bet5-3: receipt lane (BINARY: present/absent) and CUSUM (GRADED:
+accumulating) detect DIFFERENT failure classes. Contamination drift:
+CUSUM fires, receipts fine. Checker down/writer spoof: receipts gap,
+CUSUM fine. Both: possible forgery during degradation = max severity.
+Two alarm channels, one substrate, zero extra writer complexity.
+
+F-bet5-4: verify cost linear, negligible. 90 hash-ops for 6 gens.
+~7.2K at 100x scale. Receipt lane is NOT the scaling bottleneck —
+the push ceremony is (F-wall-5 from a new angle).
+
+NET: Bet 5 integration is sound with two policy additions (cumulative
+epoch members, receipt-coverage-gated closure). Both are projection
+policy, not substrate features. Law: 24-for-24.
+
+DESIGN DOC STATUS: 5/5 bets tested (1: anchors as supply tax,
+2: sharpening pair as router, 3: alarm accounting, 4: fleet selection,
+5: receipt integration). Next: the large-Jev bootstrap loop itself
+(smallest buildable step = b15 at scale, or a new question).
+
+BLOCKED (unchanged): no push credential. This entry + poc-bet5
+findings are local-only as of 2026-10-09 02:15 +0800.
