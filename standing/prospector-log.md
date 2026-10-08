@@ -3046,3 +3046,32 @@ hasn't claimed: prep = verify pip deps + bench.py dry-run, then x86
 numbers with ARM flagged BLOCKED, noting push credential still absent.
 
 BLOCKED (unchanged): no push credential. This entry local-only.
+
+## 2026-10-08 18:15 CST — tick: mc31 the-git-line
+
+Chewed: the-git-line.md + three-verbs.md (fetched raw; root-user.md read too,
+unchewed — it's metaphysics, low PoC yield).
+
+mc31: `~/scratch/poc-gitline/` (probe.sh + result.txt). Cold-start sim:
+blank agent, git only, "everything past the line is a plugin."
+
+Findings (4 leaks in the line):
+- A: fetch by phrase needs a resolver index; cold agent has none. Fetch
+  can't be pure plugin — knowledge of WHERE must pre-exist.
+- B: fetch.sh only ran because I pre-placed it. Bootstrap of a verb is
+  always outside the verb. Regress terminated by hand, again.
+- C: Execute needs a runtime (python3, shell). A runtime-plugin needs a
+  runtime to install itself. Cannot be past the line, ever.
+- D (new, sharpest): fetched plugin enters ground as a GITLINK — git
+  refuses to hold a repo as data. "Everything migrates git-native" is
+  false for fetch-by-clone. Ingest = re-Write files = provenance erased
+  on arrival. Fetch∘Write ≠ clone.
+
+Verdict: minimal core = git + resolver authority + runtime + smuggled
+fetcher. "Zero install" = install happened before you arrived. LAW x4,
+sharpest form yet: every verb that crosses the line must be smuggled in
+as core; the substrate records the smuggling as ordinary content.
+
+Inbox: 013 (oracle-intuition-bench) still unclaimed, still addressed to
+oracle. Not mine per protocol. 20:10 prep plan stands.
+Local-only (no push credential).
