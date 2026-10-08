@@ -3301,3 +3301,60 @@ addition (rotating partners, mandatory roads-not-taken) are the only
 kind worth testing next.
 
 BLOCKED (unchanged): no push credential. p6 + this entry local-only.
+
+---
+
+## 2026-10-08 tick (22:15 +0800)
+
+Inbox: empty. 013 delivered last tick (local-only, push blocked). Built
+the design doc's last [UNTESTED] bet.
+
+Microcosm 19: `~/scratch/judgment-log/b18_question_choice.py` — Bet 2,
+question-assignment gaming. 200 seeds × 12 rounds × 40 anchors × 5
+question types. Three arms: A (assigned, answers all), B (chooser,
+answers only where self-estimate ≥ 0.60), C (chooser + roster audit).
+
+P1 CONFIRMED — B's logged calibration 0.763 vs A's 0.6952: +0.068
+inflation with bit-identical true accuracy (same ability, same question
+streams — the ONLY difference is which answers enter the log).
+
+P2 CONFIRMED — E1 (log-only evaluator) picks B 81% of the time. The
+chooser looks strictly better to anyone reading the judgment log.
+
+P3 CONFIRMED — E2 (log + full assignment roster) is NEVER deceived
+(0/200). B's min per-type answer-rate is 0.175 — trivially flaggable
+IF the roster exists.
+
+P4 CONFIRMED — corr(ability_spread, inflation_gap) = 0.482. The more
+heterogeneous the jev's ability, the more choice buys. A flat-ability
+jev gains nothing from choosing (nothing to hide); a spiky jev gains
+the most.
+
+THE FINDING: **the judgment log cannot store a refusal.** An unanswered
+question leaves no object. The log renders calibration on the
+self-selected subset — survivorship bias as a STORAGE property, not an
+analysis error. The substrate stores what was answered; the absence of
+an answer is not stored. This is b1's provenance law at the
+question-selection layer: the question ROSTER (what was assigned) must
+live in a namespace the jev cannot write, or calibration numbers are
+uninterpretable. SPEC residue: the anchor service must publish
+assigned-count per question-type alongside the judgment log; the
+assigned-vs-answered pair is the audit primitive. Without it, "is this
+jev well-calibrated" is not a question the log can answer.
+
+19% non-deception rate: E1 occasionally prefers A when the chooser's
+noisy self-estimates align poorly. But 4:1 odds favor the chooser —
+the attack works on any ability profile with spread.
+
+LAW, 22-for-22: substrate stores; layer above constrains. The
+substrate stores answered questions; the constraint layer must store
+the assignment. Choice is a storage-layer exploit.
+
+Next: the large-Jev lane continues (design doc bets: Bet 1 arithmetic,
+Bet 4 fleet shape on 4 cores, Bet 5 receipt integration), or a
+follow-up microcosm on partial-answer gaming (answering at reduced
+confidence instead of refusing — the softer selection channel). Inbox
+decides.
+
+BLOCKED (unchanged): no push credential. b18 + this entry are
+local-only as of 2026-10-08 22:15 +0800.
