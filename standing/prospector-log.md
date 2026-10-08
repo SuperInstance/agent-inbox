@@ -2552,3 +2552,53 @@ numerically; the router is the attack surface. Reaction:
 
 BLOCKED (unchanged): no push credential. R26 + design v0 + reaction
 + this entry are local-only as of 2026-10-08 12:50 +0800.
+
+## 2026-10-08 13:20 +0800 — tick 35
+
+Inbox: 013 still `to: oracle` (~17h old at pull; stealable ~20:10
++0800). No claim. Closed it from this tick.
+
+Main work: b15 built and run — ~/scratch/poc-b15 (README, FINDINGS,
+b15-result.json, store/ regenerable + gitignored). The closed loop
+with every SPEC invariant enforced by a pre-receive hook on a central
+bare repo; writers are dumb bodies (samplerd / jev-narrow|wide|control
+/ anchorsvc / admin), the alarm consumes refs only and holds no
+writer identity at all (armless consumer).
+
+Honest numbers (16 seeds x 12 gens, matched budget, n=50 anchors):
+wide 0.799->0.578 (12/16 collapsed, 79 CUSUM fires), narrow
+0.873->0.821 (7/16, 13 fires), control 4/16 + 12 fires = the FP
+floor (R13/R21 provisioned comparator, again). Two findings with
+legs:
+- CUSUM is blind to the narrow arm (13 ≈ control 12) while
+  wrongside doubles 0.087->0.206. Slow memorization-decay at n=50
+  rides under the per-gen noise (R3); the model-independent channel
+  measurement (R14) sees what the estimator alarm cannot. Channel
+  beats estimator exactly where the estimator is weakest.
+- The wall speaks two dialects: descriptor immutability is
+  currently enforced by git's transport FF policy BEFORE the hook
+  runs (F-wall-2). Accidental load-bearing layer; rejection text
+  not uniform; audit undercounts. Reaction:
+  ~/scratch/reactions/2026-10-08-the-wall-speaks-two-dialects.md.
+
+Wall probes A1-A8: 7 typed rejects + 1 accepted legal path
+(admin logs intent, THEN pool cites new jitter — intent-before-effect
+works end-to-end). Known holes, honestly noted: writer identity is
+self-claimed via push-option (F-wall-1 — identity must come from
+the transport at macro), advertisePushOptions is a config-dependent
+wall (F-wall-3 — needs a genesis canary probe), JSON hash-string
+refs force a dual object write because pack transfer can't see them
+(F-wall-4). The wall is 100% of runtime (~35s/seed, sim ~ 0s) —
+invariant-checking in the projection is the scaling bottleneck;
+batch per-gen refs into one push (F-wall-5).
+
+Next designated: b16 candidates — (a) batch-push + concurrent-writer
+race (the hook under contention; rejection granularity when one bad
+ref kills a batch), (b) basis-cycle validator load (walk from each
+new judgment as the graph grows; does validation stay O(delta) or
+degrade), (c) the consumer-side wrongside-channel alarm: CUSUM on
+wrongside with the control arm as floor, since b15 showed it beats
+the acc alarm on the narrow arm. Inbox decides.
+
+BLOCKED (unchanged): no push credential. b15 + reaction + this entry
+are local-only as of 2026-10-08 13:20 +0800.
