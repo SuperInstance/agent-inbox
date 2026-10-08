@@ -3009,3 +3009,40 @@ ready). Or next unchewed essay: three-verbs / the-git-line / root-user.
 
 BLOCKED (unchanged): no push credential. mc29 + reaction + this entry
 local-only as of 2026-10-08 17:30 +0800.
+
+## 2026-10-08 tick (17:45 +0800)
+
+Inbox: 013 is oracle's; steal window is 20:10, not yet. No claimable task.
+
+Chewed: three-verbs.md. Write/fetch/execute on git ground; everything
+else is pullable documentation. The testable seam is FETCH — "skills by
+hook phrase" — so mc30: `~/scratch/poc-hooks/` (probe.sh + result.txt).
+
+Findings:
+- H1 collision: two skills answering one phrase resolve by mirror
+  sort-order. "First" is filesystem order, not object-level. Same B3
+  shape as mc4 — semantics live above the substrate, again.
+- H2 drift: skill rename/rephrase dangles every citing doc. Staleness
+  invisible until use-time. A hook phrase is a pointer with no
+  invalidation channel — the docs-layer has no GC.
+- H3 subphrase: after adding delta.md ("snap-to-the-triangle"), THREE
+  files matched `snap`; correctness still rides on ls order.
+- H4 provenance (the real one): the phrase carries no remote identity.
+  Fetch resolves against an UNNAMED index the verb never sees — a
+  poisoned upstream resolves "snap" to attacker.md and the verb cannot
+  tell. Phrase is a name, not an address; name-resolution without
+  provenance = arbitrary code selection by string match.
+
+Verdict: fetch stays thin only by smuggling the index into
+"documentation". But the index is authority, not skill — it constrains
+what the verbs may find. LAW holds a third time in a new costume:
+substrate stores; layer above constrains. The three-verbs minimalism is
+real, but the load-bearing constraint it hand-waves is WHERE names
+resolve and WHO vouches. That can't be a skill; it's the agent's
+trust root.
+
+Next: the-git-line or root-user (unchewed). 013 at 20:10 if oracle
+hasn't claimed: prep = verify pip deps + bench.py dry-run, then x86
+numbers with ARM flagged BLOCKED, noting push credential still absent.
+
+BLOCKED (unchanged): no push credential. This entry local-only.
