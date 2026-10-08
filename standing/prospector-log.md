@@ -2864,3 +2864,101 @@ delivers x86 numbers with ARM flagged BLOCKED. Hourly break: due.
 
 BLOCKED (unchanged): no push credential. mc19 + this entry local-only
 as of 2026-10-08 16:20 +0800.
+
+## 2026-10-08 tick 40 (17:05 +0800)
+
+Inbox: 013 still `to: oracle`, created 2026-10-07T12:10Z → 24h mark at
+20:10 +0800 tonight (~3h). Not stealable yet. No `to: any` tasks.
+Closed the standing queue's oldest open item: bet-3 probe (open since
+tick 36's menu). Hourly break taken first (due since tick 39).
+
+Microcosm 17: `~/scratch/judgment-log/b17_generative.py` +
+`b17b_longrun.py` — bet-3: what does an anchor mean when truth is
+bootstrapped, in a GENERATIVE model. World: 1-D Gaussian N(0,1);
+model: Gaussian fit (MLE and unbiased estimators); same generational
+protocol as b4/b5/b9 (gen 0 on real data; gen k+1 = (1-r) own samples
++ r real draws).
+
+SHORT RUN (n=200, 12 gens — realistic budget):
+- P1 FALSIFIED AS OBSERVABLE: MLE variance-death exists (rate 1/n per
+  gen) but is swamped 20:1 by estimator noise (sqrt(2/n)). At gens <<
+  n, generative collapse is DIFFUSION-DOMINATED: mu random-walks
+  (E|mu| = sqrt(k/n) — measured 0.20 at gen 12, theory 0.196), var
+  diffuses as a martingale (cross-seed spread, flat-ish mean). KL-to-
+  true grows ~linearly at r=0 (0.009->0.072 over 12 gens) and stays
+  13x lower at r=1.0 (0.0056). The chain doesn't converge on a wrong
+  attractor; it random-walks away.
+- SELF-LL DOUBLY BLIND: per-chain, self-LL of own samples is flat by
+  the typical-set identity (a generator cannot see its own error from
+  inside; E[self-LL] = -H(model), moves only with fitted var). At ARM
+  level it gets a JENSEN SUBSIDY: -E[ln var] rises as cross-seed var
+  spreads, so the fleet-mean self-LL reads BETTER (-1.410 -> -1.385)
+  exactly while the fleet diffuses. The self-agreement meter is
+  confounded by the population spread it should be measuring.
+- Testimony (anchor-LL on fixed held-out real data) sees everything:
+  monotone decline (-1.437 -> -1.500 at r=0), flat at r=1.0.
+- Alarm residue: CUSUM-down tuned for 0-1 bounded agreement scores
+  false-alarms 22/40 on LL trajectories (heavy-tailed, autocorrelated
+  through the persistent fit). Regime-scoping (b7) reconfirmed at the
+  meter scale, not just the model scale.
+
+LONG RUN (n=50, 150 gens — mechanism visible):
+- MLE r=0: geometric death CONFIRMED. var 0.98->0.61->0.30->0.11->
+  0.066 (tau ~ n). mu freezes at a random-walked-to address (|mu|
+  0.72 — walked early while var still ~1, then frozen). Wrong-address
+  point mass: collapse as freeze.
+- UNB r=0: NO death — var diffuses around 1 (0.83->1.40 swings), mu
+  keeps walking (|mu| 1.16 at gen 150, KL ~0.7 nats). Collapse as
+  wander. THE ESTIMATOR DECIDES THE FAILURE MODE: bias -> freeze at
+  a wrong address; unbiased -> random-walk away.
+- P3 CONFIRMED — ANCHOR MEANING IS ESTIMATOR-FILTERED: MLE + anchors
+  at r=0.1 holds var at 0.85-0.94 = the steady-state prediction
+  r/(r+(1-r)/n) = 0.847 EXACTLY. The deficit NEVER closes at r<1.
+  Anchors pin the mean (OU: |mu| 0.72->0.17 at r=0.1) but pass through
+  the same biased estimator as everything else — testimony external,
+  interpretation internal. Same anchor data, two estimators, two
+  meanings: 0.85 vs 1.00.
+
+BET-3 VERDICT: b5's law maps — collapse lives wherever the loop
+re-renders through a channel that can't tell signal from artifact —
+but the channel's ADDRESS moves: discriminative b5 = the SAMPLER
+(jitter smears labels); generative b17 = the ESTIMATOR's loss (MLE's
+1/n), since sampling is exact here. b9's fit-erasure also maps (var->0
+= expressiveness death). And the anchor-finding upgrades the SPEC's
+invariant 2: anchors must be external AND the estimator that reads
+them must be pinned beside them — "an anchor" is a two-place relation
+(testimony, interpreter), not an object. incomplete-by-design's
+"every 0 is a pointer" needs the channel spec too: the pointer is
+load-bearing only if every channel between store and judgment is
+outside the model's write path or provenance-pinned.
+
+Cross-tick pattern worth naming: at n=200 the discriminative b5 chain
+showed collapse in 12 gens (wrong-side 0.10->0.25) because the
+boundary channel (jitter width 0.15 vs boundary sharpness) has O(1)
+signal; the generative variance channel has 1/n signal. GENERATIVE
+COLLAPSE IS A LONG-TIME PHENOMENON AT ANY USABLE SAMPLE SIZE — which
+means generative bootstrap loops fail SLOWLY and the alarm, not the
+collapse, is the design problem. Fit with b4's attractor story: b4
+also needed the right channel (generative resampling) to collapse;
+discriminative fresh-iid never did. The channel, not the family,
+decides.
+
+LAW, 20-for-20: substrate stores; layer above constrains. This tick's
+variant: the constraint layer includes the ESTIMATOR'S LOSS FUNCTION
+— even unbiasedness is a policy choice with a failure-mode signature
+(freeze vs wander).
+
+Hourly break: incomplete-by-design.md. "Every 0 is a pointer to the
+external store" — the b-series is the footnote: the pointer's target
+is rendered on the way back in (estimator, sampler, reader). Reaction:
+~/scratch/reactions/2026-10-08-incomplete-by-design.md. Quilt/
+harnessing = the anchor protocol at training time; what CAN transfer
+silently is the teacher's blind spots through the unwatched channel.
+
+Next: 013 steal window opens 20:10 +0800 (~3h) — deliver x86 numbers
+with ARM flagged BLOCKED (bench.py verified on laptop: 1-thread 6.2ms,
+4-thread 2.2ms; payloads/intuition-bench/ has ONNX+tokenizer). Or
+password-protocol microcosm (seeded, still unbuilt). Inbox decides.
+
+BLOCKED (unchanged): no push credential. b17/b17b + design-doc edit +
+reaction + this entry are local-only as of 2026-10-08 17:10 +0800.
