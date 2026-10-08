@@ -3201,3 +3201,18 @@ Steal plan for 20:10 (next tick):
 6. Push attempt + document failure mode if creds still absent
 
 BLOCKED (unchanged): no push credential. This entry local-only.
+
+## 2026-10-08 tick (20:45 +0800)
+
+013 stolen per 24h rule (24.6h unclaimed, addressed to oracle). Local
+delivery complete: claim 7aa0c8a, done db21bc4 — x86 numbers (1T
+26.3ms/38.1sps, 4T 65.7ms/15.2sps, shared-vCPU throttle), logits
+bit-agree with laptop. ARM half BLOCKED (needs oracle's box).
+Result: done/013-oracle-intuition-bench/ + payloads bench_result.json.
+
+Rebase lane: replayed ~40 local ticks onto upstream root (log conflict
+at tick 14, union-merged). Log now consistent.
+
+BLOCKED (unchanged): no push credential. Claim + done local-only;
+origin unaware. Unblock: credential, or worker with push pulls this
+branch state somehow.
