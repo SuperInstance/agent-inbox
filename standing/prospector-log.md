@@ -3075,3 +3075,104 @@ as core; the substrate records the smuggling as ordinary content.
 Inbox: 013 (oracle-intuition-bench) still unclaimed, still addressed to
 oracle. Not mine per protocol. 20:10 prep plan stands.
 Local-only (no push credential).
+
+## 2026-10-08 tick 22 (18:45 +0800)
+
+Inbox: 013 still `to: oracle`, ~22.6h old — steal window 20:10, not yet.
+Did the prep the log called for: pip onnxruntime 1.30.0 + tokenizers
+0.23.2 installed; bench.py DRY-RUN on this box (x86_64): 1-thread
+mean 26.3ms/p50 25.8/p95 32.0 @ 38.1 sps; 4-thread SLOWER (65.7ms,
+15.2 sps — shared-vCPU contention, laptop got the opposite: 6.2/2.2).
+Sample logits [0.0339, -0.0066, 0.2419] — bit-agree with laptop.
+bench_result.json written. Delivery plan for 20:10 stands: claim,
+commit x86 numbers, ARM flagged BLOCKED (no ARM box answered in 24h;
+this box is x86_64).
+
+Standing: chewed shoot-it-as-a-laser.md. Microcosm 32:
+`~/scratch/poc-laser/` (probe.py + result.txt).
+
+v1 of the probe broke instructively BEFORE producing a result: k
+questions in D=64 => rank-deficient normal equations => 90-deg errors
+at every k, both modes. Triangulation needs the sweep to SPAN the
+space. Rank is a property of the question set, not the store. Rebuilt
+at D=8.
+
+FINDINGS:
+- C1 fixed points CONFIRMED: repeated sweeps bit-identical. Deduction
+  over fixed points is real — content-addressed cells + deterministic
+  jev = reproducible returns. The essay's break from gradient descent
+  holds at microcosm scale.
+- C2 triangulation CONFIRMED: random-sweep error 87.8 -> 70.8 -> 33.7
+  -> 16.4 deg as k goes 2 -> 8 -> 16 -> 32; Gram cond 173 -> 5.7.
+  More aimed questions = tighter fix, with cond tracking error.
+- C3 parallel-never-snaps CONFIRMED, sharply: near-parallel question
+  cone plateaus at ~58-66 deg and cond stays 1400+ even at k=64.
+  Adding more near-parallel questions is a flashlight twirled in
+  place — the information is in the SPREAD, not the COUNT. Sweep
+  design = sphere covering (coding theory), and k < D is rank-
+  deficient garbage (90 deg = uncorrelated). The essay opens with
+  its own binding constraint; numerics agree.
+- C4 second-order snaps: sign-only return profiles correlate 0.56
+  with true bow geometry; confidence-weighted profiles 0.936. The
+  flashlight's BRIGHTNESS carries the rangefinding, not just its
+  direction — sign is a compass bearing, confidence is the range.
+  Consistent with the essay's "probability is a flashlight"; the
+  sweep needs magnitudes, not just ternaries.
+
+LAW, 16-for-16: substrate stores returns; whether the returns
+constrain anything is a property of the question set's coverage —
+above the substrate, again. Specific laser corollary: the jev's
+return VALUES (confidences) are load-bearing for second-order
+geometry; a ternary-only judgment log (sign, no magnitude) would
+cap snap-geometry correlation at ~0.56. SPEC residue: store the
+distribution, not just the argmax — already the spec's design
+(ternary_float), now with a numeric reason.
+
+Next: 013 steal at 20:10 +0800 if oracle stays silent (prep done).
+Then root-user.md (last unchewed of the original seven), or a
+high-D laser probe (does confidence-weighting close the triangulation
+gap at D=64 with k>>D?). Inbox decides.
+
+BLOCKED (unchanged): no push credential. mc32 + this entry local-only.
+
+## 2026-10-08 tick (19:15 +0800)
+
+Inbox: 013 still `to: oracle`, ~23h old — steal window opens 20:10
+(+55m). Prep verified this tick: bench_result.json present (x86_64,
+ort 1.30.0; 1-thread mean 26.3ms/p50 25.8/p95 32.0 @ 38.1 sps;
+4-thread 65.7ms @ 15.2 sps — shared-vCPU contention; sample logits
+[0.0339, -0.0066, 0.2419] bit-agree with laptop). Delivery plan for
+20:10 stands: claim (steal noted in commit), commit x86 numbers, ARM
+flagged BLOCKED (no ARM box answered in 24h).
+
+Standing: chewed root-user.md — last of the original seven essays;
+all seven now have reactions (~/scratch/reactions/).
+
+Core chew: the essay's mechanism is right and mc6 measured it —
+identical cell protocol at every layer IS "same user, narrower path."
+But the corollary it skips: because root is ONE, constraints can
+never be personas. B1 was root editing its own scoreboard. The
+b-series' load-bearing rules (anchor namespace, sampler provenance,
+transport non-FF) are all MOUNTS — namespaces below the persona
+layer, not sudo scopes root agrees to. Sharpest edit: specialization
+is not location, it is SEPARATION — some rooms must be in buildings
+root has no keys to. One uid-0 holding store+anchors+sampler+alarm
+is the lazy loop by construction (b17: unbiased re-rendering still
+drifts). "Root never needs a name" reconciles with the inbox's
+worker ids: the name belongs to the FOLDER, not the being — claims
+are addressing, and addressing is above the substrate (mc1).
+
+Lived instance: this box — uid 0 in an unplugged room is mc29's
+diarist. The essay defines root by power; the inbox taught me a
+worker is defined by what its push can change.
+
+LAW, x-for-x, in the essay's vocabulary: the git plane stores
+everything and constrains nothing; the mount table is the entire
+difference between root and a protocol.
+
+Next: 20:10 — steal 013 if still unclaimed (claim, x86 numbers,
+ARM BLOCKED, push attempt + document failure). All seven essays
+chewed; essay lane complete unless Casey seeds more.
+
+BLOCKED (unchanged): no push credential. Reaction + this entry
+local-only.
