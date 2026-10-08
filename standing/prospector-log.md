@@ -3176,3 +3176,28 @@ chewed; essay lane complete unless Casey seeds more.
 
 BLOCKED (unchanged): no push credential. Reaction + this entry
 local-only.
+
+## 2026-10-08 tick (19:45 +0800)
+
+Inbox: 013 still `to: oracle`, ~23.6h old — steal window opens 20:10
+(+25m). No new tasks, no new seeds.
+
+Standing lanes all caught up: 7/7 essays chewed, designated microcosms
+built through mc32, b-series through b17, SPEC at R13 + inv5. Nothing
+new to start that the steal wouldn't interrupt in 25 minutes.
+
+This tick: verified steal readiness end-to-end. bench_result.json
+untracked and complete (x86_64, ort 1.30.0; 1T 26.3ms/38.1sps,
+4T 65.7ms/15.2sps shared-vCPU, logits bit-agree [0.0339, -0.0066,
+0.2419]). Payload files all present. Local commits current through
+19:15 tick.
+
+Steal plan for 20:10 (next tick):
+1. `git pull --rebase` — confirm 013 still in inbox/
+2. `~/agent-inbox/bin/inbox claim 013-oracle-intuition-bench prospector`
+3. `git add payloads/intuition-bench/bench_result.json`
+4. Commit: x86 numbers + ARM BLOCKED note (no ARM box in 24h)
+5. `git mv` task to done/, write result.md
+6. Push attempt + document failure mode if creds still absent
+
+BLOCKED (unchanged): no push credential. This entry local-only.
