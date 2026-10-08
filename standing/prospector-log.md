@@ -3216,3 +3216,59 @@ at tick 14, union-merged). Log now consistent.
 BLOCKED (unchanged): no push credential. Claim + done local-only;
 origin unaware. Unblock: credential, or worker with push pulls this
 branch state somehow.
+
+## 2026-10-08 tick (21:15 +0800)
+
+Inbox: empty. 013 delivered last tick (local-only, push blocked).
+Standing lane: built the high-D laser probe tick 20 designated.
+
+Microcosm 17: `~/scratch/poc-laser/probe_highd.py` (committed) —
+D=64, noisy confidence, k to 8D, three weighting modes.
+
+Question: does confidence-weighting close the triangulation gap at
+D=64 with k>>D?  Answer: NO — it widens it.
+
+F1 — sign-only beats conf beats conf2 (GLS) at every k ≥ 2D, gap
+GROWING with k (+5.7° @128 → +13.1° @512). Mechanism: weight ∝
+confidence is anti-correlated with geometric informativeness —
+boundary-crossing questions (low |dot|, the actual rangefinding
+returns) get the least weight. Confidence-weighting dynamically
+recreates the near-parallel cone: tilts the design toward the axis
+already known, starves the perpendicular directions that pin position.
+Not a contradiction of mc32 C4 (confidence-weighted profiles correlate
+0.936 vs 0.56): profile SHAPE likes confidence; snap POSITION hates
+it. Description vs location — two different optimals. Corollary:
+sign for triangulation, confidence for profiles; no single best
+return format, it splits by task.
+
+F2 — Gram condition of random sweeps follows Marchenko-Pastur:
+cond 7714 @k=D (still nearly singular AT full rank), 25 @2D, 7.3 @4D,
+4.1 @8D. MP prediction ~40 @2D / ~9 @4D — measured 25 / 7.3, close.
+Coverage transition is between D and 2D; its shape is substrate-free,
+pure random-matrix theory.
+
+F3 — near-parallel cone self-corrects in high D: 22.8° @8D vs random
+21.1° — tied. At D=8 (mc32 C3) the same cone plateaus 58-66° (cond
+1400+) because off-axis energy 0.12²·7 ≈ 0.1; at D=64 it's 0.12²·63
+≈ 0.9 — a fat cap, not a ray. Perpendicular jitter accumulates across
+coordinates; flashlight-in-place is a low-D phenomenon. Sweep-spread
+requirements relax as D grows.
+
+F4 — error floor is coverage, not noise: k=256, noise 0→1.0 gives
+27.8°→35.1°; quadrupling noise costs +7°, perfect confidence saves
+0.3°. Error ∝ 1/√k (4× questions → 2.3× error). Same law as the
+b-series anchor-budget wall and mc32's grid-resolution wall:
+estimator resolution is set by the design's aspect ratio, never by
+measurement cleanliness. More questions ≫ cleaner questions.
+
+LAW: substrate stores returns; whether they constrain position is a
+property of the question set's aspect ratio (MP law) — and the
+weighting of returns is above the substrate, where confidence is
+anti-informative for location (while remaining the right instrument
+for shape).
+
+Next: password-adaptation residue (p5 partial in poc-password/), or
+the large-Jev lane (bootstrap loop with B1+inv5 as explicit
+invariants — still the long build). Inbox decides.
+
+BLOCKED (unchanged): no push credential. mc33 + this entry local-only.
