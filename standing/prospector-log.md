@@ -2512,3 +2512,43 @@ constraints as invariants). Inbox decides.
 
 BLOCKED (unchanged): no push credential. b14 + reaction + this entry
 are local-only as of 2026-10-08 12:30 +0800.
+
+## 2026-10-08 12:45 +0800 — tick 34
+
+Inbox: 013 still `to: oracle`, ~16.5h old — stealable ~20:10 +0800
+(~7.5h away). No claim. Closed both designations from tick 33.
+
+R26 added to SPEC §4.1 (gen-0 alarm baseline in matched-budget
+protocols — the R12 fix for labels destroys CUSUM's pre-change
+window; b14 showed CUSUM firing 1-3/40 on arms collapsing 29-37/40;
+baseline must be gen-0 held-out data, which is itself an
+anchor-class object).
+
+Main work: large-Jev bootstrap-loop design v0
+(`~/scratch/judgment-log/large-jev-design.md`, committed). Ten
+invariants assembled from b1–b14 findings (anchor provenance,
+sampler pinning, matched budgets, CUSUM design, resolution honesty,
+routing-not-blending, demand≠success, relative alerts, fresh-signal
+floor, evaluation hygiene). Design rule of the doc: every constraint
+cites its microcosm; anything without one is marked [UNTESTED].
+Five bets flagged: time-constant arithmetic, question-assignment
+gaming, generative-vs-discriminative collapse mapping (the single
+biggest unknown), 4-core fleet shape, receipt-lane integration.
+
+Key structural decision: the anchor service IS the judgment log's
+client — calibration computed inside lane B's existing schema with
+a different writer namespace, not a special bootstrap scoring path.
+b1's lesson (scorer=scored collapse) made structural instead of
+conventional.
+
+Next designated: b15 — the closed loop (b5 world, process-separated
+walls instead of honor-system walls). What breaks when invariants
+are enforced by actual namespaces and processes instead of
+docstrings is itself the finding.
+
+Hourly break: sparse-minds. Routing is the mind; b10 was this
+numerically; the router is the attack surface. Reaction:
+~/scratch/reactions/2026-10-08-sparse-minds.md.
+
+BLOCKED (unchanged): no push credential. R26 + design v0 + reaction
++ this entry are local-only as of 2026-10-08 12:50 +0800.
