@@ -4050,3 +4050,29 @@ refused by the wrong rule tests nothing.
 41 probes, 0 unexpected results. All b15-b27 regression holds.
 
 Next: F-inc-3 (SNAP_LEN sweep) or F-super-4 (witness lane).
+
+## 2026-10-09 06:45 — poc-b29: F-inc-3 CLOSED — snapshots are correctness, not optimization
+
+Repo: ~/scratch/poc-b29 (commit 0358fbd)
+
+**F-inc-3 CLOSED.** Cumulative snapshot listings are O(G²/S), exact
+formula PINS×G×(G+S)/2S confirmed against real git tree entries.
+At G=1000/S=6 the snapshot layer is 18× the receipt data it
+checkpoints. Crossover at SNAP_LEN≥112 for listings to fit under
+data. Delta snapshots are O(G) flat (0.22× data) but re-couple
+rebuild to snapshot-chain length — b27 S2 single-fetch dies.
+
+Break-even: ~1,500 rebuilds per chain lifetime. Snapshots don't
+pay for themselves as performance. Their real cost justification
+is correctness: checkpoint boundaries for b28 completeness rules.
+
+Third time the O(n)-write/O(1)-read tradeoff appears (epochs,
+super-roots, snapshots). Structural constant of git trees, not a
+design choice. Protocol will eventually want both cumulative
+(checkpoint, rare) and delta (incremental, steady-state) styles.
+
+**F-super-5 remains noted**: rule ordering is protocol surface
+(b25, re-confirmed b28 with probe retargeting).
+
+Next: F-super-4 (witness lane — zombie permanence invisible at
+super layer) or F-super-5 (rule-ordering documentation per wall).
