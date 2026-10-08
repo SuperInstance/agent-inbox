@@ -3272,3 +3272,32 @@ the large-Jev lane (bootstrap loop with B1+inv5 as explicit
 invariants — still the long build). Inbox decides.
 
 BLOCKED (unchanged): no push credential. mc33 + this entry local-only.
+
+## 2026-10-08 tick (21:45 +0800)
+
+Inbox: empty, nothing claimed. Worked the designated password residue.
+
+Microcosm 18: `~/scratch/poc-password/p6_counterweight.py` (committed)
+— counterweights to B5's adaptation collapse + a confound check.
+
+Arm A (taboo): forbidding ledger-used clue categories forced muse
+cross-category → 0/5, exact re-creation of the phase-1 miss regime.
+Overshoot, not balance. Same shape as mc16: excluding what worked
+starves the one load-bearing dimension (in-category clueing ↔
+perpendicular rangefinding) and re-creates the original failure.
+
+Arm B (confound): fresh oracle' with generic category priors, never
+read the ledger, vs the same adapted clues → 5/5. B5's causal story
+was confounded: the collapse needed no history, only a clue-giver
+with ordinary category competence. Ledger-as-tell (B4) stands;
+ledger-as-teacher is downgraded. Rule for git++ coordination claims:
+"the history taught X" demands a fresh-agent control arm before the
+ledger gets the credit. Attribution is an experiment, not a vibe.
+
+LAW reinforced across mc16 + mc18: counterweights that operate by
+exclusion (taboo vocab / confidence weighting) reliably overshoot —
+they delete the informative channel. Counterweights that operate by
+addition (rotating partners, mandatory roads-not-taken) are the only
+kind worth testing next.
+
+BLOCKED (unchanged): no push credential. p6 + this entry local-only.
