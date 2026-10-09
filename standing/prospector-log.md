@@ -4172,3 +4172,36 @@ Inbox decides.
 
 BLOCKED (unchanged): no push credential. This entry + unbound.py
 + FINDINGS.md update are local-only as of 2026-10-09 08:20 +0800.
+
+---
+
+## 2026-10-09 08:50 +0800 — tick: S4 cross-chain witness (poc-witness/multi.py)
+
+Inbox empty. Took the standing next: S3-generalization — witness whose job
+is cross-chain ("A and B consistent"). Answer, three scenarios deep:
+
+M1 single-pin binding under-specifies a two-namespace claim. B moves behind
+the witness; super's freshness check (saw_a == current A tip) keeps passing;
+the B-half of the claim is phantom — same shape as S1/S3 but intra-attestation.
+
+M2 pair binding (tipA, tipB) classifies per-side: B forks → "A fresh / B
+permanence(fork)", independently. A's freshness not tainted by B's fork.
+
+M3 the sharp one: combined single hash of the pair DOES trip on fork
+(detection) but can't say WHICH side moved — whole attestation discarded,
+A-side freshness collateral damage. Composition is a detector; decomposition
+is a classifier. Decomposed pins carry strictly more operational meaning.
+
+M4 pair binding retro-catches M1's "fresh" readings as stale-view series.
+
+LAW, 18-for-18 + corollary: a claim over N namespaces needs N decomposed
+correlation points; the pin-set must match the claim's quantifier scope.
+Receipt-pinning (B1), single-tip binding (F-wit-3), S3 derived-equality,
+now S4 — one family.
+
+Next: F-super-5 (rule-ordering documentation per wall) still open; or push
+the tensor-lane question — does a tensor view of (A×B) witness history make
+the stale-view series a first-class row?
+
+BLOCKED (unchanged): no push credential. This entry + multi.py + FINDINGS.md
+update are local-only as of 2026-10-09 08:50 +0800.
