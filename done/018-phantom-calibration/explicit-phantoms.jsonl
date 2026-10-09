@@ -1,0 +1,50 @@
+{"id": "xphantom-01", "class": "explicit-phantom", "text": "Trust me, the migration worked. No receipts."}
+{"id": "xphantom-02", "class": "explicit-phantom", "text": "The deploy went fine, though I don't have the logs to prove it."}
+{"id": "xphantom-03", "class": "explicit-phantom", "text": "All tests pass \u2014 you'll just have to take my word for it."}
+{"id": "xphantom-04", "class": "explicit-phantom", "text": "I can't show you the numbers, but performance is way better now."}
+{"id": "xphantom-05", "class": "explicit-phantom", "text": "The audit found nothing, but I didn't keep the report."}
+{"id": "xphantom-06", "class": "explicit-phantom", "text": "Believe me, the incident is fully resolved. No ticket, though."}
+{"id": "xphantom-07", "class": "explicit-phantom", "text": "The data is all migrated. I have no checksums to show you."}
+{"id": "xphantom-08", "class": "explicit-phantom", "text": "Security review is done. I can't share the findings document."}
+{"id": "xphantom-09", "class": "explicit-phantom", "text": "The model is more accurate now, trust me on this."}
+{"id": "xphantom-10", "class": "explicit-phantom", "text": "We hit all our targets this quarter. The spreadsheet is gone, unfortunately."}
+{"id": "xphantom-11", "class": "explicit-phantom", "text": "The backup ran fine last night. I didn't verify the restore."}
+{"id": "xphantom-12", "class": "explicit-phantom", "text": "Code review is complete. There are no written comments anywhere."}
+{"id": "xphantom-13", "class": "explicit-phantom", "text": "The client is happy with the result, though nothing was signed."}
+{"id": "xphantom-14", "class": "explicit-phantom", "text": "All 200 tests pass. I can't show you the test run."}
+{"id": "xphantom-15", "class": "explicit-phantom", "text": "The vulnerability is patched everywhere. No scan report available."}
+{"id": "xphantom-16", "class": "explicit-phantom", "text": "Uptime was perfect this month, as far as I can tell without the metrics."}
+{"id": "xphantom-17", "class": "explicit-phantom", "text": "The refactor is done and it's solid. I didn't run the benchmarks."}
+{"id": "xphantom-18", "class": "explicit-phantom", "text": "Take my word for it, the API handles the load fine."}
+{"id": "xphantom-19", "class": "explicit-phantom", "text": "The migration had zero downtime, though I wasn't monitoring."}
+{"id": "xphantom-20", "class": "explicit-phantom", "text": "Everyone completed the training. The records were lost."}
+{"id": "xphantom-21", "class": "explicit-phantom", "text": "The feature works great in production. No dashboards to prove it."}
+{"id": "xphantom-22", "class": "explicit-phantom", "text": "I'm confident the bug is fixed. I couldn't reproduce it in the first place."}
+{"id": "xphantom-23", "class": "explicit-phantom", "text": "The numbers look good. I don't have the raw data anymore."}
+{"id": "xphantom-24", "class": "explicit-phantom", "text": "The system is secure now. You'll have to trust my assessment."}
+{"id": "xphantom-25", "class": "explicit-phantom", "text": "We processed everything correctly. The logs rotated away."}
+{"id": "xphantom-26", "class": "explicit-phantom", "text": "The release is stable. I have no crash data to share."}
+{"id": "xphantom-27", "class": "explicit-phantom", "text": "Performance doubled, though I never measured the baseline."}
+{"id": "xphantom-28", "class": "explicit-phantom", "text": "The integration works. There are no contract tests, but it works."}
+{"id": "xphantom-29", "class": "explicit-phantom", "text": "All feedback was positive. I didn't save any of it."}
+{"id": "xphantom-30", "class": "explicit-phantom", "text": "The database is consistent. I skipped the integrity check."}
+{"id": "xphantom-31", "class": "explicit-phantom", "text": "We're compliant now. The evidence folder is empty."}
+{"id": "xphantom-32", "class": "explicit-phantom", "text": "The prototype works end to end. I can't demo it right now."}
+{"id": "xphantom-33", "class": "explicit-phantom", "text": "Latency is way down. I don't have the graphs."}
+{"id": "xphantom-34", "class": "explicit-phantom", "text": "The team agrees it was a success. Nothing was written down."}
+{"id": "xphantom-35", "class": "explicit-phantom", "text": "Tests are green across the board, as far as I remember."}
+{"id": "xphantom-36", "class": "explicit-phantom", "text": "The failover worked in the drill. No one recorded the outcome."}
+{"id": "xphantom-37", "class": "explicit-phantom", "text": "I'm sure the config is right. I didn't diff it."}
+{"id": "xphantom-38", "class": "explicit-phantom", "text": "The cache is warm and hit rates are high, presumably."}
+{"id": "xphantom-39", "class": "explicit-phantom", "text": "We fixed it for good this time. I can't explain what was wrong."}
+{"id": "xphantom-40", "class": "explicit-phantom", "text": "The old data is archived. I can't tell you where."}
+{"id": "xphantom-41", "class": "explicit-phantom", "text": "Coverage is excellent now. The report didn't generate."}
+{"id": "xphantom-42", "class": "explicit-phantom", "text": "The rollout finished cleanly, though I wasn't watching the monitors."}
+{"id": "xphantom-43", "class": "explicit-phantom", "text": "Stakeholders loved the demo. There is no recording."}
+{"id": "xphantom-44", "class": "explicit-phantom", "text": "The query is fast now. I didn't keep the EXPLAIN output."}
+{"id": "xphantom-45", "class": "explicit-phantom", "text": "Everything is backed up. I've never tested a restore."}
+{"id": "xphantom-46", "class": "explicit-phantom", "text": "The new hire is fully ramped. There's no checklist, but they're fine."}
+{"id": "xphantom-47", "class": "explicit-phantom", "text": "I'm positive the deploy succeeded. The pipeline UI was down."}
+{"id": "xphantom-48", "class": "explicit-phantom", "text": "The alerts are all resolved. I cleared them without investigating."}
+{"id": "xphantom-49", "class": "explicit-phantom", "text": "Disk usage is under control now. I didn't check what's using it."}
+{"id": "xphantom-50", "class": "explicit-phantom", "text": "They said the payment went through. I have no confirmation."}
