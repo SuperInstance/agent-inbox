@@ -29,6 +29,7 @@ cmd_send() {
   [ -f "$src" ] || die "no such file: $src"
   local name; name="$(basename "$src")"
   git -C "$REPO_DIR" pull --quiet 2>/dev/null || true
+  mkdir -p "$REPO_DIR/inbox"
   cp "$src" "$REPO_DIR/inbox/$name"
   git -C "$REPO_DIR" add "inbox/$name"
   git -C "$REPO_DIR" commit -qm "drop: $name"
