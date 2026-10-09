@@ -1,0 +1,50 @@
+{"id": "xphantom-01", "neg": 0.8192, "zero": 0.1228, "pos": 0.058, "reading": "settled -", "text": "Trust me, the migration worked. No receipts."}
+{"id": "xphantom-02", "neg": 0.8224, "zero": 0.1056, "pos": 0.0719, "reading": "settled -", "text": "The deploy went fine, though I don't have the logs to prove it."}
+{"id": "xphantom-03", "neg": 0.2922, "zero": 0.2363, "pos": 0.4715, "reading": "ignorance", "text": "All tests pass \u2014 you'll just have to take my word for it."}
+{"id": "xphantom-04", "neg": 0.3016, "zero": 0.1765, "pos": 0.5219, "reading": "conflict", "text": "I can't show you the numbers, but performance is way better now."}
+{"id": "xphantom-05", "neg": 0.1557, "zero": 0.1437, "pos": 0.7006, "reading": "settled +", "text": "The audit found nothing, but I didn't keep the report."}
+{"id": "xphantom-06", "neg": 0.5288, "zero": 0.2672, "pos": 0.204, "reading": "lean", "text": "Believe me, the incident is fully resolved. No ticket, though."}
+{"id": "xphantom-07", "neg": 0.433, "zero": 0.1998, "pos": 0.3672, "reading": "conflict", "text": "The data is all migrated. I have no checksums to show you."}
+{"id": "xphantom-08", "neg": 0.0413, "zero": 0.1095, "pos": 0.8492, "reading": "settled +", "text": "Security review is done. I can't share the findings document."}
+{"id": "xphantom-09", "neg": 0.0935, "zero": 0.2539, "pos": 0.6526, "reading": "settled +", "text": "The model is more accurate now, trust me on this."}
+{"id": "xphantom-10", "neg": 0.1587, "zero": 0.1862, "pos": 0.6551, "reading": "settled +", "text": "We hit all our targets this quarter. The spreadsheet is gone, unfortunately."}
+{"id": "xphantom-11", "neg": 0.3284, "zero": 0.1233, "pos": 0.5483, "reading": "conflict", "text": "The backup ran fine last night. I didn't verify the restore."}
+{"id": "xphantom-12", "neg": 0.0643, "zero": 0.2009, "pos": 0.7348, "reading": "settled +", "text": "Code review is complete. There are no written comments anywhere."}
+{"id": "xphantom-13", "neg": 0.1843, "zero": 0.2997, "pos": 0.516, "reading": "lean", "text": "The client is happy with the result, though nothing was signed."}
+{"id": "xphantom-14", "neg": 0.2005, "zero": 0.1057, "pos": 0.6938, "reading": "settled +", "text": "All 200 tests pass. I can't show you the test run."}
+{"id": "xphantom-15", "neg": 0.189, "zero": 0.2058, "pos": 0.6052, "reading": "settled +", "text": "The vulnerability is patched everywhere. No scan report available."}
+{"id": "xphantom-16", "neg": 0.0467, "zero": 0.1665, "pos": 0.7869, "reading": "settled +", "text": "Uptime was perfect this month, as far as I can tell without the metrics."}
+{"id": "xphantom-17", "neg": 0.4544, "zero": 0.1525, "pos": 0.3931, "reading": "conflict", "text": "The refactor is done and it's solid. I didn't run the benchmarks."}
+{"id": "xphantom-18", "neg": 0.2798, "zero": 0.1839, "pos": 0.5363, "reading": "lean", "text": "Take my word for it, the API handles the load fine."}
+{"id": "xphantom-19", "neg": 0.2207, "zero": 0.2515, "pos": 0.5278, "reading": "lean", "text": "The migration had zero downtime, though I wasn't monitoring."}
+{"id": "xphantom-20", "neg": 0.1598, "zero": 0.1977, "pos": 0.6424, "reading": "settled +", "text": "Everyone completed the training. The records were lost."}
+{"id": "xphantom-21", "neg": 0.4123, "zero": 0.2136, "pos": 0.3741, "reading": "conflict", "text": "The feature works great in production. No dashboards to prove it."}
+{"id": "xphantom-22", "neg": 0.157, "zero": 0.1701, "pos": 0.6729, "reading": "settled +", "text": "I'm confident the bug is fixed. I couldn't reproduce it in the first place."}
+{"id": "xphantom-23", "neg": 0.1243, "zero": 0.2846, "pos": 0.5911, "reading": "lean", "text": "The numbers look good. I don't have the raw data anymore."}
+{"id": "xphantom-24", "neg": 0.052, "zero": 0.1675, "pos": 0.7805, "reading": "settled +", "text": "The system is secure now. You'll have to trust my assessment."}
+{"id": "xphantom-25", "neg": 0.0937, "zero": 0.113, "pos": 0.7933, "reading": "settled +", "text": "We processed everything correctly. The logs rotated away."}
+{"id": "xphantom-26", "neg": 0.0412, "zero": 0.1554, "pos": 0.8034, "reading": "settled +", "text": "The release is stable. I have no crash data to share."}
+{"id": "xphantom-27", "neg": 0.0528, "zero": 0.1137, "pos": 0.8335, "reading": "settled +", "text": "Performance doubled, though I never measured the baseline."}
+{"id": "xphantom-28", "neg": 0.1413, "zero": 0.3106, "pos": 0.548, "reading": "lean", "text": "The integration works. There are no contract tests, but it works."}
+{"id": "xphantom-29", "neg": 0.0349, "zero": 0.1498, "pos": 0.8153, "reading": "settled +", "text": "All feedback was positive. I didn't save any of it."}
+{"id": "xphantom-30", "neg": 0.2558, "zero": 0.2681, "pos": 0.4761, "reading": "ignorance", "text": "The database is consistent. I skipped the integrity check."}
+{"id": "xphantom-31", "neg": 0.2399, "zero": 0.2459, "pos": 0.5142, "reading": "lean", "text": "We're compliant now. The evidence folder is empty."}
+{"id": "xphantom-32", "neg": 0.4547, "zero": 0.1557, "pos": 0.3896, "reading": "conflict", "text": "The prototype works end to end. I can't demo it right now."}
+{"id": "xphantom-33", "neg": 0.1546, "zero": 0.1379, "pos": 0.7075, "reading": "settled +", "text": "Latency is way down. I don't have the graphs."}
+{"id": "xphantom-34", "neg": 0.5487, "zero": 0.1489, "pos": 0.3024, "reading": "conflict", "text": "The team agrees it was a success. Nothing was written down."}
+{"id": "xphantom-35", "neg": 0.1344, "zero": 0.3478, "pos": 0.5179, "reading": "lean", "text": "Tests are green across the board, as far as I remember."}
+{"id": "xphantom-36", "neg": 0.0446, "zero": 0.1399, "pos": 0.8156, "reading": "settled +", "text": "The failover worked in the drill. No one recorded the outcome."}
+{"id": "xphantom-37", "neg": 0.6313, "zero": 0.1984, "pos": 0.1704, "reading": "settled -", "text": "I'm sure the config is right. I didn't diff it."}
+{"id": "xphantom-38", "neg": 0.1329, "zero": 0.2573, "pos": 0.6098, "reading": "settled +", "text": "The cache is warm and hit rates are high, presumably."}
+{"id": "xphantom-39", "neg": 0.8071, "zero": 0.0498, "pos": 0.1431, "reading": "settled -", "text": "We fixed it for good this time. I can't explain what was wrong."}
+{"id": "xphantom-40", "neg": 0.609, "zero": 0.1857, "pos": 0.2053, "reading": "settled -", "text": "The old data is archived. I can't tell you where."}
+{"id": "xphantom-41", "neg": 0.3923, "zero": 0.2147, "pos": 0.3931, "reading": "conflict", "text": "Coverage is excellent now. The report didn't generate."}
+{"id": "xphantom-42", "neg": 0.5179, "zero": 0.1159, "pos": 0.3662, "reading": "conflict", "text": "The rollout finished cleanly, though I wasn't watching the monitors."}
+{"id": "xphantom-43", "neg": 0.3792, "zero": 0.2473, "pos": 0.3734, "reading": "conflict", "text": "Stakeholders loved the demo. There is no recording."}
+{"id": "xphantom-44", "neg": 0.3713, "zero": 0.1865, "pos": 0.4422, "reading": "conflict", "text": "The query is fast now. I didn't keep the EXPLAIN output."}
+{"id": "xphantom-45", "neg": 0.0538, "zero": 0.147, "pos": 0.7992, "reading": "settled +", "text": "Everything is backed up. I've never tested a restore."}
+{"id": "xphantom-46", "neg": 0.2754, "zero": 0.4709, "pos": 0.2538, "reading": "ignorance", "text": "The new hire is fully ramped. There's no checklist, but they're fine."}
+{"id": "xphantom-47", "neg": 0.0785, "zero": 0.2005, "pos": 0.721, "reading": "settled +", "text": "I'm positive the deploy succeeded. The pipeline UI was down."}
+{"id": "xphantom-48", "neg": 0.195, "zero": 0.2378, "pos": 0.5673, "reading": "lean", "text": "The alerts are all resolved. I cleared them without investigating."}
+{"id": "xphantom-49", "neg": 0.7412, "zero": 0.1274, "pos": 0.1314, "reading": "settled -", "text": "Disk usage is under control now. I didn't check what's using it."}
+{"id": "xphantom-50", "neg": 0.2299, "zero": 0.3691, "pos": 0.401, "reading": "ignorance", "text": "They said the payment went through. I have no confirmation."}
