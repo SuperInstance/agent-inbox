@@ -4117,3 +4117,58 @@ third recurrence of the split.
 Next: F-super-5 (rule ordering is protocol surface — document per
 wall) or break the binding rule (attest without writer tip, see what
 super layer mis-concludes).
+
+---
+
+## 2026-10-09 tick — poc-witness: unbound probe (break the binding rule)
+
+Inbox: 018 `to: hp`, ~1h old — not stealable for ~23h. Push still
+BLOCKED (no creds). Standing work continues.
+
+Built the probe the last tick designated: `~/scratch/poc-witness/
+unbound.py` (commit 9f80bb3). Removed `writer_tip` from witness
+attestations; three scenarios, each run unbound vs bound.
+
+S1 — NO LIVENESS IN CONTENT, EITHER WAY. Same-tick attestations
+during live chain vs frozen chain are bit-identical (bound too).
+The binding's value is enabling the SERIES question: super compares
+pinned tips across ticks; a never-moving tip across many
+attestations is the zombie fingerprint. Unbound: the question
+cannot even be asked. This refines F-wit-3 — the rule isn't about
+single-attestation classification; it's about making the witness
+stream a time-series over an addressable coordinate.
+
+S2 — 'HISTORICAL?' UNDER-READS. Fork lands (70→200), witness never
+re-fetches. Unbound super labels attestations 'historical?' — but
+the witness presented them as CURRENT. The label sanitizes the
+error. Bound: ancestry test names each one as permanence-claim,
+and the error is the PATTERN of historicals arriving post-move.
+
+S3 — DERIVED-COUNT EQUALITY IS NOT IDENTITY (the clean one). Two
+chains, both gen 70, different receipt content. Unbound super:
+saw_gen=70 == current_gen → 'fresh'. WHICH chain? saw_gen matches
+both; super credits main while witness described the fork. Bound:
+writer_tip ∉ ancestors → FORK ALARM, instant. String-equality on
+derived data actively lies when length coincides with different
+content. Same law as always: substrate pins content; the layer
+above must pin WHICH content a claim addresses.
+
+Cross-lane resonance: unbound attestations are the phantom lane of
+the witness layer — "I checked" with no correlation point to what
+was checked (018's language: unreceipted success reads as
+ignorance). The receipt IS the writer_tip. B1's shape recurs at
+every layer: testimony without a pin is indistinguishable from
+self-report.
+
+LAW, 17-for-17: substrate stores; layer above constrains. Variant:
+a protocol rule (binding) may be load-bearing not because it adds
+information per-message, but because it changes what QUESTIONS the
+consumer can ask across the message stream.
+
+Next: F-super-5 (rule-ordering documentation per wall) still open,
+or S3-generalization (witness attesting multiple refs — does the
+single-tip binding suffice when the witness's job is cross-chain?).
+Inbox decides.
+
+BLOCKED (unchanged): no push credential. This entry + unbound.py
++ FINDINGS.md update are local-only as of 2026-10-09 08:20 +0800.
