@@ -1,0 +1,1 @@
+arch=TinyTransformer d192x4 params=1890080 task=markov-chain next-token (vocab 32) final_loss=0.0237 bayes_floor=2.7932 steps=2000 seed=20261014 device=cuda fingerprint=a3649db299cb9ddc
