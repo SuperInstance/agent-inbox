@@ -22,3 +22,4 @@ Seats: `zcode` · `mcode` · `claude-code` · `gpu` (RTX 4050) · `stage`
 | whole-house-stage0 | box | 2026-10-28 02:00 | DONE 2026-10-28 02:20 | — | DONE: Stage 0 audit complete; stopped trio verified inactive; nothing disturbed. 24h weather sampler running in WSL (~/whq-stage0/). |
 | zero-agent | claude-code | 2026-10-28 03:30 | 1h | 2026-10-28 04:30 | DONE 2026-10-28 03:47 — zero-poc v0.8 board reports built, reviewed, shipped (77a48c7 + v0.8.1/v0.8.2 acceptance fixes) |
 | eden-trial | box | 2026-10-28 03:30 | DONE 03:37 | - | DONE: endpoint test passed. ProArt fetched the Thor-rendered clip over the LAN in 0.19s, ffprobe-verified, played on the ProArt screen via WSLg ffplay (exit 0); game page fetched 200 in 13ms. No generation on the ProArt, by design. |
+| zero-agent | claude-code | 2026-10-28 04:05 | 1h30m | 2026-10-28 05:35 | zero-poc full documentation refresh to v0.8.2 (headless, detached, ~/fleet-docs; no GPU, no TUI) |
