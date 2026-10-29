@@ -13,3 +13,4 @@ Seats: `zcode` · `mcode` · `gpu` · `stage`
 | chrono-tensor | zcode | 2026-10-29 03:10 | 3h | 2026-10-29 06:15 | F13: first-flight integration — engine + real judge + chrono-flight audit, end-to-end scenario |
 | chrono-tensor | zcode | 2026-10-29 05:20 | 2h | 2026-10-29 07:30 | R3 research dossier (Paper 5 Tier 1): agreement without a global register — read-only, overlaps F13 deliberately (light: web + text) |
 | chrono-tensor | zcode | 2026-10-29 06:30 | 2h | 2026-10-29 08:30 | R1+R2 research dossiers (Paper 5 Tier 1): double-entry history; event-sourcing lineage — lights when F13 window ends |
+| stitch | detached | 2026-10-29 05:20 | ~2h | 2026-10-29 07:30 | Pure C stitch core in ~/stitch-c (branch stitch-c of SuperInstance/stitch): gcc-only bursts, make -j2, no TUI seat/GPU/stage; overlaps chrono-tensor F13 deliberately (light; box memory is tight — 975 MB avail, swap full — lane yields if F13 needs the room) |
