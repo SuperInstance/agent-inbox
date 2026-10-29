@@ -10,3 +10,4 @@ Seats: `zcode` · `mcode` · `gpu` · `stage`
 | whole-house-stage0 | box | 2026-10-28 02:00 | 2h30m | 2026-10-28 03:15 | Stage 0: LAN weather + inventory audit (incl. Orin yield behaviour). Light read-only checks; desktop/Earth survey untouched. |
 | whole-house-stage0 | box | 2026-10-28 02:00 | DONE 2026-10-28 02:20 | — | DONE: Stage 0 audit complete. FINDING for the front-room lane: orin-x11vnc failed since 2026-10-25 17:41 UTC (noVNC backend down); local desktop/survey unaffected. |
 | sitka-quilt | zcode | 2026-10-28 23:10 | ~3h batch image work, low priority | 2026-10-29 03:00 | ZCode crops the 543 Earth-survey keepers on the Orin and builds one quilted sheet + 512px tiles + viewer in ~/sitka-quilt/; originals read-only, nothing leaves the box. |
+| chrono-tensor | zcode | 2026-10-29 03:10 | 3h | 2026-10-29 06:15 | F13: first-flight integration — engine + real judge + chrono-flight audit, end-to-end scenario |

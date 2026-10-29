@@ -23,3 +23,6 @@ Seats: `zcode` · `mcode` · `claude-code` · `gpu` (RTX 4050) · `stage`
 | zero-agent | claude-code | 2026-10-28 03:30 | 1h | 2026-10-28 04:30 | DONE 2026-10-28 03:47 — zero-poc v0.8 board reports built, reviewed, shipped (77a48c7 + v0.8.1/v0.8.2 acceptance fixes) |
 | eden-trial | box | 2026-10-28 03:30 | DONE 03:37 | - | DONE: endpoint test passed. ProArt fetched the Thor-rendered clip over the LAN in 0.19s, ffprobe-verified, played on the ProArt screen via WSLg ffplay (exit 0); game page fetched 200 in 13ms. No generation on the ProArt, by design. |
 | zero-agent | claude-code | 2026-10-28 04:05 | 1h30m | 2026-10-28 05:35 | zero-poc full documentation refresh to v0.8.2 (headless, detached, ~/fleet-docs; no GPU, no TUI) | DONE 2026-10-28 05:05 UTC — docs refresh shipped f7f6af8 (two seat runs; first died on the Claude session limit, resumed after the 20:30 AKDT reset); grabber work ran from Oracle, no further ProArt time used.
+| chrono-tensor | zcode | 2026-10-29 03:10 | 3h | 2026-10-29 06:15 | F12: quilt-engine v0.4 fog mechanism build (ruling-neutral core of DESIGN-V04) |
+| chrono-tensor | claude-code | 2026-10-29 03:10 | 1h | 2026-10-29 04:30 | CC2: pre-build referee of DESIGN-V04 against SPEC P4 (read-only) |
+| chrono-tensor | mcode | 2026-10-29 03:10 | 2h | 2026-10-29 05:30 | M2: continuum-runtime slice-2 design note (from slice-1 gaps) |
