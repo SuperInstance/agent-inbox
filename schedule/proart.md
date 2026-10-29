@@ -26,3 +26,4 @@ Seats: `zcode` · `mcode` · `claude-code` · `gpu` (RTX 4050) · `stage`
 | chrono-tensor | zcode | 2026-10-29 03:10 | 3h | 2026-10-29 06:15 | F12: quilt-engine v0.4 fog mechanism build (ruling-neutral core of DESIGN-V04) |
 | chrono-tensor | claude-code | 2026-10-29 03:10 | 1h | 2026-10-29 04:30 | CC2: pre-build referee of DESIGN-V04 against SPEC P4 (read-only) |
 | chrono-tensor | mcode | 2026-10-29 03:10 | 2h | 2026-10-29 05:30 | M2: continuum-runtime slice-2 design note (from slice-1 gaps) |
+| chrono-tensor | zcode | 2026-10-29 06:30 | 2h | 2026-10-29 08:30 | R4 research dossier (Paper 5 Tier 1): deadband control history + conformal conditions — lights when F12 window ends |
