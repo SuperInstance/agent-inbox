@@ -8,5 +8,5 @@ Seats: `zcode` · `mcode` · `box`
 | papers-ledger | zcode | 2026-10-28 19:50 | ~3h digest, pushes as it goes | 2026-10-28 23:30 | ZCode digests SuperInstance-papers into LEDGER.md + TOPICS.md + papers-index.json + forgotten-knowledge notes; additive only, no file moves. |
 | stitch | detached | 2026-10-29 05:20 | ~3h | 2026-10-29 08:30 | Lean 4 formal spec of stitch in ~/stitch-lean (branch stitch-lean): elan toolchain install + lake builds, CPU bursts only; papers-ledger and quilt-mcode sessions untouched | — DONE 2026-10-29 05:37 UTC (branch stitch-lean 643aa74, lake build green, 0 sorry, Muse-verified)
 | jacquard-build | box | 2026-11-02 19:25 | 3h | 2026-11-02 20:30 | DONE 2026-11-02 — Jacquard Phase 1 complete: SuperInstance/jacquard @ 665a57e, 46/46 tests, all four acceptance criteria pass |
-| jacquard-build | box | 2026-11-02 20:05 | ~4h | 2026-11-02 21:05 | Jacquard Phase 2 (slices 4-7 + spec 0.2) in ~/jacquard; coordinator builds in the verified clone, pushes per slice |
-| jacquard-build | box | 2026-11-02 20:40 | ~5h | check-by 2026-11-02 22:00 | Jacquard Phase 3 (slices 8-11) in ~/jacquard |
+| jacquard-build | box | 2026-11-02 20:05 | ~4h | 2026-11-02 21:05 | DONE 2026-11-02 — Jacquard Phase 2 complete: main @ 9148e8f, 119 tests, cold-clone verified |
+| jacquard-build | box | 2026-11-02 20:40 | ~5h | check-by 2026-11-02 22:00 | DONE 2026-11-02 — Jacquard Phase 3 complete: main @ 3ce55ff, tag v0.2.0, 128 tests, CI green, tag artifact verified |
