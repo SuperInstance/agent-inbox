@@ -28,3 +28,4 @@ Seats: `zcode` · `mcode` · `claude-code` · `gpu` (RTX 4050) · `stage`
 | chrono-tensor | mcode | 2026-10-29 03:10 | 2h | 2026-10-29 05:30 | M2: continuum-runtime slice-2 design note (from slice-1 gaps) |
 | chrono-tensor | zcode | 2026-10-29 06:30 | 2h | 2026-10-29 08:30 | R4 research dossier (Paper 5 Tier 1): deadband control history + conformal conditions — lights when F12 window ends |
 | jacquard-build | zcode (detached, new dir) | 2026-11-03 17:15 | ~6h | 2026-11-03 19:15 | Jacquard Phase 11 slice 30: ZCode adapter deployment in ~/jacquard-p11-seat/ (new dir, detached seat process, headless settings-file surface); the resident build session and stage are NOT touched |
+| jacquard-build | zcode | 2026-11-03 19:45 | 2h | 2026-11-03 20:45 | Phase 11 slice 31: stranger test — cold agent onboards from the draft docs alone (jq:jacquard-build-proart-zcode-2026-11-03-19-45) |
