@@ -21,3 +21,4 @@ Seats: `zcode` · `mcode` · `box`
 | gitpp | mcode | 2026-11-03 17:10 | ~2h | 2026-11-03 18:30 | Contest-day receipt drafting for git.pp, work in ~/gitpp-contest-work, own tmux session gitpp-seat |
 | jacquard-build | box | 2026-11-03 17:15 | ~8h | 2026-11-03 19:15 | Jacquard Phase 11: build home (~/jacquard-p11) + booking-board governance deployment (slice 30 Oracle cell: the phase bookings flow through a kernel log) + stranger test (slice 31) + grab-and-go docs (slice 32) |
 | jacquard-build | box | 2026-11-03 19:45 | 3h | 2026-11-03 20:45 | Phase 11 slices 31-32: stranger-test coordination + grab-and-go docs build home (~/jacquard-p11) (jq:jacquard-build-oracle-box-2026-11-03-19-45) | — DONE 2026-11-03 21:23 UTC (jacquard)
+| jacquard-build | box | 2026-11-03 23:00 | ~3h | 2026-11-04 01:00 | Jacquard Phase 12: production-voice documentation (slices 33-35) — README rewrite, user-doc sweep, cold read, tag v1.2.1; docs-only, build home ~/jacquard-p12 |
