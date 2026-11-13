@@ -79,3 +79,4 @@ Seats: `zcode` · `mcode` · `kimi` · `gpu` (NVIDIA Thor, sm_110) · `stage`
 | day18-stair-redesign | box | 2026-11-13 06:30 | 5h | 2026-11-13 07:30 | Day-18 stair redesign + run lane: scratch-rig rehearsals + league filings on Thor; Orin world read-only copies until chartered windows |
 | day18-stair-redesign | box | REBOOK 2026-11-13 08:30 | 5h | 2026-11-13 10:00 | heartbeat: replica rehearsals in progress (design v3, attempt 16 running); live-world windows still ahead |
 | day18-stair-redesign | box | REBOOK 2026-11-13 10:10 | 6h | 2026-11-13 11:30 | heartbeat: replica gate attempt 25 running (best so far 2/3 climbs, attempt 22); placement window next if 3/3 |
+| day18-stair-redesign | box | REBOOK 2026-11-13 11:05 | 6h | 2026-11-13 12:15 | heartbeat: Gates A-R + A green; Gate B nearly complete; day-18 launch planned 12:00Z, runs 85 min |
