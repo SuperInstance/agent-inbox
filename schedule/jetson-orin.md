@@ -32,3 +32,4 @@ council-takes DONE 2026-11-09 ~04:10 UTC — both takes obtained and filed: stud
 | day18-stair-redesign | box | REBOOK 2026-11-13 08:30 | 5h | 2026-11-13 10:00 | heartbeat: rehearsal phase; Orin untouched so far |
 | day18-stair-redesign | box | REBOOK 2026-11-13 10:10 | 6h | 2026-11-13 11:30 | heartbeat: Orin still untouched; live windows ahead if replica gate passes |
 | day18-stair-redesign | box | REBOOK 2026-11-13 11:05 | 6h | 2026-11-13 12:15 | heartbeat: Orin live windows done (placement verified); keeper changeover + citizen day from 12:00Z |
+| day18-stair-redesign | box | DONE 2026-11-13 14:00 | - | - | Day 18 complete: placement verified, keeper changeover done and guarded posture restored at close; lane closed |
