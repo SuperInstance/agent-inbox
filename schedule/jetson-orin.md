@@ -30,3 +30,4 @@ Seats: `zcode` · `mcode` · `gpu` · `stage`
 council-takes DONE 2026-11-09 ~04:10 UTC — both takes obtained and filed: studies/town-community-seat-takes-20261108.md (research-trail b724b19, fresh-clone sha256-verified, PRIVATE). Orin zcode seat released; Thor mcode pane left idle with its prior lane's queued-write proposal untouched, as found.
 | day18-stair-redesign | box | 2026-11-13 06:30 | 5h | 2026-11-13 07:30 | Day-18 run lane: live world — placement window (MapProbe4), Gate A stocking, citizen day 18; yields instantly to desk use |
 | day18-stair-redesign | box | REBOOK 2026-11-13 08:30 | 5h | 2026-11-13 10:00 | heartbeat: rehearsal phase; Orin untouched so far |
+| day18-stair-redesign | box | REBOOK 2026-11-13 10:10 | 6h | 2026-11-13 11:30 | heartbeat: Orin still untouched; live windows ahead if replica gate passes |
