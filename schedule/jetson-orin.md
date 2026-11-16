@@ -35,4 +35,4 @@ council-takes DONE 2026-11-09 ~04:10 UTC — both takes obtained and filed: stud
 | day18-stair-redesign | box | DONE 2026-11-13 14:00 | - | - | Day 18 complete: placement verified, keeper changeover done and guarded posture restored at close; lane closed |
 | publish-sweep | box | 2026-11-14 18:05 | 4h | 2026-11-14 20:05 | Publish sweep: stage minecraft-server world save for craftmind-world repo. Read-only measure + copy/bundle. Deletes nothing. |
 | publish-sweep | box | 2026-11-14 19:40 | DONE | 2026-11-14 19:40 | DONE 2026-11-14 19:40 UTC — craftmind-world published + verified (HEAD e536512). Original untouched. |
-| shutdown | box | 2026-11-16 16:40 | 3h | 2026-11-16 17:40 | Shutdown lane (Casey order 2026-11-16): graceful Paper stop + disable, heartbeat timer off, final world snapshot push, prune league estates. Prism Launcher untouched. |
+| shutdown | box | 2026-11-16 16:40 | 3h · DONE 2026-11-16 17:35 UTC | 2026-11-16 17:40 | Shutdown lane (Casey order 2026-11-16): graceful Paper stop + disable, heartbeat timer off, final world snapshot push, prune league estates. Prism Launcher untouched. |
